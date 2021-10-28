@@ -5,12 +5,17 @@ const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');  // video 8
 const session = require('express-session');
+var { check, validationResult } = require('express-validator');
+
+
+
+
 
 // require routes:
-// const pageRoutes = require('./routes/pageRoutes');
-// const adminRoutes = require('./routes/adminRoutes');
-const expressValidator = require('express-validator');
 
+// const pageRoutes = require('./routes/pageRoutes');
+const adminPageRoutes = require('./routes/adminPageRoutes');
+const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
 
 
 // connect to mongodb
@@ -44,35 +49,17 @@ app.use(express.urlencoded({extended: true}));
 
 //---------------------------------------------------
 // body-parser middleware
-// app.use(bodyParser.urlencoded({extended:false}));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
  
-// // Express Session Middleware
-// app.use(session({
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {secure: true}
-// }));
-
-// Express Validator Middleware
-// app.use(expressValidator({
-//     errorFormatter: function(param, msg, value) {
-//         var namespace = param.split('.')
-//         , root = namespace.shift()
-//         , formParam = root;
-
-//         while(namespace.length) {
-//             formParam += '[' + namespace.shift() + ']';
-//         }
-//         return {
-//             param: formParam,
-//             msg: msg,
-//             value: value
-//         };
-//     }
-// }));
+// Express Session Middleware
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: true}
+}));
 
 
 
@@ -80,14 +67,24 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-
-
-
+// Express Messages middleware
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+});
 
 
 
 //----------------------------------------------------------------
 
+
+
 // set page routes:
-// app.use('/admin', adminRoutes);
+app.use('/admin/pages', adminPageRoutes);
+app.use('/admin/categories', adminCategoryRoutes);
 // app.use('/', pageRoutes);
+
+
+
+
