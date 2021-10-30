@@ -45,12 +45,7 @@ app.set('view engine', 'ejs');
 // setup public folder
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: "Home"
-    });
 
-});
 
 
 
@@ -92,6 +87,10 @@ app.use('/admin/pages', adminPageRoutes);
 app.use('/admin/categories', adminCategoryRoutes);
 // app.use('/', pageRoutes);
 
-
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: "Home"
+    });
+});
 
 
