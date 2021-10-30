@@ -23,8 +23,9 @@ const dbURI = config.database;
 
 //connect to mongoDB
 mongoose.connect(dbURI, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true})
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then((result) => console.log('connected to db'))
     .catch((err) => console.log(err));
 
@@ -43,22 +44,28 @@ app.set('view engine', 'ejs');
 
 // setup public folder
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: "Home"
+    });
+
+});
 
 
 
 //---------------------------------------------------
 // body-parser middleware
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
- 
+
 // Express Session Middleware
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: {secure: true}
+    cookie: { secure: true }
 }));
 
 
