@@ -72,8 +72,9 @@
     color: white;
     font-size: 50px;
     position: absolute;
+    width: 100%;
     top: 30%;
-    left: 5%;
+    text-align: center;
     
 }
 
