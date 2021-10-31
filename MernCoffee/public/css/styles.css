@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#main {
+    height: 100vh;
+    width: 100vw;
+}
+
+#header {
+    background-color: #222831;
+    height: 60px;
+}
+
+#navbar {
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+
+#navbar li {
+    display: flex;
+    padding: 0 60px;
+    height: 100%;
+    align-items: center;
+}
+
+#navbar li a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+#navbar li:hover{
+    background-color: #E84545;
+}
+
+#navbar li:hover a{
+    color: black;
+
+}
+
+#container {
+    height: calc(100% - 60px);
+    width: 100%;
+    position: relative;
+}
+
+#container #text-content{
+    background-color: #393E46;
+    width: 30%;
+    height: 100%;
+    position: absolute;
+
+}
+
+#container #img-content {
+    left: 30%;
+    position: absolute;
+    height: 100%;
+    width: 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("/img/coffee-background.jpg");
+}
+
+#container #text-content .text-heading{
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    text-align: center;
+    
+}
+
+#container #text-content .btn{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #EEEEEE;
+    height: 10%;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+}
+
+#container #text-content .btn a{
+    text-decoration: none;
+    line-height: 100%;
+    width: 100%;
+    color: black;
+    display: block;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+#container #text-content .btn:hover {
+    background-color: #E84545;
+    
+}
+
+#container #text-content .btn:hover a{
+    color: white;
+}
