@@ -163,8 +163,8 @@ router.post('/edit-category/:id', (req, res) => {
                         });
 
                         req.flash('success', 'Category edited!');
-                        //res.redirect('/admin/categories/edit-category/' + id);
-                        res.redirect('/admin/categories/');
+                        res.redirect('/admin/categories/edit-category/' + id);
+                        //res.redirect('/admin/categories/');
                     });
 
                 });
