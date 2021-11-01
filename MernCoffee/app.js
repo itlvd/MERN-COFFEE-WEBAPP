@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');  // video 8
 const session = require('express-session');
 var { check, validationResult } = require('express-validator');
-
+var fileUpload = require('express-fileupload');
 
 
 
@@ -16,7 +16,7 @@ var { check, validationResult } = require('express-validator');
 // const pageRoutes = require('./routes/pageRoutes');
 const adminPageRoutes = require('./routes/adminPageRoutes');
 const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
-
+const adminProductRoutes = require('./routes/adminProductRoutes');
 
 // connect to mongodb
 const dbURI = config.database;
@@ -45,9 +45,19 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 
+// Set global errors variable
+app.locals.errors = null;
 
 
 //---------------------------------------------------
+
+// Express fileUpload middleware
+app.use(fileUpload());
+
+
+
+
+
 // body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -83,6 +93,7 @@ app.use(function (req, res, next) {
 // set page routes:
 app.use('/admin/pages', adminPageRoutes);
 app.use('/admin/categories', adminCategoryRoutes);
+app.use('/admin/products', adminProductRoutes);
 // app.use('/', pageRoutes);
 
 
