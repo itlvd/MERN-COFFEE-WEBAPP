@@ -15,10 +15,12 @@
 
     <!--your css-->
     <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 
 </head>
 
 <body>
+
     <div id="main">
         <div id="header">
             <ul id="navbar">
@@ -26,7 +28,47 @@
                 <li><a href="">News</a></li>
                 <li><a href="">Products</a></li>
                 <li><a href="">About us</a></li>
+                <li><a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin-right: 15px;><i class="fas fa-user-circle"></i></a></li>
             </ul>
         </div>
 
-    
+
+        <div id="id01" class="content-container">
+            <div class="form-container">
+                <form class="animate " action="/action_page.php" method="post">
+
+                    <div class="container">
+
+                        <input type="text" placeholder="Enter Username" name="uname" required><br>
+
+
+                        <input type="password" placeholder="Enter Password" name="psw" required><br>
+
+
+                    </div>
+
+                    <div>
+                        <button type="submit" class="submit-btn">Login</button>
+                        <div class="containerend">
+                            <a href="http://www.google.com/">
+                                <button type="button" class="register">Register</button>
+                            </a>
+                            <span class="psw subtitle">Forgot <a href="#">password?</a></span>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
