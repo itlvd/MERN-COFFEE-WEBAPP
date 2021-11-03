@@ -3,7 +3,7 @@ const path = require('path');
 const config = require('./config/database');
 const mongoose = require('mongoose');
 
-const bodyParser = require('body-parser');  // video 8
+const bodyParser = require('body-parser'); // video 8
 const session = require('express-session');
 var { check, validationResult } = require('express-validator');
 var fileUpload = require('express-fileupload');
@@ -26,9 +26,9 @@ const dbURI = config.database;
 
 //connect to mongoDB
 mongoose.connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then((result) => console.log('connected to db'))
     .catch((err) => console.log(err));
 
@@ -84,7 +84,7 @@ app.use(session({
 
 // Express Messages middleware
 app.use(require('connect-flash')());
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
@@ -110,10 +110,14 @@ app.get('/', (req, res) => {
         title: "Home"
     });
 });
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: "About Us"
+    });
+});
 
 app.get('/test', (req, res) => {
     res.render('test', {
         title: "Test"
     });
 });
-

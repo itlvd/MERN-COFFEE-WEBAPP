@@ -4,12 +4,11 @@
     position: relative;
 }
 
-#container #text-content{
-    background-color: #393E46;
+#container #text-content {
+    background-color: #000000;
     width: 30%;
     height: 100%;
     position: absolute;
-
 }
 
 #container #img-content {
@@ -22,17 +21,16 @@
     background-image: url("/img/coffee-background.jpg");
 }
 
-#container #text-content .text-heading{
+#container #text-content .text-heading {
     color: white;
     font-size: 50px;
     position: absolute;
     width: 100%;
     top: 30%;
     text-align: center;
-    
 }
 
-#container #text-content .btn{
+#container #text-content .btn {
     font-size: 20px;
     cursor: pointer;
     background-color: #EEEEEE;
@@ -44,7 +42,7 @@
     top: 50%;
 }
 
-#container #text-content .btn a{
+#container #text-content .btn a {
     text-decoration: none;
     line-height: 100%;
     width: 100%;
@@ -58,9 +56,8 @@
 
 #container #text-content .btn:hover {
     background-color: #E84545;
-    
 }
 
-#container #text-content .btn:hover a{
+#container #text-content .btn:hover a {
     color: white;
 }
