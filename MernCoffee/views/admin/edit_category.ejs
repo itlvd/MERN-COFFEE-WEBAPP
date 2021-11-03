@@ -1,31 +1,17 @@
-<!DOCTYPE html>
+<%- include('../_layouts/adminheader') %>
 
-<html>
+    <h2 class="page-title">Edit a category</h2>
+    <a href="/admin/categories" class="btn btn-primary">Back to all categories</a>
+    <br><br>
 
-<head>
-    <title>Admin Page</title>
-</head>
+    <form method="post" action="/admin/categories/edit-category/<%= id %>">
 
-<body>
-    <p>This is category testing page</p>
-
-    <article>
-        <div>Div in article </div>
-    </article>
-
- 
-
-    <body>
-        <p>This is edit category testing page</p>
-    
-        <form action="/admin/categories/edit-category/<%= id %>" method="POST">
+        <div class="form-group">
             <label for="">Title</label>
-            <input type="text" name="title" value="<%= title %>" placeholder="Title">
-            <input type="submit" value="SUbmit">
-        </form>
-    </body>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+        </div>
 
-</body>
+        <button class="btn btn-default">Submit</button>
+    </form>
 
-
-</html>
+    <%- include('../_layouts/adminfooter') %>
