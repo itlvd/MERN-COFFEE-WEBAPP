@@ -1,1 +1,41 @@
-categories
+<%- include('../_layouts/adminheader') %>
+
+    <h2 class="page-title">Category</h2>
+    <a href="/admin/categories//add-category" class="btn btn-primary">Add a new category</a>
+    <br><br>
+
+    <% if (count> 0) { %>
+        <table class="table table-striped alignmiddle">
+            <thead>
+                <tr class="home">
+                    <th>Serial</th>
+                    <th>Title</th>
+                    <th>Category ID</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categories.forEach(function(category){ %>
+                    <tr>
+                        <td>
+                            <%= category_count++ %>
+                        </td>
+                        <td>
+                            <%= category.title %>
+                        </td>
+                        <td>
+                            <%= category._id %>
+                        </td>
+                        <td><a href="/admin/categories/edit-category/<%= category._id %>">Edit</a></td>
+                        <td><a class="confirmDeletion"
+                                href="/admin/categories/delete-category/<%= category._id %>">Delete</a></td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else {%>
+            <h3 class="text-center">There are no products.</h3>
+            <% }%>
+
+                <%- include('../_layouts/adminfooter') %>

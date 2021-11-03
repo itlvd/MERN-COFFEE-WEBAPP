@@ -11,13 +11,22 @@ const Category = require('../models/categoryModel');
  * GET category index
  */
 router.get('/', (req, res) => {
-    Category.find(function(err, categories) {
-        if (err) return console.log(err);
-        res.send(categories);
+    var count;
+    var category_count = 1;
 
-        // res.render('admin/categories', {
-        //     categories: categories
-        // });
+    Category.count({}, function (err, c) {
+        count = c;
+    });
+
+    Category.find(function (err, categories) {
+        if (err) return console.log(err);
+        // res.send(categories);
+
+        res.render('admin/categories', {
+            categories: categories,
+            category_count: category_count,
+            count: count
+        });
 
 
     });
@@ -42,28 +51,29 @@ router.get('/add-category', (req, res) => {
  *  POST add-category
  */
 router.post('/add-category', check('title').notEmpty(), (req, res) => {
-   
+
     var title = req.body.title;
-  
+
     title = title + "";
     var slug = title.replace(/\s+/g, '-').toLowerCase();
-   
+
     const errors = validationResult(req);
-    
+
     if (!errors.isEmpty()) {
         // res.render('admin/add_category', {
         //     errors: errors,
         //     title: title
         // });
 
-        res.send("Loi o empty");    
+        res.send("Loi o empty");
 
     } else {
-        Category.findOne({slug: slug}, function (err, category) {
+        Category.findOne({ slug: slug }, function (err, category) {
             if (category) {
                 req.flash('danger', 'Category title exists, choose another.');
                 res.render('admin/add_category', {
-                    title: title
+                    title: title,
+                    slug: slug
                 });
             } else {
                 var category = new Category({
@@ -116,15 +126,15 @@ router.get('/edit-category/:id', (req, res) => {
  * POST edit category
  */
 router.post('/edit-category/:id', (req, res) => {
-    
+
     check('title', 'title must have a value').notEmpty()
     var title = req.body.title;
     var id = req.params.id;
     title = title + "";
     var slug = title.replace(/\s+/g, '-').toLowerCase();
-   
+
     const errors = validationResult(req);
-    
+
     if (!errors.isEmpty()) {
         //res.render('admin/edit_category', {
         //     errors: errors,
@@ -132,10 +142,10 @@ router.post('/edit-category/:id', (req, res) => {
         //     id: id
         // });
 
-        res.send("Loi o empty");    
+        res.send("Loi o empty");
 
     } else {
-        Category.findOne({slug: slug, _id: {'$ne': id}}, (err, category) => {
+        Category.findOne({ slug: slug, _id: { '$ne': id } }, (err, category) => {
             if (category) {
                 req.flash('danger', 'Category title exists, choose another.');
                 res.render('admin/edit_category', {
@@ -178,7 +188,7 @@ router.post('/edit-category/:id', (req, res) => {
 
 
 router.get('/delete-category/:id', (req, res) => {
-    Category.findByIdAndRemove(req.params.id, function(err) {
+    Category.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             return console.log(err);
         }
