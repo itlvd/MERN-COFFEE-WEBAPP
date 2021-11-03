@@ -5,6 +5,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("/img/coffee-background.jpg");
+    margin-top: 60px;
 }
 
 #container #text-content {
