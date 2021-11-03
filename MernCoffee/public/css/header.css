@@ -6,7 +6,7 @@
 
 #main {
     height: 100vh;
-    width: 100vw;
+
 }
 
 #header {
@@ -17,14 +17,15 @@
 #navbar {
     height: 100%;
     position: relative;
-    display: flex;
+    display: inline-block;
 }
 
 #navbar li {
-    display: flex;
     padding: 0 60px;
     height: 100%;
     align-items: center;
+    float: left;
+    list-style-type: none;
 }
 
 #navbar li a {
@@ -32,7 +33,7 @@
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
-    padding-bottom: 4px;
+    line-height: 60px;
 }
 
 #navbar li:hover {
@@ -240,4 +241,20 @@ span.psw {
     padding-bottom: 80px;
     background-color: #000000;
     color: #ffffff
+}
+
+#header #profile a{
+    line-height: 60px;
+    display: block;
+}
+
+#header #profile a .fas{
+    color: white;
+    font-size: 30px;
+    padding: 16px 0;
+}
+
+#header #profile{
+    float: right;
+    padding: 0 16px;
 }
