@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-html{
+html {
     font-family: 'Roboto', sans-serif;
 }
 
@@ -19,10 +19,9 @@ html{
     top: 0;
     left: 0;
     right: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.6);    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
-
-
 
 #navbar {
     height: 100%;
@@ -253,18 +252,18 @@ span.psw {
     color: #ffffff
 }
 
-#header #profile a{
+#header #profile a {
     line-height: 60px;
     display: block;
 }
 
-#header #profile a .fas{
+#header #profile a .fas {
     color: white;
     font-size: 30px;
     padding: 16px 0;
 }
 
-#header #profile{
+#header #profile {
     float: right;
     padding: 0 16px;
 }
