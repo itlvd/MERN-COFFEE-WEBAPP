@@ -1,0 +1,155 @@
+<%- include("_layouts/header.ejs") %>
+
+    <html>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <style>
+            #heading {
+                font-size: 40px;
+                margin-top: 40px;
+                font-weight: normal;
+                font-family: Century Gothic
+            }
+            
+            .line {
+                background-color: #ffffff;
+                border-radius: 50px;
+                border: none;
+                padding: 2px;
+                height: 4px;
+                width: 100px;
+                margin-top: 5px
+            }
+            
+            .vertical-center {
+                margin: 0;
+                position: absolute;
+                top: 45%;
+                -ms-transform: translateY(-45%);
+                transform: translateY(-45%)
+            }
+            
+            @media (max-width: 768px) {
+                .vertical-center {
+                    margin: 0;
+                    position: relative;
+                    top: 0;
+                    -ms-transform: translateY(0);
+                    transform: translateY(0)
+                }
+            }
+            
+            .gap {
+                height: 130px
+            }
+            
+            @media (max-width: 768px) {
+                .gap {
+                    height: 0
+                }
+            }
+            
+            .image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                margin: 0 auto
+            }
+            
+            img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%
+            }
+            
+            .image-name {
+                font-weight: bold
+            }
+            
+            .fit-image {
+                width: 100%;
+                object-fit: cover
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+
+        <div class="container-fluid px-5 mx-auto">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center mb-0">
+                    <h5 id="heading" class="mb-0">Our Team</h5>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 text-center mb-5">
+                    <div class="line mx-auto"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <p>Chúng tôi cam kết đem lại những sản phẩm tốt nhất và ưu tiên hàng đầu của chúng tôi là tạo nên sự khác biệt.</p>
+                    <p> Sứ mệnh của chúng tôi là đem đến cho bạn những giọt cafe, ly trà sữa thơm ngon. Đúng chuẩn gu Việt.</p>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="image"><img src="https://i.imgur.com/AVFK4QE.jpg" class="fit-image"></div>
+                            <p class="mt-2 text-center image-name">Nguyễn Hữu Tuấn (Developer)</p>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="gap"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <div class="image bottom-image"><img src="https://i.imgur.com/hudfwxs.jpg" class="fit-image">
+                            </div>
+                            <p class="mt-2 text-center image-name">Lê Văn Đông (Tester)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 vertical-center">
+                            <div class="image"><img src="https://i.imgur.com/3g7hTZq.jpg" class="fit-image"></div>
+                            <p class="mt-2 text-center image-name">Nguyễn Trần Thiện Toàn (Manager)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <div class="image"><img src="https://i.imgur.com/hXfHY5S.png" class="fit-image"></div>
+                            <p class="mt-2 text-center image-name">Trần Đông Ba (Developer)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="gap"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="image bottom-image"><img src="https://i.imgur.com/Thlrpk9.jpg" class="fit-image">
+                            </div>
+                            <p class="mt-2 text-center image-name">Lê Trần Gia Bảo (Architect)</p>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    </html>
+    <%- include("_layouts/footer.ejs") %>
+        </div>
