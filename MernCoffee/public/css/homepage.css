@@ -1,6 +1,7 @@
 #container {
-    height: calc(100% - 60px);
-    width: 100%;
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    width: 100vw;
     position: relative;
     background-image: url("/img/coffee-background.jpg");
     background-repeat: no-repeat;
