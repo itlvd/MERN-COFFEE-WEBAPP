@@ -7,8 +7,7 @@ const bodyParser = require('body-parser'); // video 8
 const session = require('express-session');
 var { check, validationResult } = require('express-validator');
 var fileUpload = require('express-fileupload');
-
-
+const PORT = process.env.PORT || 443;	
 
 
 // require routes:
@@ -36,9 +35,7 @@ mongoose.connect(dbURI, {
 const app = express();
 
 // listen for request
-app.listen(3000, () => {
-    console.log("Server start on port 3000");
-});
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
 
 // setup view engine
 app.set('views', path.join(__dirname, 'views'));
