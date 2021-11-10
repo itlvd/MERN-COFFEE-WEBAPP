@@ -18,12 +18,14 @@ const Product = require('../models/productModel');
 /**
  * GET product index
  */
-router.get('/', (req, res) => {
-   var count;
+router.get('/', async (req, res) => {
+//    var count;
 
-    Product.count({}, function( err, c){
-        count = c;
-    })
+    // Product.count({}, function( err, c){
+    //     count = c;
+    // });
+
+    const count = (await Product.find()).length;
     
 
     Product.find((err, products) => {
@@ -32,7 +34,6 @@ router.get('/', (req, res) => {
             count: count
         });
     });
-
 });
 
 

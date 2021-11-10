@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
-const ProductSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
   title: {
     type: String,
     trim: true,
@@ -27,6 +28,6 @@ const ProductSchema = mongoose.Schema({
   }
 });
 
-const Product = mongoose.model('Product', ProductSchema);
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

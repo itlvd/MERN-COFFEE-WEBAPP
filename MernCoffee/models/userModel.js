@@ -22,8 +22,23 @@ const userSchema = mongoose.Schema({
   role: {
     type: String,
     default: 'user'
-  }
-})
+  },
+  address: {
+    type: String,
+    default: ''
+  },
+  cart: [
+    {
+      product: {
+        type: mongoose.Schema.ObjectId,
+      },
+      quantity: {
+        type: Number,
+        default: 1
+      }
+    }
+  ]
+});
 
 const User = mongoose.model('User', userSchema);
 
