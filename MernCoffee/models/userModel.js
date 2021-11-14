@@ -15,6 +15,11 @@ const userSchema = mongoose.Schema({
     trim: true,
     // validate: [validator.isEmail, 'Please provide a valid email.']
   },
+  username: {
+    type: String,
+    trim: true,
+    require: [true, 'Please tell us your name.']
+  },
   password: {
     type: String,
     require: [true, 'Please provide a password.']

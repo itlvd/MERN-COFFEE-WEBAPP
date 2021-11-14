@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser'); // video 8
 const session = require('express-session');
-var { check, validationResult } = require('express-validator');
-var fileUpload = require('express-fileupload');
-
+const { check, validationResult } = require('express-validator');
+const fileUpload = require('express-fileupload');
+const passport = require('passport');
 
 
 
@@ -20,7 +20,7 @@ const adminProductRoutes = require('./routes/adminProductRoutes');
 
 const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
-
+const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
 
 // connect to mongodb
@@ -66,14 +66,14 @@ app.use(fileUpload());
 
 
 // body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
 // Express Session Middleware
 app.use(session({
     secret: 'keyboard cat',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: { secure: true }
 }));
@@ -92,6 +92,19 @@ app.use(function(req, res, next) {
 });
 
 
+// Passport Config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.get("*", function(req, res, next) {
+    res.locals.cart = req.session.cart;
+    res.locals.user = req.user || null;
+    next();
+})
 
 //----------------------------------------------------------------
 
@@ -106,7 +119,7 @@ app.use('/admin/products', adminProductRoutes);
 // routes for customer
 app.use('/products', products);
 app.use('/cart', cart);
-
+app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
 
