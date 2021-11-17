@@ -1,0 +1,40 @@
+<%- include('../_layouts/adminheader') %>
+
+    <h2 class="page-title">Employee</h2>
+    <a href="/admin/employee/add-employee" class="btn btn-primary">Add a new employee</a>
+    <br><br>
+
+    <% if (count> 0) { %>
+        <table class="table table-striped alignmiddle">
+            <thead>
+                <tr class="home">
+                    <th>Serial</th>
+                    <th>Title</th>
+                    <th>Category ID</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(function(employee){ %>
+                    <tr>
+                        <td>
+                            <%= employee_count++ %>
+                        </td>
+                        <td>
+                            <%= employee.name %>
+                        </td>
+                        <td>
+                            <%= employee.role %>
+                        </td>
+                        <!-- <td><a href="/admin/employee/edit-employee/<%= employee._id %>">Edit</a></td> -->
+                        <td><a class="confirmDeletion" href="/admin/employee/delete-employee/<%= employee._id %>">Delete</a></td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else {%>
+            <h3 class="text-center">There are no employee.</h3>
+            <% }%>
+
+                <%- include('../_layouts/adminfooter') %>

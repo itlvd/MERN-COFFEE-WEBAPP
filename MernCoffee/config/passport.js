@@ -55,7 +55,7 @@ module.exports = function (passport) {
     // });
 
 
-    console.log("passport dang tim");
+   // console.log("passport dang tim");
 passport.use('local', new LocalStrategy({passReqToCallback : true},
     async function(req, username, password, done) {
         console.log("Pass, username: " + username);
