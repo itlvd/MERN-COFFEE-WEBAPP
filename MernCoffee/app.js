@@ -17,6 +17,8 @@ const passport = require('passport');
 const adminPageRoutes = require('./routes/adminPageRoutes');
 const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
 const adminProductRoutes = require('./routes/adminProductRoutes');
+const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes')
+
 
 const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
@@ -114,6 +116,7 @@ app.get("*", function(req, res, next) {
 app.use('/admin/pages', adminPageRoutes);
 app.use('/admin/categories', adminCategoryRoutes);
 app.use('/admin/products', adminProductRoutes);
+app.use('/admin/employee', adminEmployeeRoutes);
 // app.use('/', pageRoutes);
 
 // routes for customer
