@@ -142,3 +142,15 @@ app.get('/test', (req, res) => {
         title: "Test"
     });
 });
+
+app.get('/login', (req, res) => {
+    res.render('login', {
+        title: "Đăng nhập"
+    });
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup', {
+        title: "Đăng ký"
+    });
+});
