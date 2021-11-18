@@ -8,7 +8,8 @@ const session = require('express-session');
 const { check, validationResult } = require('express-validator');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
-
+const initializePassport = require('./config/passport')
+initializePassport(passport);
 
 
 // require routes:
@@ -24,6 +25,7 @@ const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 // connect to mongodb
 const dbURI = config.database;
@@ -77,7 +79,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }));
 
 
@@ -95,7 +97,7 @@ app.use(function(req, res, next) {
 
 
 // Passport Config
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -109,7 +111,7 @@ app.get("*", function(req, res, next) {
 })
 
 //----------------------------------------------------------------
-
+ 
 
 
 // set page routes:
@@ -125,6 +127,7 @@ app.use('/cart', cart);
 app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
+app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -143,14 +146,15 @@ app.get('/test', (req, res) => {
     });
 });
 
-app.get('/login', (req, res) => {
-    res.render('login', {
-        title: "Đăng nhập"
-    });
-});
 
-app.get('/signup', (req, res) => {
-    res.render('signup', {
-        title: "Đăng ký"
-    });
-});
+
+// function checkAuthenticated(req, res, next) {
+//     console.log("inside checkAuthenticate");
+//     console.log(req.isAuthenticated());
+//     if (req.isAuthenticated()) {
+//       return next()
+//     }
+  
+//     res.redirect('/users/login')
+// }
+
