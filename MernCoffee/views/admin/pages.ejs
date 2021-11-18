@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%- include('../_layouts/adminheader') %>
+
+<!-- <!DOCTYPE html>
 
 <html>
 
@@ -6,7 +8,7 @@
     <title>Admin Page</title>
 </head>
 
-<body>
+<body> -->
     <p>This is admin testing page</p>
 
     <article>
@@ -15,14 +17,15 @@
 
  
 
-    <body>
-        <p>This is post testing page</p>
     
-        <form action="/admin" method="POST">
-            <input type="text" name="ten" value="nguyenvana">
-            <input type="submit" value="SUbmit">
-        </form>
-    </body>
+    <p>This is post testing page</p>
+
+    <form action="/admin" method="POST">
+        <input type="text" name="ten" value="nguyenvana">
+        <input type="submit" value="SUbmit">
+    </form>
+    
+    <p> <%= user %></p>
 
 </body>
 

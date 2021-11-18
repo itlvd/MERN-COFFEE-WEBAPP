@@ -5,7 +5,11 @@ var router = express.Router();
 // Get Product model
 const Product = require('../models/productModel');
 const User = require('../models/userModel');
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 /*
  * GET add product to cart
  */
@@ -91,7 +95,9 @@ router.get('/checkout', async function (req, res) {
 
     res.render('checkout', {
         title: 'Checkout',
-        cart: products
+        cart: products,
+        user: user
+        //user: req.user
     });
 });
 

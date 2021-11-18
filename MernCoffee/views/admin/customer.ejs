@@ -1,7 +1,7 @@
 <%- include('../_layouts/adminheader') %>
 
     <h2 class="page-title">Employee</h2>
-    <a href="/admin/employee/add-employee" class="btn btn-primary">Add a new employee</a>
+    <a href="/admin/customer/add-customer" class="btn btn-primary">Add a new customer</a>
     <br><br>
 
     <% if (count> 0) { %>
@@ -10,35 +10,35 @@
                 <tr class="home">
                     <th>Serial</th>
                     <th>Name</th>
-                    <th>Username</th>
+                    <th>Userame</th>
                     <th>Role</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <% employees.forEach(function(employee){ %>
+                <% customers.forEach(function(customer){ %>
                     <tr>
                         <td>
-                            <%= employee_count++ %>
+                            <%= customer_count++ %>
                         </td>
                         <td>
-                            <%= employee.name %>
+                            <%= customer.name %>
                         </td>
                         <td>
-                            <%= employee.username %>
+                            <%= customer.username %>
                         </td>
                         <td>
-                            <%= employee.role %>
+                            <%= customer.role %>
                         </td>
-                        <!-- <td><a href="/admin/employee/edit-employee/<%= employee._id %>">Edit</a></td> -->
-                        <td><a class="confirmDeletion" href="/admin/employee/delete-employee/<%= employee._id %>">Delete</a></td>
+                        <!-- <td><a href="/admin/customer/edit-customer/<%= customer._id %>">Edit</a></td> -->
+                        <td><a class="confirmDeletion" href="/admin/customer/delete-customer/<%= customer._id %>">Delete</a></td>
                     </tr>
                     <% }); %>
             </tbody>
         </table>
         <% } else {%>
-            <h3 class="text-center">There are no employee.</h3>
+            <h3 class="text-center">There are no customer.</h3>
             <% }%>
 
                 <%- include('../_layouts/adminfooter') %>

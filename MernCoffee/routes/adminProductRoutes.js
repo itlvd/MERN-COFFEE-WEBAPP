@@ -4,7 +4,11 @@ const mkdirp = require('mkdirp');
 const fs = require('fs-extra');
 const resizeImg = require('resize-img');
 const { check, validationResult } = require('express-validator');
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 
 

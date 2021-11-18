@@ -19,42 +19,42 @@ const User = require("../models/userModel");
 
 
 /**
- * GET show employee list
+ * GET show customer list
  */
-router.get('/', isAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
     
-    //const count = (await User.where({role: "employee"}).find()).length;
-    const count = (await User.where({ role: { $ne: "user" } }).find()).length;
-    const employee_count = 1;
-    User.where({ role: { $ne: "user" } }).find((err, employees) => {
+    //const count = (await User.where({role: "user"}).find()).length;
+    const count = (await User.where({ role: "user"}).find()).length;
+    const customer_count = 1;
+    User.where({ role: "user" }).find((err, customers) => {
         if (err) {
             return console.log(err);
             
         }
-        res.render('admin/employee', {
-            employees: employees,
+        res.render('admin/customer', {
+            customers: customers,
             count: count,
-            employee_count: employee_count
+            customer_count: customer_count
         });
     });
 });
 
 
 /**
- * GET add employee
+ * GET add customer
  */
-router.get('/add-employee', isAdmin, (req, res) => {
+router.get('/add-customer', (req, res) => {
     // title ?
-    res.render('admin/add_employee', {
-        title: "Add Employee"
+    res.render('admin/add_customer', {
+        title: "Add customer"
     });
 });
 
 
 /**
- *  POST add-employee
+ *  POST add-customer
  */
-router.post('/add-employee', async (req, res) => {
+router.post('/add-customer', async (req, res) => {
     
 
     check('name', 'Title must have a value').notEmpty();
@@ -74,7 +74,7 @@ router.post('/add-employee', async (req, res) => {
 
     if (!errors.isEmpty()) {
         console.log("loi empty validation");
-        res.render('admin/add_employee', {
+        res.render('admin/add_customer', {
             errors: errors,
             title: 'Register'
         }); 
@@ -94,7 +94,7 @@ router.post('/add-employee', async (req, res) => {
                 console.log("loi user exist");
                 console.log("User\n" + user);
                 req.flash('danger', 'Username exist, choose another!');
-                res.redirect('/admin/employee');
+                res.redirect('/admin/customer');
             } else {
                 const user = new User({
                     name: name,
@@ -117,9 +117,9 @@ router.post('/add-employee', async (req, res) => {
                                 console.log(err);
                             } else {
                                 console.log("success");
-                                req.flash('success', 'Add new employee successfully!');
+                                req.flash('success', 'Add new customer successfully!');
                                 //res.redirect('/users/login')
-                                res.redirect('/admin/employee');
+                                res.redirect('/admin/customer');
                             }
                         });
                     });
@@ -137,9 +137,9 @@ router.post('/add-employee', async (req, res) => {
 
 
 /*
- * GET delete employee
+ * GET delete customer
  */
-router.get('/delete-employee/:id', isAdmin, function (req, res) {
+router.get('/delete-customer/:id', function (req, res) {
 
     var id = req.params.id;
     
@@ -147,8 +147,8 @@ router.get('/delete-employee/:id', isAdmin, function (req, res) {
         console.log(err);
     });
     
-    req.flash('success', 'Employee deleted!');
-    res.redirect('/admin/employee');       
+    req.flash('success', 'Customer deleted!');
+    res.redirect('/admin/customer');       
 
 });
 

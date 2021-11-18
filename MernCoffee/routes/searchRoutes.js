@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 
 //  Get Product model
@@ -27,6 +31,7 @@ router.get('/:item', async function (req, res) {
         return categories;
     }).clone().catch(function(err){ console.log(err)});
 
+
     // new RegExp('^'+item+'$', "i")
     prods = await Product.find({ slug : { '$regex' : slug, '$options' : 'i' } } , function (err, categories) {
         if (err) return console.log(err);
@@ -50,7 +55,8 @@ router.get('/:item', async function (req, res) {
         title: "Search Page",
         categories: cates,
         products: prods,
-        count: count
+        count: count,
+        user: req.user
     });
 });
 

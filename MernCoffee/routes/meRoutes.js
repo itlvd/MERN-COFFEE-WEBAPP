@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 // Get Product model
 const User = require('../models/userModel');
@@ -7,19 +12,20 @@ const User = require('../models/userModel');
 /*
  * GET profile
  */
-router.get('/', async function (req, res) {
-  const idUser = '6182bfd277e0be518092cc12'
-  const user = await User.findById(idUser);
+router.get('/', isUser, async function (req, res) {
+  // const idUser = '6182bfd277e0be518092cc12'
+  // const user = await User.findById(idUser);
 
-  user.password = undefined;
-  user.role = undefined;
-  user.__v = undefined;
-  user.cart = undefined;
+  // user.password = undefined;
+  // user.role = undefined;
+  // user.__v = undefined;
+  // user.cart = undefined;
 
   res.status(200).json({
     status: 'success',
     data: {
-      user
+      //user
+      user: req.user
     }
   })
 });
