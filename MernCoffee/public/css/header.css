@@ -63,8 +63,8 @@ body {
 
 /* Full-width input fields */
 
-input[type=text],
-input[type=password] {
+input[type=xtext],
+input[type=xpassword] {
     border: none;
     border-bottom: solid rgb(143, 143, 143) 1px;
     margin-bottom: 30px;

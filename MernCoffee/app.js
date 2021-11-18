@@ -147,6 +147,7 @@ app.get('/test', (req, res) => {
 });
 
 
+
 // function checkAuthenticated(req, res, next) {
 //     console.log("inside checkAuthenticate");
 //     console.log(req.isAuthenticated());
@@ -156,3 +157,4 @@ app.get('/test', (req, res) => {
   
 //     res.redirect('/users/login')
 // }
+
