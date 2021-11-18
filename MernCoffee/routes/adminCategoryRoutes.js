@@ -10,13 +10,11 @@ const Category = require('../models/categoryModel');
 /**
  * GET category index
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     var count;
     var category_count = 1;
 
-    Category.count({}, function (err, c) {
-        count = c;
-    });
+    count = (await Category.find()).length;
 
     Category.find(function (err, categories) {
         if (err) return console.log(err);

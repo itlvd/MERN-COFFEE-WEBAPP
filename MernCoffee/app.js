@@ -18,7 +18,8 @@ initializePassport(passport);
 const adminPageRoutes = require('./routes/adminPageRoutes');
 const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
 const adminProductRoutes = require('./routes/adminProductRoutes');
-const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes')
+const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes');
+const adminCustomerRoutes = require('./routes/adminCustomerRoutes');
 
 
 const products = require('./routes/productRoutes.js');
@@ -119,6 +120,7 @@ app.use('/admin/pages', adminPageRoutes);
 app.use('/admin/categories', adminCategoryRoutes);
 app.use('/admin/products', adminProductRoutes);
 app.use('/admin/employee', adminEmployeeRoutes);
+app.use('/admin/customer', adminCustomerRoutes);
 // app.use('/', pageRoutes);
 
 // routes for customer

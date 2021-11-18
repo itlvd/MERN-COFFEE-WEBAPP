@@ -9,7 +9,11 @@ const Product = require('../models/productModel');
 
 // Get Category model
 const Category = require('../models/categoryModel');
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 /*
  * GET all products
  */
@@ -22,7 +26,8 @@ router.get('/', function (req, res) {
 
         res.render('all_products', {
             title: 'All products',
-            products: products
+            products: products,
+            user: req.user
         });
     });
 });
@@ -42,7 +47,8 @@ router.get('/:category', function (req, res) {
 
             res.render('cat_products', {
                 title: c.title,
-                products: products
+                products: products,
+                user: req.user
             });
         });
     });
@@ -74,7 +80,8 @@ router.get('/:category/:product', function (req, res) {
                         title: product.title,
                         p: product,
                         galleryImages: galleryImages,
-                        loggedIn: loggedIn
+                        loggedIn: loggedIn,
+                        user: req.user
                     });
                 }
             });

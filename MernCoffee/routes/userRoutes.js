@@ -5,14 +5,18 @@ const bcrypt = require('bcryptjs');
 const {check, validationResult} = require('express-validator');
 // Get Users model
 var User = require('../models/userModel');
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 /**
  * GET register
  */
-router.get('/register', (req, res) => {
+router.get('/register', hasLogin, (req, res) => {
     res.render('register', {
-        title: 'Register'
+        title: 'Register',
     });
 });
 
@@ -64,7 +68,7 @@ router.post('/register', async (req, res) => {
                     email: email,
                     username: username,
                     password: password,
-                    role: 'admin'
+                    role: 'user',
                     // role: role ?
                 });
 
@@ -99,9 +103,13 @@ router.post('/register', async (req, res) => {
 /*
  * GET login
  */
-router.get('/login', function (req, res) {
+router.get('/login', hasLogin, function (req, res) {
 
-    if (res.locals.user) res.redirect('/');
+    
+    if (res.locals.user) {
+        res.redirect('/');
+        req.flash("danger", "You have already logged in");
+    }
     //res.send("Loi ne");
     res.render('login', {
         title: 'Log in'
