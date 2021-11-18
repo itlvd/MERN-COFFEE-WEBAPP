@@ -24,6 +24,7 @@ const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 // connect to mongodb
 const dbURI = config.database;
@@ -125,6 +126,7 @@ app.use('/cart', cart);
 app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
+app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', {
