@@ -8,7 +8,8 @@ const session = require('express-session');
 const { check, validationResult } = require('express-validator');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
-
+const initializePassport = require('./config/passport')
+initializePassport(passport);
 
 
 // require routes:
@@ -78,7 +79,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }));
 
 
@@ -96,7 +97,7 @@ app.use(function(req, res, next) {
 
 
 // Passport Config
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -110,7 +111,7 @@ app.get("*", function(req, res, next) {
 })
 
 //----------------------------------------------------------------
-
+ 
 
 
 // set page routes:
@@ -144,3 +145,14 @@ app.get('/test', (req, res) => {
         title: "Test"
     });
 });
+
+
+// function checkAuthenticated(req, res, next) {
+//     console.log("inside checkAuthenticate");
+//     console.log(req.isAuthenticated());
+//     if (req.isAuthenticated()) {
+//       return next()
+//     }
+  
+//     res.redirect('/users/login')
+// }

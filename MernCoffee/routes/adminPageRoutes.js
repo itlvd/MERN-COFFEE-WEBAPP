@@ -11,6 +11,7 @@ var isAdmin = auth.isAdmin;
 //router.get('/', (req, res) => {
 router.get('/', isAdmin, (req, res) => {  
     
+    console.log("req: \n" + req);
     res.render('admin/pages');
     
 });

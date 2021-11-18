@@ -17,8 +17,12 @@ exports.isUser = function(req, res, next) {
 // }
 
 exports.isEmployee = function(req, res, next) {
-    console.log(res.locals.user); 
+    console.log("enter to isEmployee");
+    console.log("employee req: \n" + req);
+    console.log("employee res: \n" + res);
+    console.log(res.locals); 
     if (req.isAuthenticated() && (res.locals.user.role == "admin" || res.locals.user.role == "employee")) {
+    //if (req.isAuthenticated()) {    
         console.log("check auth ok");
         next();
     } else {
@@ -31,8 +35,10 @@ exports.isEmployee = function(req, res, next) {
 
 exports.isAdmin = function(req, res, next) {
     console.log("req.session: " + req.session);
-    if (req.isAuthenticated() && req.session.pasport.user.role == "admin") {
-        console.log(req.session.passport.user);
+    //if (req.isAuthenticated() && req.session.pasport.user.role == "admin") {
+    if (req.isAuthenticated() && res.locals.user.role == "admin") {
+        //console.log(req.session.passport.user);
+        console.log("check auth admin ok");
         next();
     } else {
         req.flash('danger', 'Please log in as admin.');
