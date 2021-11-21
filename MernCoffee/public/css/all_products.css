@@ -19,6 +19,27 @@
 
 .sidebar{
     flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+}
+
+.search-container{
+    position: relative;
+}
+
+#search-bar{
+    width: 100%;
+    line-height: 32px;
+    padding-left: 36px;
+}
+
+.search-bar-icon{
+    position: absolute;
+    display: block;
+    font-size: 24px;
+    padding: 6px;
 }
 
 .filter{
@@ -26,7 +47,7 @@
     flex-direction: column;
     border: 1px solid gray;
     border-bottom: none;
-    margin: 16px
+    margin-top: 16px;
 }
 
 .filter-btn{
