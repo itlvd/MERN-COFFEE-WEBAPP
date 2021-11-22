@@ -1,64 +1,41 @@
-var express = require('express');
+const express = require('express');
 const { use } = require('passport');
-var router = express.Router();
+const router = express.Router();
 
 // Get Product model
 const Product = require('../models/productModel');
 const User = require('../models/userModel');
-var auth = require('../config/auth');
-var isEmployee = auth.isEmployee;
-var isAdmin = auth.isAdmin;
-var isUser = auth.isUser;
-var hasLogin = auth.hasLogin;
+const Bill = require('../models/billModel');
+
+const auth = require('../config/auth');
+const isEmployee = auth.isEmployee;
+const isAdmin = auth.isAdmin;
+const isUser = auth.isUser;
+const hasLogin = auth.hasLogin;
+
 /*
  * GET add product to cart
  */
-router.get('/add/:product', function (req, res) {
-    var slug = req.params.product;
+router.get('/add/:product', isUser, function (req, res) {
+    const slug = req.params.product;
 
     Product.findOne({slug: slug}, async function (err, p) {
-//         if (err)
-//             console.log(err);
+        const user = await User.findById(req.user);
+        const cart = user.cart;
 
-//         if (typeof req.session.cart == "undefined") {
-//             req.session.cart = [];
-//             req.session.cart.push({
-//                 title: slug,
-//                 qty: 1,
-//                 price: parseFloat(p.price).toFixed(2),
-//                 image: '/product_images/' + p._id + '/' + p.image
-//             });
-//         } else {
-//             var cart = req.session.cart;
-//             var newItem = true;
+        const temp = cart.filter(product => product._id.toString() == p._id.toString());
 
-//             for (var i = 0; i < cart.length; i++) {
-//                 if (cart[i].title == slug) {
-//                     cart[i].qty++;
-//                     newItem = false;
-//                     break;
-//                 }
-//             }
-
-//             if (newItem) {
-//                 cart.push({
-//                     title: slug,
-//                     qty: 1,
-//                     price: parseFloat(p.price).toFixed(2),
-//                     image: '/product_images/' + p._id + '/' + p.image
-//                 });
-//             }
-//         }
-
-// //        console.log(req.session.cart);
-//         req.flash('success', 'Product added!');
-//         res.redirect('back');
-
-        const idUser = '6182bfd277e0be518092cc12'
-        const user = await User.findById(idUser);
-        const product = { '_id': p._id, 'quantity': 1};
-        user.cart.push(product);
-        await user.save();
+        if (temp.length) {
+            res.status(200).json({
+                status: 'fail',
+                message: 'Product is exist in your cart!',
+            })
+        }
+        else {
+            const product = { '_id': p._id, 'quantity': 1};
+            user.cart.push(product);
+            await user.save();
+        }
 
         req.flash('success', 'Product added!');
         res.redirect('back');
@@ -69,20 +46,8 @@ router.get('/add/:product', function (req, res) {
 /*
  * GET checkout page
  */
-router.get('/checkout', async function (req, res) {
-
-    // if (req.session.cart && req.session.cart.length == 0) {
-    //     delete req.session.cart;
-    //     res.redirect('/cart/checkout');
-    // } else {
-    //     res.render('checkout', {
-    //         title: 'Checkout',
-    //         cart: req.session.cart
-    //     });
-    // }
-
-    const idUser = '6182bfd277e0be518092cc12'
-    const user = await User.findById(idUser);
+router.get('/', isUser, async function (req, res) {
+    const user = await User.findById(req.user);
 
     products = []
     for(let i = 0; i < user.cart.length; i++) {
@@ -91,25 +56,20 @@ router.get('/checkout', async function (req, res) {
         products.push(product);
     }
 
-    console.log(products);
-
     res.render('checkout', {
         title: 'Checkout',
         cart: products,
         user: user
-        //user: req.user
     });
 });
 
 /*
  * GET update product
  */
-router.get('/update/:product', async function (req, res) {
-    const idUser = '6182bfd277e0be518092cc12'
-    const user = await User.findById(idUser);
+router.get('/update/:product', isUser, async function (req, res) {
+    const user = await User.findById(req.user);
 
     var slug = req.params.product;
-    console.log(slug);
     var cart = [];
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
@@ -119,12 +79,10 @@ router.get('/update/:product', async function (req, res) {
     var action = req.query.action;
 
     for (var i = 0; i < cart.length; i++) {
-        console.log(cart[i].slug, slug);
         if (cart[i].slug == slug) {
             switch (action) {
                 case "add":
                     (user.cart)[i].quantity++;
-                    console.log(cart[i]);
                     break;
                 case "remove":
                     (user.cart)[i].quantity--;
@@ -148,40 +106,76 @@ router.get('/update/:product', async function (req, res) {
     await user.save();
 
     req.flash('success', 'Cart updated!');
-    res.redirect('/cart/checkout');
-
+    res.redirect('/cart');
 });
 
 /*
  * GET clear cart
  */
-router.get('/clear', async function (req, res) {
-    const idUser = '6182bfd277e0be518092cc12'
-    const user = await User.findById(idUser);
+router.get('/clear', isUser, async function (req, res) {
+    const user = await User.findById(req.user);
 
     user.cart = [];
     await user.save();
     
     req.flash('success', 'Cart cleared!');
-    res.redirect('/cart/checkout');
+    res.redirect('/cart');
 
 });
 
 /*
  * GET buy now
  */
-router.get('/buynow', async function (req, res) {
-    const idUser = '6182bfd277e0be518092cc12'
-    const user = await User.findById(idUser);
+router.get('/buynow', isUser, async function (req, res) {
+    const user = await User.findById(req.user);
+    const cart = user.cart;
+
+    if (cart.length == 0) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Cart is empty!'
+        });
+        return;
+    }
+
+    let bill = {};
+    let total = 0;
+    bill.userId = user._id;
+    bill.products = [];
+
+    for (let i = 0; i < cart.length; i++) {
+        let temp = await Product.findById(cart[i]._id);
+
+        let product = {};
+        product._id = temp._id;
+        product.title = temp.title;
+        product.slug = temp.slug;
+        product.desc = temp.desc;
+        product.category = temp.category;
+        product.price = temp.price;
+        product.image = temp.image;
+        product.quantity = cart[i].quantity;
+        total += cart[i].quantity * temp.price;
+
+        bill.products.push(product);
+    }
+
+    bill.total = total;
+    bill.address = '';
+    bill.phone = '';
+
+    bill = await Bill.create(bill);
 
     user.cart = [];
     await user.save();
-    
-    res.sendStatus(200);
 
+    res.status(200).json({
+        status: 'success',
+        data: {
+            bill
+        }
+    });
 });
 
 // Exports
 module.exports = router;
-
-
