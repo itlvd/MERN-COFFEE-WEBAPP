@@ -72,7 +72,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0px 16px;
-    flex: 3;
+    flex: 4;
 }
 
 .product{
@@ -111,4 +111,14 @@
 
 .vd{
     font-size: 16px;
+}
+
+.pa{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.img-container{
+    position: relative;
 }

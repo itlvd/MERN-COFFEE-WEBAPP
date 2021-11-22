@@ -24,7 +24,7 @@
                         <div class="img-container">
                             <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>"></a>
                                 <img class="pimage" src="/product_images/<%= p._id %>/<%= p.image %>" alt="<%= p.title %>">
-                            </a>
+                            
                         </div>
                         <div class="description">
                             <div class="product-name">
@@ -58,7 +58,6 @@
         if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
     }
     currentFilterItems = document.querySelectorAll('.product.show');
-    console.log(currentFilterItems)
     }
 
     // Add active class to the current control button (highlight it)
@@ -79,7 +78,6 @@
     input = document.getElementById('search-bar');
     filter = input.value.toUpperCase();
     products = currentFilterItems;
-    console.log(products)
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < products.length; i++) {
         a = products[i].querySelector('.product-name');
