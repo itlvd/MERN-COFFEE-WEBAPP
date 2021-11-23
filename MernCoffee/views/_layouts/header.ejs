@@ -15,11 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/header.css">
-
-    <!--your css-->
-    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 
@@ -34,59 +30,71 @@
                 <li><a href="/about">About us</a></li>
             </ul>
             <div id="profile">
-                <a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin-right: 15px;><i class="fas fa-user-circle"></i></a>
+                <i class="fas fa-user-circle"></i>
             </div>
         </div>
 
 
-        <div id="id01" class="content-container">
-
-            
+        <div class="modal">
+            <div class="animate modal-container">
+                <div class="modal-close">
+                    <i class="fas fa-times"></i>
+                </div>
                 
-                
-            <div class="form-container">
-                <% if (user) { %>
+                <div class="modal-body">
+               <% if (user) { %>
                     <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
                 <% } else {%>
-                <form class="animate " action="/users/login" method="post">
+                    <form action="">
+                        <label for="username-input" class="modal-label">
+                            <i class="fas fa-user"></i>
+                            Username
+                        </label>
+                        <input type="text" id="username-input" class="form-control" placeholder="Enter Username" name="uname" required>
 
-                    <div class="container">
+                        <label for="password-input" class="modal-label">
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <input type="password" id="password-input" class="form-control" placeholder="Enter Password" name="psw" required>
 
-
-                        <input type="text" placeholder="Enter Username" name="username" required><br>
-
-
-                        <input type="password" placeholder="Enter Password" name="password" required><br>
-
-
-
-                    </div>
-
-                    <div>
-                        <button type="submit" class="submit-btn">Login</button>
-                        <div class="containerend">
-                            <a href="/users/register">
-                                <button type="button" class="register">Register</button>
-                            </a>
-                            <span class="psw subtitle">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </div>
-                </form>
+                        <input type="submit" value="Login" class="submit-btn"></input>
+            
+                    </form>
+                     
+                </div>
+                <div class="modal-footer">
+                        <a href="http://www.google.com/">
+                            <button type="button" class="register">Register</button>
+                        </a>
+                    <span class="psw subtitle">Forgot <a href="#">password?</a></span>
+                </div>
                 <% } %>
-                <% if (user && user.role != "user") { %>
+                    <% if (user && user.role != "user") { %>
                     <li><a href="/admin/pages">Admin Area</a></li>
                 <% }%>
             </div>
         </div>
 
         <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
+            var profile = document.querySelector('#profile')
+            var modal = document.querySelector('.modal')
+            var closeBtn = document.querySelector('.modal-close')
+            var container = document.querySelector('.modal-container')
+            profile.addEventListener('click', ()=>{
+                modal.classList.add('open')
+            })
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+            // When the user clicks anywhere outside of the modal or close button, close it
+            modal.addEventListener('click',()=>{
+                modal.classList.remove('open')
+            })
+
+            closeBtn.addEventListener('click',()=>{
+                modal.classList.remove('open')
+            })
+
+            container.addEventListener('click',(e)=>{
+                e.stopPropagation()
+            })
         </script>

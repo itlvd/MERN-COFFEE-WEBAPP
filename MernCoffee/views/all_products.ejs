@@ -1,18 +1,94 @@
 <%- include('./_layouts/header') %>
-
-<div class="row products">
-    
-    <% products.forEach(function(p){ %>
-            <div class="col-xs-12 col-md-4 p">
-                <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>">
-                    <img class="pimage" src="/product_images/<%= p._id %>/<%= p.image %>" alt="">
-                </a>
-                <h3><%= p.title %></h3>
-                <h4>$<%= parseFloat(p.price).toFixed(2) %></h4>
-                <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
-            </div>
-        <% }); %>
-    
+<link rel="stylesheet" href="/css/all_products.css">
+<div class="title">
+    <h1>All products</h1>
 </div>
+
+<div class="all_product-container">
+    <div class="sidebar">
+        <div class="search-container">
+            <i class="fa fa-search search-bar-icon"></i>
+            <input type="text" id="search-bar" onkeyup="searchItems()" placeholder="Search for names...">
+        </div>
+        <div class="filter">
+            <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+            <button class="filter-btn" onclick="filterSelection('coffee')">Coffee</button>
+            <button class="filter-btn" onclick="filterSelection('other')">Other</button>      
+        </div>
+    </div>
+    <div class="products-list">
+        
+        <% products.forEach(function(p){ %>
+                <div class="product <%= p.category %>">
+                    <div class="product-card">
+                        <div class="img-container">
+                            <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>"></a>
+                                <img class="pimage" src="/product_images/<%= p._id %>/<%= p.image %>" alt="<%= p.title %>">
+                            
+                        </div>
+                        <div class="description">
+                            <div class="product-name">
+                                <h3><%= p.title %></h3>
+                            </div>
+                            <div class="product-content">
+                                <h4><%= parseFloat(p.price).toFixed(0) %>đ</h4>
+                                <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <% }); %>
+        
+    </div>
+</div>
+
+<script>
+    //---Start filter script
+    var currentFilterItems;
+
+    filterSelection("all")
+    function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("product");
+    if (c == "all") c = "";
+    // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.remove("show");
+        if (x[i].className.indexOf(c) > -1) x[i].classList.add("show");
+    }
+    currentFilterItems = document.querySelectorAll('.product.show');
+    }
+
+    // Add active class to the current control button (highlight it)
+    var btns = document.getElementsByClassName("filter-btn");
+    for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].classList.remove("active");
+        this.classList.add("active");
+
+    });
+    }
+    //---End filter function script
+    //---Start search function script
+    function searchItems() {
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('search-bar');
+    filter = input.value.toUpperCase();
+    products = currentFilterItems;
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < products.length; i++) {
+        a = products[i].querySelector('.product-name');
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            currentFilterItems[i].classList.add("show");
+        } else {
+            products[i].classList.remove("show");
+        }
+    }
+}
+</script>
 
 <%- include('./_layouts/footer') %>

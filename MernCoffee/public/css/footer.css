@@ -1,0 +1,51 @@
+/* Common class */
+.text-white{
+    color: #fff;
+}
+
+.footer {
+    background-color: #000;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.footer-heading{
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.footer-content{
+
+}
+
+.footer-list {
+    list-style: none;
+}
+
+.footer-list li{
+    margin-bottom: 16px;
+}
+
+.copyright{
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+}
+
+.copyright a{
+    margin-left: 16px;
+}
+
+.container-left{
+    flex:2;
+    padding: 16px;
+}
+
+.container-right{
+    flex: 1;
+    padding: 16px;
+}
