@@ -4,7 +4,11 @@ const mkdirp = require('mkdirp');
 const fs = require('fs-extra');
 const resizeImg = require('resize-img');
 const { check, validationResult } = require('express-validator');
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 
 
@@ -18,12 +22,14 @@ const Product = require('../models/productModel');
 /**
  * GET product index
  */
-router.get('/', (req, res) => {
-   var count;
+router.get('/', async (req, res) => {
+//    var count;
 
-    Product.count({}, function( err, c){
-        count = c;
-    })
+    // Product.count({}, function( err, c){
+    //     count = c;
+    // });
+
+    const count = (await Product.find()).length;
     
 
     Product.find((err, products) => {
@@ -32,7 +38,6 @@ router.get('/', (req, res) => {
             count: count
         });
     });
-
 });
 
 

@@ -42,6 +42,9 @@
                 </div>
                 
                 <div class="modal-body">
+               <% if (user) { %>
+                    <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
+                <% } else {%>
                     <form action="">
                         <label for="username-input" class="modal-label">
                             <i class="fas fa-user"></i>
@@ -58,6 +61,7 @@
                         <input type="submit" value="Login" class="submit-btn"></input>
             
                     </form>
+                     
                 </div>
                 <div class="modal-footer">
                         <a href="http://www.google.com/">
@@ -65,6 +69,10 @@
                         </a>
                     <span class="psw subtitle">Forgot <a href="#">password?</a></span>
                 </div>
+                <% } %>
+                    <% if (user && user.role != "user") { %>
+                    <li><a href="/admin/pages">Admin Area</a></li>
+                <% }%>
             </div>
         </div>
 

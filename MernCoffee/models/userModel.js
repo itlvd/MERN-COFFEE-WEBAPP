@@ -15,6 +15,11 @@ const userSchema = mongoose.Schema({
     trim: true,
     // validate: [validator.isEmail, 'Please provide a valid email.']
   },
+  username: {
+    type: String,
+    trim: true,
+    require: [true, 'Please tell us your username.']
+  },
   password: {
     type: String,
     require: [true, 'Please provide a password.']
@@ -22,8 +27,27 @@ const userSchema = mongoose.Schema({
   role: {
     type: String,
     default: 'user'
-  }
-})
+  },
+  address: {
+    type: String,
+    default: ''
+  },
+  phone: {
+    type: String,
+    default: ''
+  },
+  cart: [
+    {
+      product: {
+        type: mongoose.Schema.ObjectId,
+      },
+      quantity: {
+        type: Number,
+        default: 1
+      }
+    }
+  ]
+});
 
 const User = mongoose.model('User', userSchema);
 

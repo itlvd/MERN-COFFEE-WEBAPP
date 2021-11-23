@@ -5,10 +5,11 @@ const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser'); // video 8
 const session = require('express-session');
-var { check, validationResult } = require('express-validator');
-var fileUpload = require('express-fileupload');
-
-
+const { check, validationResult } = require('express-validator');
+const fileUpload = require('express-fileupload');
+const passport = require('passport');
+const initializePassport = require('./config/passport')
+initializePassport(passport);
 
 
 // require routes:
@@ -17,9 +18,17 @@ var fileUpload = require('express-fileupload');
 const adminPageRoutes = require('./routes/adminPageRoutes');
 const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
 const adminProductRoutes = require('./routes/adminProductRoutes');
+const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes');
+const adminCustomerRoutes = require('./routes/adminCustomerRoutes');
+const adminOrderRoutes = require('./routes/adminOrderRoutes');
+const adminIncomeRoutes = require('./routes/adminIncomRoutes');
+
 
 const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
+const profile = require('./routes/meRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 // connect to mongodb
 const dbURI = config.database;
@@ -64,16 +73,16 @@ app.use(fileUpload());
 
 
 // body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
 // Express Session Middleware
 app.use(session({
     secret: 'keyboard cat',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }));
 
 
@@ -90,20 +99,41 @@ app.use(function(req, res, next) {
 });
 
 
+// Passport Config
+// require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.get("*", function(req, res, next) {
+    res.locals.cart = req.session.cart;
+    res.locals.user = req.user || null;
+    next();
+})
 
 //----------------------------------------------------------------
-
+ 
 
 
 // set page routes:
 app.use('/admin/pages', adminPageRoutes);
 app.use('/admin/categories', adminCategoryRoutes);
 app.use('/admin/products', adminProductRoutes);
+app.use('/admin/employee', adminEmployeeRoutes);
+app.use('/admin/customer', adminCustomerRoutes);
+app.use('/admin/orders', adminOrderRoutes);
+app.use('/admin/income', adminIncomeRoutes);
 // app.use('/', pageRoutes);
 
 // routes for customer
 app.use('/products', products);
 app.use('/cart', cart);
+app.use('/users', userRoutes);
+// routes for profile
+app.use('/me', profile);
+app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -121,3 +151,16 @@ app.get('/test', (req, res) => {
         title: "Test"
     });
 });
+
+
+
+// function checkAuthenticated(req, res, next) {
+//     console.log("inside checkAuthenticate");
+//     console.log(req.isAuthenticated());
+//     if (req.isAuthenticated()) {
+//       return next()
+//     }
+  
+//     res.redirect('/users/login')
+// }
+
