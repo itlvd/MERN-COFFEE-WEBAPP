@@ -40,23 +40,23 @@
                 <div class="modal-close">
                     <i class="fas fa-times"></i>
                 </div>
-                
-                <div class="modal-body">
-               <% if (user) { %>
+                <% if (user) { %>
                     <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
                 <% } else {%>
-                    <form action="">
+                <div class="modal-body">
+               
+                    <form action="/users/login" method="post">
                         <label for="username-input" class="modal-label">
                             <i class="fas fa-user"></i>
                             Username
                         </label>
-                        <input type="text" id="username-input" class="form-control" placeholder="Enter Username" name="uname" required>
+                        <input type="text" id="username-input" class="form-control" placeholder="Enter Username" name="username" required>
 
                         <label for="password-input" class="modal-label">
                             <i class="fas fa-lock"></i>
                             Password
                         </label>
-                        <input type="password" id="password-input" class="form-control" placeholder="Enter Password" name="psw" required>
+                        <input type="password" id="password-input" class="form-control" placeholder="Enter Password" name="password" required>
 
                         <input type="submit" value="Login" class="submit-btn"></input>
             
