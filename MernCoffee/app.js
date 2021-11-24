@@ -30,6 +30,7 @@ const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 
+
 // connect to mongodb
 const dbURI = config.database;
 
