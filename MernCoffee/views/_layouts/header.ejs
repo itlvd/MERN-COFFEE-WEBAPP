@@ -10,7 +10,7 @@
         <%= title%>
     </title>
     <!--header's css-->
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -42,37 +42,39 @@
                 </div>
                 <% if (user) { %>
                     <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
-                <% } else {%>
-                <div class="modal-body">
-               
-                    <form action="/users/login" method="post">
-                        <label for="username-input" class="modal-label">
-                            <i class="fas fa-user"></i>
-                            Username
-                        </label>
-                        <input type="text" id="username-input" class="form-control" placeholder="Enter Username" name="username" required>
+                    <% } else {%>
+                        <div class="modal-body">
 
-                        <label for="password-input" class="modal-label">
-                            <i class="fas fa-lock"></i>
-                            Password
-                        </label>
-                        <input type="password" id="password-input" class="form-control" placeholder="Enter Password" name="password" required>
+                            <form action="/users/login" method="post">
+                                <label for="username-input" class="modal-label">
+                                    <i class="fas fa-user"></i>
+                                    Username
+                                </label>
+                                <input type="text" id="username-input" class="form-control" placeholder="Enter Username"
+                                    name="username" required>
 
-                        <input type="submit" value="Login" class="submit-btn"></input>
-            
-                    </form>
-                     
-                </div>
-                <div class="modal-footer">
-                        <a href="http://www.google.com/">
-                            <button type="button" class="register">Register</button>
-                        </a>
-                    <span class="psw subtitle">Forgot <a href="#">password?</a></span>
-                </div>
-                <% } %>
-                    <% if (user && user.role != "user") { %>
-                    <li><a href="/admin/pages">Admin Area</a></li>
-                <% }%>
+                                <label for="password-input" class="modal-label">
+                                    <i class="fas fa-lock"></i>
+                                    Password
+                                </label>
+                                <input type="password" id="password-input" class="form-control"
+                                    placeholder="Enter Password" name="password" required>
+
+                                <input type="submit" value="Login" class="submit-btn"></input>
+
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="http://www.google.com/">
+                                <button type="button" class="register">Register</button>
+                            </a>
+                            <span class="psw subtitle">Forgot <a href="#">password?</a></span>
+                        </div>
+                        <% } %>
+                            <% if (user && user.role !="user" ) { %>
+                                <li><a href="/admin/pages">Admin Area</a></li>
+                                <% }%>
             </div>
         </div>
 
@@ -81,20 +83,20 @@
             var modal = document.querySelector('.modal')
             var closeBtn = document.querySelector('.modal-close')
             var container = document.querySelector('.modal-container')
-            profile.addEventListener('click', ()=>{
+            profile.addEventListener('click', () => {
                 modal.classList.add('open')
             })
 
             // When the user clicks anywhere outside of the modal or close button, close it
-            modal.addEventListener('click',()=>{
+            modal.addEventListener('click', () => {
                 modal.classList.remove('open')
             })
 
-            closeBtn.addEventListener('click',()=>{
+            closeBtn.addEventListener('click', () => {
                 modal.classList.remove('open')
             })
 
-            container.addEventListener('click',(e)=>{
+            container.addEventListener('click', (e) => {
                 e.stopPropagation()
             })
         </script>

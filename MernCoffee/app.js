@@ -35,9 +35,9 @@ const dbURI = config.database;
 
 //connect to mongoDB
 mongoose.connect(dbURI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then((result) => console.log('connected to db'))
     .catch((err) => console.log(err));
 
@@ -93,7 +93,7 @@ app.use(session({
 
 // Express Messages middleware
 app.use(require('connect-flash')());
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
@@ -107,14 +107,14 @@ app.use(passport.session());
 
 
 
-app.get("*", function(req, res, next) {
+app.get("*", function (req, res, next) {
     res.locals.cart = req.session.cart;
     res.locals.user = req.user || null;
     next();
 })
 
 //----------------------------------------------------------------
- 
+
 
 
 // set page routes:
@@ -160,7 +160,7 @@ app.get('/test', (req, res) => {
 //     if (req.isAuthenticated()) {
 //       return next()
 //     }
-  
+
 //     res.redirect('/users/login')
 // }
 

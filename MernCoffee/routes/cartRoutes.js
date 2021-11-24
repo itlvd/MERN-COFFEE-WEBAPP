@@ -19,7 +19,7 @@ const hasLogin = auth.hasLogin;
 router.get('/add/:product', isUser, function (req, res) {
     const slug = req.params.product;
 
-    Product.findOne({slug: slug}, async function (err, p) {
+    Product.findOne({ slug: slug }, async function (err, p) {
         const user = await User.findById(req.user);
         const cart = user.cart;
 
@@ -32,7 +32,7 @@ router.get('/add/:product', isUser, function (req, res) {
             })
         }
         else {
-            const product = { '_id': p._id, 'quantity': 1};
+            const product = { '_id': p._id, 'quantity': 1 };
             user.cart.push(product);
             await user.save();
         }
@@ -50,13 +50,13 @@ router.get('/', isUser, async function (req, res) {
     const user = await User.findById(req.user);
 
     products = []
-    for(let i = 0; i < user.cart.length; i++) {
+    for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
     }
 
-    res.render('checkout', {
+    res.render('checkout_test', {
         title: 'Checkout',
         cart: products,
         user: user
@@ -117,7 +117,7 @@ router.get('/clear', isUser, async function (req, res) {
 
     user.cart = [];
     await user.save();
-    
+
     req.flash('success', 'Cart cleared!');
     res.redirect('/cart');
 
