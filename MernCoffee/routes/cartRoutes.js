@@ -56,7 +56,7 @@ router.get('/', isUser, async function (req, res) {
         products.push(product);
     }
 
-    res.render('checkout', {
+    res.render('checkout_test', {
         title: 'Checkout',
         cart: products,
         user: user
