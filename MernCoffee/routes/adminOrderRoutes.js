@@ -10,30 +10,43 @@ const router = express.Router();
 const Bill = require('../models/billModel');
 
 router.get('/', async function(req, res, next) {
-  const bills = await Bill.find();
-  res.status(200).json({
-    status: 'success',
-    result: bills.length,
-    data: {
-      bills
-    }
-  });
+    const bills = await Bill.find();
+    res.status(200).json({
+        status: 'success',
+        result: bills.length,
+        data: {
+            bills
+        }
+    });
+    // res.render('handleOrder', {
+    //     title: 'Danh sách mua hàng',
+    //     cart: products,
+    //     user: user,
+    //     promo: promo,
+    //     ship: ship
+    // });
+
 })
 
-router.get('/:id/:status', async function (req, res) {
-  const updatedBill = await Bill.findByIdAndUpdate(req.params.id, {status: req.params.status}, {
-    new: true,
-    runValidators: true,
-  });
+router.get('/:id', async function(req, res, next) {
+    const bill = await Bill.findById(req.params.id);
 
-  // res.status(200).json({
-  //   status: 'success',
-  //   data: {
-  //     bill: updatedBill
-  //   }
-  // });
+    res.status(200).json({
+        status: 'success',
+        data: {
+            bill
+        }
+    });
 
-  res.redirect('/admin/orders');
+})
+
+router.get('/:id/:status', async function(req, res) {
+    const updatedBill = await Bill.findByIdAndUpdate(req.params.id, { status: req.params.status }, {
+        new: true,
+        runValidators: true,
+    });
+
+    res.redirect('/admin/orders');
 });
 
 module.exports = router;

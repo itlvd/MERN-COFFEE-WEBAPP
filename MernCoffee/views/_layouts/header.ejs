@@ -23,78 +23,56 @@
 
     <div id="main">
         <div id="header">
-            <ul id="navbar">
-                <li><a href="/">Home</a></li>
-                <li><a href="">News</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/about">About us</a></li>
-            </ul>
-            <div id="profile">
+            <div id="navbar">
+                <a href="/">Home</a>
+                <a href="">News</a>
+                <a href="/products">Products</a>
+                <a href="/about">About us</a>
+            </div>
+            <% if (user) { %>
+            <div id="profile-dropdown">
                 <i class="fas fa-user-circle"></i>
-            </div>
-        </div>
-
-
-        <div class="modal">
-            <div class="animate modal-container">
-                <div class="modal-close">
-                    <i class="fas fa-times"></i>
-                </div>
-                <% if (user) { %>
-                    <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
-                <% } else {%>
-                <div class="modal-body">
-               
-                    <form action="/users/login" method="post">
-                        <label for="username-input" class="modal-label">
-                            <i class="fas fa-user"></i>
-                            Username
-                        </label>
-                        <input type="text" id="username-input" class="form-control" placeholder="Enter Username" name="username" required>
-
-                        <label for="password-input" class="modal-label">
-                            <i class="fas fa-lock"></i>
-                            Password
-                        </label>
-                        <input type="password" id="password-input" class="form-control" placeholder="Enter Password" name="password" required>
-
-                        <input type="submit" value="Login" class="submit-btn"></input>
-            
-                    </form>
-                     
-                </div>
-                <div class="modal-footer">
-                        <a href="http://www.google.com/">
-                            <button type="button" class="register">Register</button>
-                        </a>
-                    <span class="psw subtitle">Forgot <a href="#">password?</a></span>
-                </div>
-                <% } %>
+                <div class="profile-menu">
+                    <div class="welcome">Hi, <%= user.username %></div>
+                    <a href="" class="view-profile">
+                        <i class="fa fa-user"></i>
+                        Profile
+                    </a>
                     <% if (user && user.role != "user") { %>
-                    <li><a href="/admin/pages">Admin Area</a></li>
-                <% }%>
+                    <a href="/admin/pages">
+                        <i class="fa fa-lock"></i>
+                        Admin Area
+                    </a>
+                    <% }%>
+                    <a href="/users/logout">
+                        <i class="fa fa-power-off"></i>
+                        Logout
+                    </a>
+                </div>
             </div>
+                    
+                
+            <% } else {%>
+                <div id="profile">
+                    <a href="/users/login" class="profile-a"></a>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            <% } %>
+            
+            
         </div>
 
         <script>
-            var profile = document.querySelector('#profile')
-            var modal = document.querySelector('.modal')
-            var closeBtn = document.querySelector('.modal-close')
-            var container = document.querySelector('.modal-container')
-            profile.addEventListener('click', ()=>{
-                modal.classList.add('open')
+            var profileBtn = document.querySelector("#profile-dropdown");
+            var dropdownMenu = document.querySelector(".profile-menu");
+            profileBtn.addEventListener('click',()=>{
+                dropdownMenu.classList.toggle("show-flex");
             })
-
-            // When the user clicks anywhere outside of the modal or close button, close it
-            modal.addEventListener('click',()=>{
-                modal.classList.remove('open')
-            })
-
-            closeBtn.addEventListener('click',()=>{
-                modal.classList.remove('open')
-            })
-
-            container.addEventListener('click',(e)=>{
-                e.stopPropagation()
-            })
+            window.onclick = (e)=>{
+                if(e.target.matches('.profile-menu')){
+                    if (dropdownMenu.classList.contains('show-flex')){
+                        dropdownMenu.classList.remove('show-flex')
+                    }
+                }
+            }
         </script>

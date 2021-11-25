@@ -29,6 +29,7 @@ const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
 const searchRoutes = require('./routes/searchRoutes');
+const bill = require('./routes/billRoutes');
 
 // connect to mongodb
 const dbURI = config.database;
@@ -114,7 +115,7 @@ app.get("*", function(req, res, next) {
 })
 
 //----------------------------------------------------------------
- 
+
 
 
 // set page routes:
@@ -133,6 +134,7 @@ app.use('/cart', cart);
 app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
+app.use('/bill', bill);
 app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {
@@ -160,7 +162,6 @@ app.get('/test', (req, res) => {
 //     if (req.isAuthenticated()) {
 //       return next()
 //     }
-  
+
 //     res.redirect('/users/login')
 // }
-
