@@ -63,13 +63,14 @@ router.get('/', isAdmin, async function (req, res, next) {
     })
   }
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      allProducts,
-      monthlyIncome,
-      total
-    }
+  console.log(monthlyIncome);
+
+
+  res.render('admin/income', {
+    title: 'Income',
+    allProducts,
+    monthlyIncome,
+    total
   });
 });
 
