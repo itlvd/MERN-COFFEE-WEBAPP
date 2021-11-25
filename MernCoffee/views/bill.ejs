@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Hoá đơn</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+
+    <link href='' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <style>
+        .card {
+            margin-bottom: 1.5rem
+        }
+        
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #c8ced3;
+            border-radius: .25rem
+        }
+        
+        .card-header:first-child {
+            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0
+        }
+        
+        .card-header {
+            padding: .75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: #f0f3f5;
+            border-bottom: 1px solid #c8ced3
+        }
+    </style>
+</head>
+
+<body oncontextmenu='return false' class='snippet-body'>
+    <div class="container-fluid">
+        <div id="ui-view" data-select2-id="ui-view">
+            <div>
+                <div class="card">
+                    <div class="card-header">Hoá đơn
+                        <strong>#Invoid-<%= billid %></strong>
+                        <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
+                            <i class="fa fa-print"></i> Print</a>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-sm-4">
+                                <h6 class="mb-3">Từ:</h6>
+                                <div>
+                                    <strong>Mern Coffee</strong>
+                                </div>
+                                <div>227 Đ. Nguyễn Văn Cừ</div>
+                                <div>Phường 4, Quận 5, Thành phố Hồ Chí Minh</div>
+                                <div>Email: sale@merncoffee.com</div>
+                                <div>Phone: +84 122 3456789</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="mb-3">Đến:</h6>
+                                <div>
+                                    <strong><%= name %></strong>
+                                </div>
+                                <div>
+                                    <%= address %>
+                                </div>
+                                <div>Email:
+                                    <%= email %>
+                                </div>
+                                <div>Phone:
+                                    <%= phone %>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="mb-3">Chi tiết:</h6>
+                                <div>Mã hoá đơn
+                                    <strong>#Invoid-<%= billid %></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="center">#</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th class="center">Số lượng</th>
+                                        <th class="right">Giá tiền</th>
+                                        <th class="right">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var total = 0 %>
+                                        <% var count = 0; %>
+                                            <% products.forEach(function(product){ %>
+                                                <% var sub = parseFloat(product.quantity * product.price).toFixed(2) %>
+                                                    <% total += +sub %>
+                                                        <% count = count +1 %>
+                                                            <tr>
+                                                                <td class="center">
+                                                                    <%=count %>
+                                                                </td>
+                                                                <td class="left">
+                                                                    <%= product.title %>
+                                                                </td>
+                                                                <td class="left">
+                                                                    <%= product.category %>
+                                                                </td>
+                                                                <td class="center">
+                                                                    <%= product.quantity %>
+                                                                </td>
+                                                                <td class="right">
+                                                                    <%= product.price %> VND</td>
+                                                                <td class="right">
+                                                                    <%= sub %> VND</td>
+                                                            </tr>
+                                                            <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-5">Cảm ơn quý khách đã đặt món tại website. Sự hài lòng của quý khách là niềm tự hào và vinh hạnh của chúng tôi. Chúng tôi rất mong được phục vụ quý khách ở những lần gọi món tiếp theo.</div>
+                            <div class="col-lg-4 col-sm-5 ml-auto">
+                                <table class="table table-clear">
+                                    <tbody>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Số tiền</strong>
+                                            </td>
+                                            <td class="right">
+                                                <%= total %> VND</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Khuyến mãi:</strong>
+                                            </td>
+                                            <td class="right">
+                                                <%=promo %> VND</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Phí giao hàng</strong>
+                                            </td>
+                                            <td class="right">
+                                                <%=ship %> VND</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Tổng cộng</strong>
+                                            </td>
+                                            <td class="right">
+                                                <strong><%= total - promo + ship %> VND</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a class="btn btn-success" href="/products" data-abc="true">
+                                    <i class="fa fa-usd"></i> Tiếp tục mua hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript' src=''></script>
+    <script type='text/javascript'></script>
+</body>
+
+</html>
