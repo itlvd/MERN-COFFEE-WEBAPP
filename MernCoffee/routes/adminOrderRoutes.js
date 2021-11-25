@@ -20,18 +20,20 @@ router.get('/', async function(req, res, next) {
   });
 })
 
-router.post('/:id', async function (req, res) {
-  const updatedBill = await Bill.findByIdAndUpdate(req.params.id, req.body, {
+router.get('/:id/:status', async function (req, res) {
+  const updatedBill = await Bill.findByIdAndUpdate(req.params.id, {status: req.params.status}, {
     new: true,
     runValidators: true,
   });
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      bill: updatedBill
-    }
-  });
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: {
+  //     bill: updatedBill
+  //   }
+  // });
+
+  res.redirect('/admin/orders');
 });
 
 module.exports = router;
