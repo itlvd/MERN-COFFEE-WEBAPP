@@ -9,8 +9,9 @@ const router = express.Router();
 
 const Bill = require('../models/billModel');
 
-router.get('/', async function(req, res, next) {
-    const bills = await Bill.find();
+router.get('/', isEmployee, async function(req, res, next) {
+    const bills = await Bill.find({status: 'processing'});
+    
     res.status(200).json({
         status: 'success',
         result: bills.length,
@@ -28,7 +29,7 @@ router.get('/', async function(req, res, next) {
 
 })
 
-router.get('/:id', async function(req, res, next) {
+router.get('/:id', isEmployee, async function(req, res, next) {
     const bill = await Bill.findById(req.params.id);
 
     res.status(200).json({
@@ -40,7 +41,7 @@ router.get('/:id', async function(req, res, next) {
 
 })
 
-router.get('/:id/:status', async function(req, res) {
+router.get('/:id/:status', isEmployee, async function(req, res) {
     const updatedBill = await Bill.findByIdAndUpdate(req.params.id, { status: req.params.status }, {
         new: true,
         runValidators: true,
