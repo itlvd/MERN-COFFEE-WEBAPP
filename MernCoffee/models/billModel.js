@@ -22,6 +22,10 @@ const billSchema = mongoose.Schema({
     // required: [true, 'Please provide your phone to contact!'],
     default: ''
   },
+  code: {
+    type: String,
+    default: ''
+  },
   products: [],
   total: {
     type: Number
