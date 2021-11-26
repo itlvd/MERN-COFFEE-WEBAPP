@@ -174,13 +174,6 @@ router.post('/buynow', isUser, async function(req, res) {
     user.cart = [];
     await user.save();
 
-    // res.status(200).json({
-    //     status: 'success',
-    //     data: {
-    //         bill
-    //     }
-    // });
-    console.log("Bill:", bill);
     res.render('bill', {
         title: 'Billing',
         address: bill.address,

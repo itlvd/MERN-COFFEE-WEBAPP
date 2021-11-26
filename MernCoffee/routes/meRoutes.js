@@ -19,12 +19,13 @@ router.get('/', isUser, async function(req, res) {
     user.__v = undefined;
     user.cart = undefined;
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            user
-        }
-    })
+    res.render('profile', {
+        title: 'Profile',
+        phone: user.phone,
+        address: user.address,
+        username: user.username,
+        name: user.name
+    });
 });
 
 /*
@@ -36,12 +37,7 @@ router.post('/', isUser, async function(req, res) {
         runValidators: true,
     });
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            user
-        }
-    });
+    res.redirect('/me');
 });
 
 /*
@@ -49,11 +45,13 @@ router.post('/', isUser, async function(req, res) {
  */
 router.delete('/', isUser, async function(req, res) {
     const user = await User.findByIdAndDelete(req.user);
+    
+    res.redirect('/');
 
-    res.status(204).json({
-        status: 'success',
-        data: null
-    });
+    // res.status(204).json({
+    //     status: 'success',
+    //     data: null
+    // });
 });
 
 module.exports = router;

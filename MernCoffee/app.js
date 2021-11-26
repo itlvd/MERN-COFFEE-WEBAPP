@@ -134,7 +134,7 @@ app.use('/cart', cart);
 app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
-app.use('/bill', bill);
+app.use('/bills', bill);
 app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {

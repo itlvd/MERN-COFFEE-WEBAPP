@@ -7,6 +7,11 @@ const userSchema = mongoose.Schema({
     trim: true,
     require: [true, 'Please tell us your name.']
   },
+  username: {
+    type: String,
+    trim: true,
+    require: [true, 'Please tell us your username.']
+  },
   email: {
     type: String,
     require: [true, 'Please provide your email.'],
@@ -14,19 +19,6 @@ const userSchema = mongoose.Schema({
     lowercase: true,
     trim: true,
     // validate: [validator.isEmail, 'Please provide a valid email.']
-  },
-  username: {
-    type: String,
-    trim: true,
-    require: [true, 'Please tell us your username.']
-  },
-  password: {
-    type: String,
-    require: [true, 'Please provide a password.']
-  },
-  role: {
-    type: String,
-    default: 'user'
   },
   address: {
     type: String,
@@ -46,7 +38,15 @@ const userSchema = mongoose.Schema({
         default: 1
       }
     }
-  ]
+  ],
+  password: {
+    type: String,
+    require: [true, 'Please provide a password.']
+  },
+  role: {
+    type: String,
+    default: 'user'
+  },
 });
 
 const User = mongoose.model('User', userSchema);
