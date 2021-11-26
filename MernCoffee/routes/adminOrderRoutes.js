@@ -10,15 +10,23 @@ const router = express.Router();
 const Bill = require('../models/billModel');
 
 router.get('/', isEmployee, async function(req, res, next) {
-    const bills = await Bill.find({status: 'processing'});
-    
+    const page = req.query.page || 1;
+    const limit = req.query.limit * 1 || 16;
+    const skip = (page - 1) * limit;
+    const totalPage = Math.ceil((await Bill.find({ status: 'processing' })).length / limit);
+    const bills = await Bill.find({ status: 'processing' }).sort('createdAt').skip(skip).limit(limit);
+
     res.status(200).json({
         status: 'success',
         result: bills.length,
         data: {
-            bills
+            bills,
+            page,
+            limit,
+            totalPage
         }
     });
+
     // res.render('handleOrder', {
     //     title: 'Danh sách mua hàng',
     //     cart: products,
