@@ -15,14 +15,22 @@ const Category = require('../models/categoryModel');
  * GET all products
  */
 router.get('/', async function (req, res) {
-    const products = await Product.find();
+    const page = req.query.page || 1;
+    const limit = req.query.limit * 1 || 16;
+    const skip = (page - 1) * limit;
+    const totalPage = Math.ceil((await Product.count()) / limit);
+
+    const products = await Product.find().skip(skip).limit(limit);
     const categories = await Category.find();
 
     res.render('all_products', {
         title: 'All products',
         products: products,
         categories: categories,
-        user: req.user
+        user: req.user,
+        page,
+        limit,
+        totalPage
     });
 });
 

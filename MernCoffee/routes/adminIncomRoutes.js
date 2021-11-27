@@ -63,9 +63,6 @@ router.get('/', isAdmin, async function (req, res, next) {
     })
   }
 
-  console.log(monthlyIncome);
-
-
   res.render('admin/income', {
     title: 'Income',
     allProducts,

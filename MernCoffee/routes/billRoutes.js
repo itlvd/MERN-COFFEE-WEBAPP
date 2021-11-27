@@ -10,13 +10,22 @@ const router = express.Router();
 const Bill = require('../models/billModel');
 
 router.get('/', isUser, async function (req, res, next) {
-    const bills = await Bill.find({userId: req.user._id});
+    const page = req.query.page || 1;
+    const limit = req.query.limit * 1 || 4;
+    const skip = (page - 1) * limit;
+    const totalPage = Math.ceil(((await Bill.find({ userId: req.user._id })).length) / limit);
+    const bills = await Bill.find({ userId: req.user._id }).sort('createdAt').skip(skip).limit(limit);
+
+    console.log(totalPage);
 
     res.status(200).json({
         status: 'success',
         result: bills.length,
         data: {
-            bills
+            bills,
+            page,
+            limit,
+            totalPage
         }
     });
 })

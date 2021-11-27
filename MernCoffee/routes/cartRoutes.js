@@ -50,7 +50,8 @@ router.get('/', isUser, async function(req, res) {
     const user = await User.findById(req.user);
     var promo = 10000;
     var ship = 20000;
-    products = []
+    products = [];
+
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
         product['quantity'] = user.cart[i].quantity;
