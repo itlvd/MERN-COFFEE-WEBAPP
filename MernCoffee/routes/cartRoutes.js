@@ -57,7 +57,7 @@ router.get('/', isUser, async function(req, res) {
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
     }
-
+    console.log(user);
     res.render('checkout', {
         title: 'Checkout',
         cart: products,

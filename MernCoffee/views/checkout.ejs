@@ -12,6 +12,8 @@
             font-family: sans-serif;
             font-size: 0.8rem;
             font-weight: bold;
+            margin-top: 60px;
+            padding: 16px;
         }
         
         .title {
@@ -73,6 +75,8 @@
         
         .row {
             margin: 0;
+            flex-direction: row;
+            justify-content: stretch;
         }
         
         .title b {
@@ -265,7 +269,7 @@
                 <% if (typeof cart !== "undefined") { %>
                     <% var total = 0; %>
                         <% var sub = 0; %>
-                            <div class="col-md-8 cart">
+                            <div class="col-md-12 cart">
                                 <div class="title">
                                     <div class="row">
                                         <div class="col">
@@ -303,7 +307,7 @@
 
 
                                             <% }); %>
-                                                <div class="back-to-shop"><a href="/products">&leftarrow;</a><span class="text-muted">Trở về</span></div>
+                                                <div class="back-to-shop"><a href="/products">&leftarrow;<span class="text-muted">Trở về</span></a></div>
                             </div>
 
                             <form method="post" action="/cart/buynow">
@@ -314,16 +318,16 @@
                                                 <div class="col-lg-8">
                                                     <div class="row px-2">
                                                         <div class="form-group col-md-6"> <label class="form-control-label">Họ tên</label>
-                                                            <input type="text" id="cname" name="name" placeholder="Nguyen Van A" required>
+                                                            <input type="text" id="cname" name="name" placeholder="Nguyen Van A" value="<%=user.name%>" required>
                                                         </div>
                                                         <div class="form-group col-md-6"> <label class="form-control-label">Số điện thoại
                                                             Number</label>
-                                                            <input type="text" id="cphone" name="phone" placeholder="0123 456 789" required>
+                                                            <input type="text" id="cphone" name="phone" placeholder="0123 456 789" value="<%=user.phone%>" required>
                                                         </div>
                                                     </div>
                                                     <div class="row px-2">
                                                         <div class="form-group col-md-6"> <label class="form-control-label">Địa chỉ</label>
-                                                            <input type="text" id="addr" name="address" placeholder="227 Nguyen Van Cu, P4, Q5, TPHCM" required>
+                                                            <input type="text" id="addr" name="address" placeholder="227 Nguyen Van Cu, P4, Q5, TPHCM" value="<%=user.address%>" required>
                                                         </div>
                                                         <div class="form-group col-md-6"> <label class="form-control-label">Mã giảm giá
                                                             (tuỳ chọn)</label>

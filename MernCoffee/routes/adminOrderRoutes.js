@@ -16,24 +16,23 @@ router.get('/', isEmployee, async function(req, res, next) {
     const totalPage = Math.ceil((await Bill.find({ status: 'processing' })).length / limit);
     const bills = await Bill.find({ status: 'processing' }).sort('createdAt').skip(skip).limit(limit);
 
-    res.status(200).json({
-        status: 'success',
-        result: bills.length,
-        data: {
-            bills,
-            page,
-            limit,
-            totalPage
-        }
-    });
-
-    // res.render('handleOrder', {
-    //     title: 'Danh sách mua hàng',
-    //     cart: products,
-    //     user: user,
-    //     promo: promo,
-    //     ship: ship
+    // res.status(200).json({
+    //     status: 'success',
+    //     result: bills.length,
+    //     data: {
+    //         bills,
+    //         page,
+    //         limit,
+    //         totalPage
+    //     }
     // });
+
+    res.render('admin/handleOrder', {
+        title: 'Danh sách mua hàng',
+        bill: bills,
+        page,
+        totalPage,
+    });
 
 })
 

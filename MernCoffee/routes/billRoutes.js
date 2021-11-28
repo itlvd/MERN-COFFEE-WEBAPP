@@ -9,7 +9,7 @@ const router = express.Router();
 
 const Bill = require('../models/billModel');
 
-router.get('/', isUser, async function (req, res, next) {
+router.get('/', isUser, async function(req, res, next) {
     const page = req.query.page || 1;
     const limit = req.query.limit * 1 || 4;
     const skip = (page - 1) * limit;
@@ -31,6 +31,8 @@ router.get('/', isUser, async function (req, res, next) {
 })
 
 router.get('/:id', isUser, async function(req, res, next) {
+    const promo = 0;
+    const ship = 20000;
     const bill = await Bill.findOne({
         _id: req.params.id,
         userId: req.user._id
@@ -41,13 +43,26 @@ router.get('/:id', isUser, async function(req, res, next) {
             status: 'fail',
             message: 'Something is wrong!'
         });
-    }
-    else {
-        res.status(200).json({
-            status: 'success',
-            data: {
-                bill
-            }
+    } else {
+        // res.status(200).json({
+        //     status: 'success',
+        //     data: {
+        //         bill
+        //     }
+        // });
+
+        res.render('bill', {
+            title: 'Billing',
+            address: bill.address,
+            name: req.user.name,
+            email: req.user.email,
+            phone: bill.phone,
+            billid: bill._id,
+            products: bill.products,
+            promo: promo,
+            ship: ship
+
+            // user: req.user
         });
     }
 })
