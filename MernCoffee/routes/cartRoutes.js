@@ -19,7 +19,9 @@ const hasLogin = auth.hasLogin;
 router.get('/add/:product', isUser, function (req, res) {
     const slug = req.params.product;
 
+
     Product.findOne({ slug: slug }, async function (err, p) {
+
         const user = await User.findById(req.user);
         const cart = user.cart;
 
@@ -30,8 +32,9 @@ router.get('/add/:product', isUser, function (req, res) {
                 status: 'fail',
                 message: 'Product is exist in your cart!',
             })
-        }
-        else {
+
+            return;
+        } else {
             const product = { '_id': p._id, 'quantity': 1 };
             user.cart.push(product);
             await user.save();
@@ -49,18 +52,24 @@ router.get('/add/:product', isUser, function (req, res) {
 router.get('/', isUser, async function (req, res) {
     const user = await User.findById(req.user);
     var promo = 10000;
-    products = []
+
+    var ship = 20000;
+    products = [];
+
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
     }
 
-    res.render('checkout_test', {
+    console.log(user);
+    res.render('checkout', {
         title: 'Checkout',
         cart: products,
         user: user,
-        promo: promo
+        promo: promo,
+        ship: ship
+
     });
 });
 
@@ -127,9 +136,11 @@ router.get('/clear', isUser, async function (req, res) {
 /*
  * GET buy now
  */
-router.get('/buynow', isUser, async function (req, res) {
+router.post('/buynow', isUser, async function (req, res) {
     const user = await User.findById(req.user);
     const cart = user.cart;
+    var promo = 10000;
+    var ship = 20000;
 
     if (cart.length == 0) {
         res.status(400).json({
@@ -162,19 +173,26 @@ router.get('/buynow', isUser, async function (req, res) {
     }
 
     bill.total = total;
-    bill.address = '';
-    bill.phone = '';
+    bill.address = req.body.address;
+    bill.phone = req.body.phone;
 
     bill = await Bill.create(bill);
 
     user.cart = [];
     await user.save();
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            bill
-        }
+    res.render('bill', {
+        title: 'Billing',
+        address: bill.address,
+        name: user.name,
+        email: user.email,
+        phone: bill.phone,
+        billid: bill._id,
+        products: bill.products,
+        promo: promo,
+        ship: ship
+
+        // user: req.user
     });
 });
 

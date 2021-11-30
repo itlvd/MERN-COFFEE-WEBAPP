@@ -11,7 +11,6 @@ var isUser = auth.isUser;
 var hasLogin = auth.hasLogin;
 
 
-
 // get Category model
 const Category = require('../models/categoryModel');
 
@@ -23,20 +22,21 @@ const Product = require('../models/productModel');
  * GET product index
  */
 router.get('/', async (req, res) => {
-    //    var count;
-
-    // Product.count({}, function( err, c){
-    //     count = c;
-    // });
-
+    const page = req.query.page || 1;
+    const limit = req.query.limit * 1 || 16;
+    const skip = (page - 1) * limit;
     const count = (await Product.find()).length;
+    const totalPage = Math.ceil(count / limit);
 
+    const products = await Product.find().skip(skip).limit(limit);
 
-    Product.find((err, products) => {
-        res.render('admin/products', {
-            products: products,
-            count: count
-        });
+    res.render('admin/products', {
+        title: 'All products',
+        products: products,
+        count: count,
+        page,
+        limit,
+        totalPage
     });
 });
 

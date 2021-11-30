@@ -8,6 +8,7 @@
         <table class="table table-striped alignmiddle">
             <thead>
                 <tr class="home">
+                    <th>STT</th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -17,8 +18,11 @@
                 </tr>
             </thead>
             <tbody>
-                <% products.forEach(function(product){ %>
+                <% products.forEach(function(product, i){ %>
                     <tr>
+                        <td>
+                            <%= i + 1 %>
+                        </td>
                         <td>
                             <%= product.title %>
                         </td>

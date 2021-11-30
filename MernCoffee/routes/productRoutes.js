@@ -1,34 +1,36 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs-extra');
-// var auth = require('../config/auth');
-// var isUser = auth.isUser;
-
-// Get Product model
-const Product = require('../models/productModel');
-
-// Get Category model
-const Category = require('../models/categoryModel');
 var auth = require('../config/auth');
 var isEmployee = auth.isEmployee;
 var isAdmin = auth.isAdmin;
 var isUser = auth.isUser;
 var hasLogin = auth.hasLogin;
+
+const Product = require('../models/productModel');
+const Category = require('../models/categoryModel');
+
+
 /*
  * GET all products
  */
-router.get('/', function (req, res) {
-//router.get('/', isUser, function (req, res) {
+router.get('/', async function (req, res) {
+    const page = req.query.page || 1;
+    const limit = req.query.limit * 1 || 16;
+    const skip = (page - 1) * limit;
+    const totalPage = Math.ceil((await Product.count()) / limit);
 
-    Product.find(function (err, products) {
-        if (err)
-            console.log(err);
+    const products = await Product.find().skip(skip).limit(limit);
+    const categories = await Category.find();
 
-        res.render('all_products', {
-            title: 'All products',
-            products: products,
-            user: req.user
-        });
+    res.render('all_products', {
+        title: 'All products',
+        products: products,
+        categories: categories,
+        user: req.user,
+        page,
+        limit,
+        totalPage
     });
 });
 
@@ -92,5 +94,3 @@ router.get('/:category/:product', function (req, res) {
 
 // Exports
 module.exports = router;
-
-

@@ -29,6 +29,7 @@ const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
 const searchRoutes = require('./routes/searchRoutes');
+const bill = require('./routes/billRoutes');
 
 
 // connect to mongodb
@@ -134,6 +135,7 @@ app.use('/cart', cart);
 app.use('/users', userRoutes);
 // routes for profile
 app.use('/me', profile);
+app.use('/bills', bill);
 app.use('/search', searchRoutes);
 
 app.get('/', (req, res) => {
@@ -164,4 +166,3 @@ app.get('/test', (req, res) => {
 
 //     res.redirect('/users/login')
 // }
-

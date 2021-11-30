@@ -4,7 +4,7 @@ const billSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.ObjectId,
   },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now()
   },
@@ -21,6 +21,14 @@ const billSchema = mongoose.Schema({
     type: String,
     // required: [true, 'Please provide your phone to contact!'],
     default: ''
+  },
+  code: {
+    type: String,
+    default: ''
+  },
+  ship: {
+    type: Number,
+    default: 20000
   },
   products: [],
   total: {

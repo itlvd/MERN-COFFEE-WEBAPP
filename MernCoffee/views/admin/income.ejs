@@ -1,4 +1,5 @@
 <%- include('../_layouts/adminheader') %>
+<<<<<<< HEAD
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <a href="/admin/pages" class="btn btn-primary">Return to admin home page</a>
@@ -31,13 +32,50 @@
             }
         </script>
     </head>
+=======
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <a href="/admin/pages" class="btn btn-primary">Return to admin home page</a>
+  <h2 class="page-title">Income management</h2>
+
+  <br><br>
+
+  <head>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+      window.onload = function (total) {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          title: {
+            text: "Income monthly"
+          },
+          data: [
+            {
+              type: "column",
+              dataPoints: monthlyIncome
+            }
+          ]
+        });
+        chart.render();
+      }
+    </script>
+  </head>
+>>>>>>> 1ba474ab2d874245398718c9ebf888e7781a7a32
 
 
 
 
+<<<<<<< HEAD
     <body>
         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
     </body>
 
 
     <%- include('../_layouts/adminfooter') %>
+=======
+  <body>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+  </body>
+
+
+  <%- include('../_layouts/adminfooter') %>
+>>>>>>> 1ba474ab2d874245398718c9ebf888e7781a7a32
