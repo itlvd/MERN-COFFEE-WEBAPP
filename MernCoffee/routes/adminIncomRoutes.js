@@ -63,12 +63,16 @@ router.get('/', isAdmin, async function (req, res, next) {
     })
   }
 
+  test = [2, 3, 4, 5, 5, 4, 5, 6, 7, 7, 8, 10, 10];
+
   res.render('admin/income', {
     title: 'Income',
     allProducts,
-    monthlyIncome,
-    total
+    monthlyIncome: monthlyIncome,
+    total,
+    test
   });
+
 });
 
 

@@ -30,7 +30,6 @@
                 <a href="/about">About us</a>
             </div>
             <% if (user) { %>
-
                 <div id="profile-dropdown">
                     <i class="fas fa-user-circle"></i>
                     <div class="profile-menu">
@@ -58,33 +57,8 @@
                     <div id="profile">
                         <a href="/users/login" class="profile-a"></a>
                         <i class="fas fa-user-circle"></i>
-                        <div class="profile-menu">
-                            <div class="welcome">Hi, <%= user.username %>
-                            </div>
-                            <a href="" class="view-profile">
-                                <i class="fa fa-user"></i>
-                                Profile
-                            </a>
-                            <% if (user && user.role !="user" ) { %>
-                                <a href="/admin/pages">
-                                    <i class="fa fa-lock"></i>
-                                    Admin Area
-                                </a>
-                                <% }%>
-                                    <a href="/users/logout">
-                                        <i class="fa fa-power-off"></i>
-                                        Logout
-                                    </a>
-                        </div>
                     </div>
-
-
-                    <% } else {%>
-                        <div id="profile">
-                            <a href="/users/login" class="profile-a"></a>
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <% } %>
+                    <% } %>
 
 
         </div>
