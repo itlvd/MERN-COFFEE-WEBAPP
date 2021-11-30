@@ -150,7 +150,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-    res.render('test', {
+    res.render('news_promotion', {
         title: "Test"
     });
 });

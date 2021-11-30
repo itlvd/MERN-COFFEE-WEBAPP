@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        #navbar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+    </style>
 
 </head>
 
@@ -49,12 +57,12 @@
     </nav>
 
     <div class="container">
-    <%- messages('messages', locals) %>
+        <%- messages('messages', locals) %>
 
-    <% if (errors) {%>
-        <% errors.forEach(function(error) { %>
-        <div class="alert alert-danger">
-            <%= error.msg %>
-        </div>
-        <% });%>
-    <% }%>
+            <% if (errors) {%>
+                <% errors.forEach(function(error) { %>
+                    <div class="alert alert-danger">
+                        <%= error.msg %>
+                    </div>
+                    <% });%>
+                        <% }%>
