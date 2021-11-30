@@ -16,10 +16,12 @@ const hasLogin = auth.hasLogin;
 /*
  * GET add product to cart
  */
-router.get('/add/:product', isUser, function(req, res) {
+router.get('/add/:product', isUser, function (req, res) {
     const slug = req.params.product;
 
-    Product.findOne({ slug: slug }, async function(err, p) {
+
+    Product.findOne({ slug: slug }, async function (err, p) {
+
         const user = await User.findById(req.user);
         const cart = user.cart;
 
@@ -30,6 +32,7 @@ router.get('/add/:product', isUser, function(req, res) {
                 status: 'fail',
                 message: 'Product is exist in your cart!',
             })
+
             return;
         } else {
             const product = { '_id': p._id, 'quantity': 1 };
@@ -46,9 +49,10 @@ router.get('/add/:product', isUser, function(req, res) {
 /*
  * GET checkout page
  */
-router.get('/', isUser, async function(req, res) {
+router.get('/', isUser, async function (req, res) {
     const user = await User.findById(req.user);
     var promo = 10000;
+
     var ship = 20000;
     products = [];
 
@@ -57,6 +61,7 @@ router.get('/', isUser, async function(req, res) {
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
     }
+
     console.log(user);
     res.render('checkout', {
         title: 'Checkout',
@@ -64,13 +69,14 @@ router.get('/', isUser, async function(req, res) {
         user: user,
         promo: promo,
         ship: ship
+
     });
 });
 
 /*
  * GET update product
  */
-router.get('/update/:product', isUser, async function(req, res) {
+router.get('/update/:product', isUser, async function (req, res) {
     const user = await User.findById(req.user);
 
     var slug = req.params.product;
@@ -116,7 +122,7 @@ router.get('/update/:product', isUser, async function(req, res) {
 /*
  * GET clear cart
  */
-router.get('/clear', isUser, async function(req, res) {
+router.get('/clear', isUser, async function (req, res) {
     const user = await User.findById(req.user);
 
     user.cart = [];
@@ -130,7 +136,7 @@ router.get('/clear', isUser, async function(req, res) {
 /*
  * GET buy now
  */
-router.post('/buynow', isUser, async function(req, res) {
+router.post('/buynow', isUser, async function (req, res) {
     const user = await User.findById(req.user);
     const cart = user.cart;
     var promo = 10000;

@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     const limit = req.query.limit * 1 || 16;
     const skip = (page - 1) * limit;
     const count = (await Product.find()).length;
-    const totalPage = Math.ceil(count / limit); 
+    const totalPage = Math.ceil(count / limit);
 
     const products = await Product.find().skip(skip).limit(limit);
 
@@ -66,7 +66,7 @@ router.get('/add-product', (req, res) => {
 // function isImage(files) {
 
 //     if (files !== null) {
-    
+
 //         let extension = files.image.name.split('.').pop();
 //         console.log(extension)
 //         switch (extension) {
@@ -74,10 +74,10 @@ router.get('/add-product', (req, res) => {
 //                 return true;
 //             case 'jpeg':
 //                 return true;
-    
+
 //             case 'png':
 //                 return true;
-    
+
 //             default:
 //                 return false;
 //         }
@@ -106,7 +106,8 @@ router.post('/add-product', (req, res) => {
                 return '.jpg';
             default:
                 return false;
-    }});
+        }
+    });
 
 
 
@@ -134,7 +135,7 @@ router.post('/add-product', (req, res) => {
             });
         });
     } else {
-        Product.findOne({slug: slug}, (err, product) => {
+        Product.findOne({ slug: slug }, (err, product) => {
             if (product) {
                 req.flash('danger', 'Product title exists, choose another.');
                 Category.find(function (err, categories) {
@@ -162,25 +163,25 @@ router.post('/add-product', (req, res) => {
                     }
                     console.log("da luu thanh cong");
 
-                    mkdirp('public/product_images/' + product._id).then((err)=>console.log(err));
+                    mkdirp('public/product_images/' + product._id).then((err) => console.log(err));
 
-                    mkdirp('public/product_images/' + product._id + '/gallery').then((err)=>console.log(err));
-                
+                    mkdirp('public/product_images/' + product._id + '/gallery').then((err) => console.log(err));
+
                     mkdirp('public/product_images/' + product._id + '/gallery/thumbs').then(
                         (err) => {
                             console.log(err);
                             if (imageFile != "") {
                                 var productImage = req.files.image;
-    
+
                                 var path = 'public/product_images/' + product._id + '/' + imageFile;
-    
+
                                 productImage.mv(path, (err) => {
                                     return console.log(err);
                                 });
                             }
                         }
                     );
- 
+
                     req.flash('success', 'Product added!');
                     res.redirect('/admin/products');
 
@@ -250,7 +251,7 @@ router.post('/edit-product/:id', (req, res) => {
 
     check('title', 'Title must have a value').notEmpty();
     check('desc', 'decription must have a value').notEmpty();
-    check('price', 'Price must have a value').isDecimal();    
+    check('price', 'Price must have a value').isDecimal();
     check('image', 'You must upload an image').custom(imageFile => {
         var extension = (path.extname(imageFile)).toLowerCase();
         switch (extension) {
@@ -264,7 +265,8 @@ router.post('/edit-product/:id', (req, res) => {
                 return '.jpg';
             default:
                 return false;
-    }});
+        }
+    });
 
     var title = req.body.title + "";
     var slug = title.replace(/\s+/g, '-').toLowerCase();
@@ -280,7 +282,7 @@ router.post('/edit-product/:id', (req, res) => {
         req.session.errors = errors;
         res.redirect('/admin/products/edit-product/' + id);
     } else {
-        Product.findOne({slug: slug, _id: {'$ne': id}}, function (err, p) {
+        Product.findOne({ slug: slug, _id: { '$ne': id } }, function (err, p) {
             if (err) {
                 console.log("loi o find product");
                 console.log(err);
@@ -314,9 +316,9 @@ router.post('/edit-product/:id', (req, res) => {
                                     console.log(err);
                                     if (imageFile != "") {
                                         var productImage = req.files.image;
-            
+
                                         var path = 'public/product_images/' + id + '/' + imageFile;
-            
+
                                         productImage.mv(path, (err) => {
                                             console.log("loi return mv");
                                             return console.log(err);
@@ -352,7 +354,7 @@ router.post('/product-gallery/:id', function (req, res) {
             console.log("mv gallery");
             console.log(err);
         }
-        resizeImg(fs.readFileSync(path), {width: 100, height: 100}).then(function (buf) {
+        resizeImg(fs.readFileSync(path), { width: 100, height: 100 }).then(function (buf) {
             fs.writeFileSync(thumbsPath, buf);
         });
     });
@@ -402,7 +404,7 @@ router.get('/delete-product/:id', function (req, res) {
             Product.findByIdAndRemove(id, function (err) {
                 console.log(err);
             });
-            
+
             req.flash('success', 'Product deleted!');
             res.redirect('/admin/products');
         }

@@ -1,37 +1,60 @@
 <%- include('../_layouts/adminheader') %>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <a href="/admin/pages" class="btn btn-primary">Return to admin home page</a>
-  <h2 class="page-title">Income management</h2>
+  <h2 class="page-title">QUẢN LÝ THU NHẬP</h2>
 
   <br><br>
 
-  <head>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript">
-      window.onload = function (total) {
-        var chart = new CanvasJS.Chart("chartContainer", {
-          title: {
-            text: "Income monthly"
-          },
-          data: [
-            {
-              type: "column",
-              dataPoints: monthlyIncome
+
+  <% var incomemonthly=test; %>
+
+    <head>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      </script>
+      <script type="text/javascript">
+        var income = [<%= incomemonthly %>];
+        window.onload = function () {
+          var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+              text: "Doanh thu trong năm"
+            },
+            data: [
+              {
+                theme: "light2",
+                type: "line",
+                dataPoints: [
+                  { label: "Tháng 1", y: income[0] },
+                  { label: "Tháng 2", y: income[1] },
+                  { label: "Tháng 3", y: income[2] },
+                  { label: "Tháng 4", y: income[3] },
+                  { label: "Tháng 5", y: income[4] },
+                  { label: "Tháng 6", y: income[5] },
+                  { label: "Tháng 7", y: income[6] },
+                  { label: "Tháng 8", y: income[7] },
+                  { label: "Tháng 9", y: income[8] },
+                  { label: "Tháng 10", y: income[9] },
+                  { label: "Tháng 11", y: income[10] },
+                  { label: "Tháng 12", y: income[11] }
+                ],
+              }
+            ],
+            axisY: {
+              prefix: "VNĐ ",
+              suffix: "K"
             }
-          ]
-        });
-        chart.render();
-      }
-    </script>
-  </head>
+
+          });
+          chart.render();
+        }
+        console.log(income);
+      </script>
+    </head>
+
+    <body>
+      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    </body>
 
 
-
-
-  <body>
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-  </body>
-
-
-  <%- include('../_layouts/adminfooter') %>
+    <%- include('../_layouts/adminfooter') %>

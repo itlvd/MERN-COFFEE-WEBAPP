@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -23,9 +24,10 @@
     "fs-extra": "^10.0.0",
     "mkdirp": "^1.0.4",
     "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
-    "resize-img": "^2.0.0",
+    "resize-img": "^1.1.2",
     "slugify": "^1.6.2"
   }
 }

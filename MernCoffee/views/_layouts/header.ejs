@@ -10,7 +10,7 @@
         <%= title%>
     </title>
     <!--header's css-->
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -30,47 +30,48 @@
                 <a href="/about">About us</a>
             </div>
             <% if (user) { %>
-            <div id="profile-dropdown">
-                <i class="fas fa-user-circle"></i>
-                <div class="profile-menu">
-                    <div class="welcome">Hi, <%= user.username %></div>
-                    <a href="/me" class="view-profile">
-                        <i class="fa fa-user"></i>
-                        Profile
-                    </a>
-                    <% if (user && user.role != "user") { %>
-                    <a href="/admin/pages">
-                        <i class="fa fa-lock"></i>
-                        Admin Area
-                    </a>
-                    <% }%>
-                    <a href="/users/logout">
-                        <i class="fa fa-power-off"></i>
-                        Logout
-                    </a>
-                </div>
-            </div>
-                    
-                
-            <% } else {%>
-                <div id="profile">
-                    <a href="/users/login" class="profile-a"></a>
+                <div id="profile-dropdown">
                     <i class="fas fa-user-circle"></i>
+                    <div class="profile-menu">
+                        <div class="welcome">Hi, <%= user.username %>
+                        </div>
+                        <a href="/me" class="view-profile">
+                            <i class="fa fa-user"></i>
+                            Profile
+                        </a>
+                        <% if (user && user.role !="user" ) { %>
+                            <a href="/admin/pages">
+                                <i class="fa fa-lock"></i>
+                                Admin Area
+                            </a>
+                            <% }%>
+                                <a href="/users/logout">
+                                    <i class="fa fa-power-off"></i>
+                                    Logout
+                                </a>
+                    </div>
                 </div>
-            <% } %>
-            
-            
+
+
+                <% } else {%>
+                    <div id="profile">
+                        <a href="/users/login" class="profile-a"></a>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <% } %>
+
+
         </div>
 
         <script>
             var profileBtn = document.querySelector("#profile-dropdown");
             var dropdownMenu = document.querySelector(".profile-menu");
-            profileBtn.addEventListener('click',()=>{
+            profileBtn.addEventListener('click', () => {
                 dropdownMenu.classList.toggle("show-flex");
             })
-            window.onclick = (e)=>{
-                if(e.target.matches('.profile-menu')){
-                    if (dropdownMenu.classList.contains('show-flex')){
+            window.onclick = (e) => {
+                if (e.target.matches('.profile-menu')) {
+                    if (dropdownMenu.classList.contains('show-flex')) {
                         dropdownMenu.classList.remove('show-flex')
                     }
                 }

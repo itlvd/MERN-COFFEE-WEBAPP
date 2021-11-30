@@ -10,8 +10,9 @@ const router = express.Router();
 
 const Bill = require('../models/billModel');
 
+
 router.get('/', isAdmin, async function (req, res, next) {
-  const bills = await Bill.find({status: 'completed'});
+  const bills = await Bill.find({ status: 'completed' });
   let allProducts = {};
 
   for (let it = 0; it < bills.length; it++) {
@@ -39,7 +40,6 @@ router.get('/', isAdmin, async function (req, res, next) {
     total += allProducts[keys[i]].quantity * allProducts[keys[i]].info.price;
   }
 
-
   monthlyIncome = [];
   const monthNames = [];
   for (let i = 1; i <= 12; i++)
@@ -63,12 +63,19 @@ router.get('/', isAdmin, async function (req, res, next) {
     })
   }
 
+  test = [2, 3, 4, 5, 5, 4, 5, 6, 7, 7, 8, 10, 10];
+
   res.render('admin/income', {
     title: 'Income',
     allProducts,
-    monthlyIncome,
-    total
+    monthlyIncome: monthlyIncome,
+    total,
+    test
   });
+
 });
+
+
+
 
 module.exports = router;
