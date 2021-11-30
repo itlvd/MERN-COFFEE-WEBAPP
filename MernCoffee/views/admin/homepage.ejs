@@ -1,4 +1,4 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/header') %>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -27,7 +27,7 @@
         .card2 {
             height: 100vh;
             width: 100%;
-            background-color: #f6f5fa;
+            background-color: #f3ebeb;
             border: none
         }
 
@@ -45,7 +45,7 @@
             width: 100%;
             border: none;
             position: relative;
-            border-radius: 5px
+            border-radius: 0px
         }
 
         .btn i {
@@ -90,7 +90,7 @@
             width: 200px;
             border: none;
             position: relative;
-            border-radius: 10px
+            border-radius: 0px
         }
 
         .type {
@@ -163,7 +163,7 @@
             width: 335px;
             position: relative;
             border: none;
-            border-radius: 15px;
+            border-radius: 0px;
             cursor: pointer
         }
 
@@ -201,7 +201,7 @@
             color: #fff;
             font-weight: 500;
             font-size: 16px;
-            border-radius: 20px
+            border-radius: 0px
         }
 
         .btn1:hover {
@@ -228,7 +228,7 @@
             color: #fff;
             font-weight: 500;
             font-size: 16px;
-            border-radius: 20px
+            border-radius: 0px
         }
 
         .btn2:hover {
@@ -242,59 +242,50 @@
             <div class="col-md-3">
                 <div class="card card1 p-3">
                     <div class=" image d-flex flex-row align-items-center mt-3"> <img src="/img/admin.jpg" height="50"
-                            width="50" class="rounded-circle" /> <span class="d-flex flex-row align-items-center"> Admin
-                            Area</span> </div>
+                            width="50" class="rounded-circle" /> <span class="d-flex flex-column align-items-center">
+                            Khu vực admin</span> </div>
                     <hr class="hline">
-                    <div class="d-flex flex-column align-items-center"> <button class="btn"><i
-                                class="fa fa-dashboard"></i><span>Dashboard</span></button> <button class="btn mt-3"><i
-                                class="fa fa-users"></i><span>Users</span></button> <button class="btn mt-3"><i
-                                class="fa fa-inbox"></i><span>Inbox</span></button> <span class="other mt-4">Other
-                            Information</span> <button class="btn mt-3"><i
-                                class="fa fa-book"></i><span>Knowlwdge</span></button> <button class="btn mt-3"><i
-                                class="fa fa-question-circle"></i><span>Dashboard</span></button> </div>
+                    <div class="d-flex flex-column align-items-center"> <button class="btn" href="/admin/income"><i
+                                class="fa fa-dashboard"></i><span>Tổng quan</span></button> <button class="btn mt-3"><i
+                                class="fa fa-users"></i><span>Thông tin cá nhân</span></button> </div>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="card card2 p-3">
-                    <div class="hello d-flex justify-content-end align-items-center mt-3"> <span>Hi,Frank Jack</span>
+                    <div class="hello d-flex justify-content-end align-items-center mt-3"> <span>Xin chào, Tuấn</span>
                     </div>
                     <div class="d-flex flex-row gap-3">
                         <div class="card cardchild mt-3 p-2 px-3 py-3">
                             <div class="d-flex p-2 mt-2 justify-content-between rounded">
-                                <div class="d-flex flex-column"><span class="type">Minimal</span><span
-                                        class="number">132</span></div>
-                                <div class="d-flex flex-column"><img src="https://i.imgur.com/Slxu74c.png" class="logo1"
-                                        height="40" width="40" /><span class="percentage">45%</span></div>
+                                <div class="d-flex flex-column"><span class="type">Tổng số khách hàng</span><span
+                                        class="number">100</span></div>
+
                             </div>
                         </div>
                         <div class="card cardchild mt-3 p-2 px-3 py-3">
                             <div class="d-flex p-2 mt-2 justify-content-between rounded">
-                                <div class="d-flex flex-column"><span class="type">Mild</span><span
+                                <div class="d-flex flex-column"><span class="type">Tổng số nhân viên</span><span
                                         class="number">120</span></div>
-                                <div class="d-flex flex-column"><img src="https://i.imgur.com/7SEdq7z.png" class="logo2"
-                                        height="40" width="40" /><span class="percentage2">25%</span></div>
+
                             </div>
                         </div>
                         <div class="card cardchild mt-3 p-2 px-3 py-3">
                             <div class="d-flex p-2 mt-2 justify-content-between rounded">
-                                <div class="d-flex flex-column"><span class="type">Moderate</span><span
-                                        class="number">25</span></div>
-                                <div class="d-flex flex-column"><img src="https://i.imgur.com/xvUzRjK.png" class="logo3"
-                                        height="40" width="40" /><span class="percentage3">17%</span></div>
+                                <div class="d-flex flex-column"><span class="type">Doanh thu tháng</span><span
+                                        class="number">40Tr</span></div>
+
                             </div>
                         </div>
                         <div class="card cardchild mt-3 p-2 px-3 py-3">
                             <div class="d-flex p-2 mt-2 justify-content-between rounded">
-                                <div class="d-flex flex-column"><span class="type">Severe</span><span
+                                <div class="d-flex flex-column"><span class="type">Số đơn hàng</span><span
                                         class="number">5</span></div>
-                                <div class="d-flex flex-column"><img src=" https://i.imgur.com/iLU5F9A.png"
-                                        class="logo4" height="40" width="40" /><span class="percentage4">13%</span>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-5 gap-2 p-3">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="card cardchildchild p-2">
                                 <div class="profile1"> <img src="https://i.imgur.com/NI5b1NX.jpg" height="90" width="90"
                                         class="rounded-circle" /> </div>
@@ -327,7 +318,46 @@
                                             class="fa fa-instagram"></i></span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        </script>
+                        <script type="text/javascript">
+                            window.onload = function () {
+                                var chart = new CanvasJS.Chart("chartContainer", {
+                                    title: {
+                                        text: "Doanh thu trong năm"
+                                    },
+                                    data: [
+                                        {
+                                            theme: "light2",
+                                            type: "line",
+                                            dataPoints: [
+                                                { label: "Tháng 1", y: 1 },
+                                                { label: "Tháng 2", y: 2 },
+                                                { label: "Tháng 3", y: 2 },
+                                                { label: "Tháng 4", y: 2 },
+                                                { label: "Tháng 5", y: 2 },
+                                                { label: "Tháng 6", y: 2 },
+                                                { label: "Tháng 7", y: 2 },
+                                                { label: "Tháng 8", y: 2 },
+                                                { label: "Tháng 9", y: 2 },
+                                                { label: "Tháng 10", y: 3 },
+                                                { label: "Tháng 11", y: 4 },
+                                                { label: "Tháng 12", y: 5 }
+                                            ],
+                                        }
+                                    ],
+                                    axisY: {
+                                        prefix: "VNĐ ",
+                                        suffix: "Tr"
+                                    }
+
+                                });
+                                chart.render();
+                            }
+                            console.log(income);
+                        </script>
+                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                     </div>
                 </div>
             </div>
