@@ -22,6 +22,7 @@ const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes');
 const adminCustomerRoutes = require('./routes/adminCustomerRoutes');
 const adminOrderRoutes = require('./routes/adminOrderRoutes');
 const adminIncomeRoutes = require('./routes/adminIncomRoutes');
+const adminNewsPromoRoutes = require('./routes/adminNewsPromoRoutes');
 
 
 const products = require('./routes/productRoutes.js');
@@ -30,6 +31,7 @@ const userRoutes = require('./routes/userRoutes.js');
 const profile = require('./routes/meRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const bill = require('./routes/billRoutes');
+const newsPromoRoutes = require('./routes/newsPromoRoutes');
 
 
 // connect to mongodb
@@ -127,12 +129,15 @@ app.use('/admin/employee', adminEmployeeRoutes);
 app.use('/admin/customer', adminCustomerRoutes);
 app.use('/admin/orders', adminOrderRoutes);
 app.use('/admin/income', adminIncomeRoutes);
+app.use('/admin/promotions', adminNewsPromoRoutes);
 // app.use('/', pageRoutes);
 
 // routes for customer
 app.use('/products', products);
 app.use('/cart', cart);
 app.use('/users', userRoutes);
+app.use('/promotions', newsPromoRoutes);
+
 // routes for profile
 app.use('/me', profile);
 app.use('/bills', bill);

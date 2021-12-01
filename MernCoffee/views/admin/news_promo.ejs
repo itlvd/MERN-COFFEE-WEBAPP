@@ -1,0 +1,69 @@
+<%- include('../_layouts/adminheader') %>
+
+    <h2 class="page-title">Products</h2>
+    <a href="/admin/promotions/add-promotion" class="btn btn-primary">Add a new promotion</a>
+    <br><br>
+
+    <% if (count> 0) { %>
+        <table class="table table-striped alignmiddle">
+            <thead>
+                <tr class="home">
+                    <th>STT</th>
+                    <th>Title</th>
+                    <th>Code</th>                    
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Expire Date</th>
+                    <th>Value</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% promotions.forEach(function(promotion, i){ %>
+                    <tr>
+                        <td>
+                            <%= i + 1 %>
+                        </td>
+                        <td>
+                            <%= promotion.title %>
+                        </td>
+                        <td>
+                            <%= promotion.code %>
+                        </td>                     
+                        <td>
+
+                            <% if (promotion.image=="" ) { %>
+                                <img id="noimage" src="/images/noimage.png" style="object-fit:contain;
+                                            width:100px;
+                                            height:100px;
+                                            border: solid 1px #CCC">
+                                <% } else {%>
+                                    <img id="noimage" src="/promotion_images/<%= promotion._id %>/<%= promotion.image %>"
+                                        style="object-fit:contain;
+                                            width:100px;
+                                            height:100px;
+                                            border: solid 1px #CCC">
+                                    <% }%>
+                        </td>
+                        <td>
+                            <%= promotion.quantity %>
+                        </td> 
+                        <td>
+                            <%= promotion.expiryDate %>                            
+                        </td> 
+                        
+                        <td>
+                            <%= promotion.value %>
+                        </td> 
+                        
+                        <td><a class="confirmDeletion"
+                                href="/admin/promotions/delete-promotion/<%= promotion._id %>">Delete</a></td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else {%>
+            <h3 class="text-center">There are no promotions.</h3>
+            <% }%>
+
+                <%- include('../_layouts/adminfooter') %>
