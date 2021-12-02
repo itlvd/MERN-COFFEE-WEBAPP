@@ -16,19 +16,43 @@
             <% } %>
         </div>
     </div>
-    <!-- <div class="col-xs-12">
-        <ul class="gallery">
-            <% galleryImages.forEach(function(image){ %>
-            <% if (image != "thumbs") { %>
-            <li>
-                <a data-fancybox="gallery" href="/product_images/<%= p.id %>/gallery/<%= image %>">
-                    <img src="/product_images/<%= p.id %>/gallery/thumbs/<%= image %>" alt="">
-                </a>
-            </li>
-            <% } %>
-            <% }); %>
-        </ul>
-    </div> -->
+    <div class="review">
+        <h2 class="review-title">Bình luận</h2>
+        <div class="comment">
+            <div class="comment-content">
+                <div class="comment-detail">
+                    <div class="comment-detail-left" style="background-image: url('/img/giabao.jpg');"></div>
+                    <div class="comment-detail-right">
+                        <p class="user-name">Username</p>
+                        <p class="comment-date">1/1/2021</p>
+                    </div>
+                </div>
+                <div class="comment-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet convallis sem sit amet feugiat. Duis enim magna, pretium eget blandit sit amet, auctor in enim. Cras tincidunt rhoncus lectus, vitae interdum nibh vulputate sit amet. Morbi tincidunt non sapien eget molestie. Pellentesque tincidunt magna nec sodales sodales. Vivamus nec.
+                </div>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="comment-content">
+                <div class="comment-detail">
+                    <div class="comment-detail-left" style="background-image: url('/img/toan.jpg');"></div>
+                    <div class="comment-detail-right">
+                        <p class="user-name">Username</p>
+                        <p class="comment-date">1/1/2021</p>
+                    </div>
+                </div>
+                <div class="comment-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet convallis sem sit amet feugiat. Duis enim magna, pretium eget blandit sit amet, auctor in enim. Cras tincidunt rhoncus lectus, vitae interdum nibh vulputate sit amet. Morbi tincidunt non sapien eget molestie. Pellentesque tincidunt magna nec sodales sodales. Vivamus nec.
+                </div>
+            </div>
+        </div>
+        <div class="add-comment-form">
+            <form action="post">
+                <textarea class="comment-form" name="comment" placeholder="Write comment..."></textarea>
+                <input class="comment-submit-btn" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 </div>
 
 <%- include('./_layouts/footer') %>

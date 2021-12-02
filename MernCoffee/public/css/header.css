@@ -10,7 +10,6 @@ html {
 }
 
 #main {
-    height: 100vh;
 }
 
 #header {
@@ -102,29 +101,45 @@ input[type=password] {
 }
 
 #profile:hover,
-#profile-dropdown:hover{
+#profile-dropdown:hover,
+.cart:hover{
     background-color: #E84545;
 }
 
-#profile:hover i{
+#profile:hover i,
+#profile-dropdown:hover i,
+.cart:hover i{
     color: black;
 }
 
 #profile,
-#profile-dropdown{
+#profile-dropdown,
+.cart{
     padding: 0px 16px;
     line-height: 60px;
     display: block;
     position: relative;
     float: left;
+    cursor: pointer;
 }
 
 #profile>i,
-#profile-dropdown>i {
+#profile-dropdown>i,
+.cart>i {
     color: #fff;
     font-size: 30px;
     padding: 16px 0;
 }
+
+.items-num{
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    color: #E84545;
+}
+
 
 .show-flex{
     display: flex !important;
@@ -156,5 +171,10 @@ input[type=password] {
 
 .profile-menu a:hover {
     background-color: #ddd;
+}
+
+.right-navbar{
+    display: flex;
+    flex-direction: row;
 }
 
