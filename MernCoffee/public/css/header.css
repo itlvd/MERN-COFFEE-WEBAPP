@@ -112,6 +112,11 @@ input[type=password] {
     color: black;
 }
 
+.cart:hover .items-num{
+    background-color: #fff;
+    color: #000;
+}
+
 #profile,
 #profile-dropdown,
 .cart{
@@ -132,12 +137,17 @@ input[type=password] {
 }
 
 .items-num{
+    height: 24px;
+    width: 24px;
     font-size: 12px;
     position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #fff;
-    color: #E84545;
+    top: 4px;
+    right: 4px;
+    background-color: #E84545;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
 }
 
 
