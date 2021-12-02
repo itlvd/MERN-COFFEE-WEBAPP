@@ -12,8 +12,9 @@
         </div>
         <div class="filter">
             <button class="filter-btn active" onclick="filterSelection('all')">All</button>
-            <button class="filter-btn" onclick="filterSelection('coffee')">Coffee</button>
-            <button class="filter-btn" onclick="filterSelection('other')">Other</button>      
+            <% categories.forEach(function(c){ %>
+                <button class="filter-btn" onclick="filterSelection('<%=c.slug %>')"><%=c.title%></button>
+            <%})%>
         </div>
     </div>
     <div class="products-list">
@@ -32,7 +33,7 @@
                             </div>
                             <div class="product-content">
                                 <h4><%= parseFloat(p.price).toFixed(0) %>đ</h4>
-                                <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
+                                <a class="primary-btn" href="/cart/add/<%= p.slug %>">Add to cart</a>
                             </div>
                         </div>
                     </div>

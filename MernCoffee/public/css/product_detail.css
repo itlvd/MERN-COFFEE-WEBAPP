@@ -1,9 +1,10 @@
 
 .product-detail-container{
     display: flex;
-    justify-content: center;
+    align-items: center;
     margin-top: 60px;
-    padding: 32px 0px;
+    padding: 32px;
+    flex-direction: column;
 }
 
 .product-detail-card{
@@ -12,7 +13,6 @@
     display: flex;
     padding: 16px 0px;
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 10%);
-    justify-content: space-between;
 }
 
 .img-container{
@@ -38,3 +38,70 @@
     margin-top: 16px;
 }
 
+.review{
+    width: 100%;
+    padding: 32px 0px;
+}
+
+.review-title{
+    padding-bottom: 16px;
+    border-bottom: 2px solid #ddd;
+}
+
+.user-thumb{
+    
+}
+
+.comment-content{
+    padding: 16px
+}
+
+.comment-detail{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+
+.comment-detail-left{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background-size: cover;
+}
+
+.comment-detail-right{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name{
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.comment-date{
+    font-size: 16px;
+    font-style: italic;
+    color: gray;
+}
+
+.add-comment-form{
+    margin-top: 16px;
+}
+
+.comment-form{
+    width: 100%;
+    min-height: 100px;
+    padding: 16px;
+    resize: vertical;
+    font-size: 16px;
+}
+
+.comment-submit-btn{
+    background-color: #000;
+    color: #fff;
+    padding: 8px;
+    font-size: 16px;
+}

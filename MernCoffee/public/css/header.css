@@ -10,7 +10,6 @@ html {
 }
 
 #main {
-    height: 100vh;
 }
 
 #header {
@@ -102,29 +101,55 @@ input[type=password] {
 }
 
 #profile:hover,
-#profile-dropdown:hover{
+#profile-dropdown:hover,
+.cart:hover{
     background-color: #E84545;
 }
 
-#profile:hover i{
+#profile:hover i,
+#profile-dropdown:hover i,
+.cart:hover i{
     color: black;
 }
 
+.cart:hover .items-num{
+    background-color: #fff;
+    color: #000;
+}
+
 #profile,
-#profile-dropdown{
+#profile-dropdown,
+.cart{
     padding: 0px 16px;
     line-height: 60px;
     display: block;
     position: relative;
     float: left;
+    cursor: pointer;
 }
 
 #profile>i,
-#profile-dropdown>i {
+#profile-dropdown>i,
+.cart>i {
     color: #fff;
     font-size: 30px;
     padding: 16px 0;
 }
+
+.items-num{
+    height: 24px;
+    width: 24px;
+    font-size: 12px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: #E84545;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+}
+
 
 .show-flex{
     display: flex !important;
@@ -156,5 +181,10 @@ input[type=password] {
 
 .profile-menu a:hover {
     background-color: #ddd;
+}
+
+.right-navbar{
+    display: flex;
+    flex-direction: row;
 }
 
