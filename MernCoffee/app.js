@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 const config = require('./config/database');
 const mongoose = require('mongoose');
 
@@ -70,7 +71,7 @@ app.locals.errors = null;
 //---------------------------------------------------
 
 // Express fileUpload middleware
-app.use(fileUpload());
+// app.use(fileUpload());
 
 
 
