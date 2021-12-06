@@ -13,7 +13,7 @@ const promotionSchema = mongoose.Schema({
         require: true
     },
     value: {
-        type: String,
+        type: Number,
         require: true,
     },
     quantity: {
