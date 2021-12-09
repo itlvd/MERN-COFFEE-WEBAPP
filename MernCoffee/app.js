@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 const config = require('./config/database');
 const mongoose = require('mongoose');
 
@@ -28,7 +29,7 @@ const adminNewsPromoRoutes = require('./routes/adminNewsPromoRoutes');
 const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
-const profile = require('./routes/meRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const bill = require('./routes/billRoutes');
 const newsPromoRoutes = require('./routes/newsPromoRoutes');
@@ -70,7 +71,7 @@ app.locals.errors = null;
 //---------------------------------------------------
 
 // Express fileUpload middleware
-app.use(fileUpload());
+// app.use(fileUpload());
 
 
 
@@ -139,7 +140,7 @@ app.use('/users', userRoutes);
 app.use('/promotions', newsPromoRoutes);
 
 // routes for profile
-app.use('/me', profile);
+app.use('/me', profileRoutes);
 app.use('/bills', bill);
 app.use('/search', searchRoutes);
 

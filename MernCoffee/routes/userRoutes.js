@@ -46,11 +46,7 @@ router.post('/register', async (req, res) => {
             title: 'Register'
         }); 
     } else {
-        //const user = await User.findById(idUser);
-        // console.log("Name: " + name);
-        // console.log("UserName: " + username);
-        // console.log("gmail: " + email);
-        // console.log("password: " + password);
+
 
         await User.where({username: username}).findOne( (err, user) => {
             if (err) {
