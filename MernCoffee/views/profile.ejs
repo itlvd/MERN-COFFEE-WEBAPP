@@ -1,302 +1,184 @@
-<%- include("_layouts/header.ejs") %>
+<!-- <%- include("_layouts/header.ejs") %> -->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
-    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-    <style>
-        .bodyinfor {
-            background: #ddd;
-            min-height: 100vh;
-            vertical-align: middle;
-            display: flex;
-            font-family: sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .title {
-            margin-bottom: 5vh;
-        }
-        
-        .card {
-            margin: auto;
-            max-width: 950px;
-            width: 90%;
-            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 1rem;
-            border: transparent;
-        }
-        
-        @media(max-width:767px) {
-            .card {
-                margin: 3vh auto
-            }
-        }
-        
-        .cart {
-            background-color: #fff;
-            padding: 4vh 5vh;
-            border-bottom-left-radius: 1rem;
-            border-top-left-radius: 1rem
-        }
-        
-        @media(max-width:767px) {
-            .cart {
-                padding: 4vh;
-                border-bottom-left-radius: unset;
-                border-top-right-radius: 1rem
-            }
-        }
-        
-        .summary {
-            background-color: #ddd;
-            border-top-right-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            padding: 4vh;
-            color: rgb(65, 65, 65)
-        }
-        
-        @media(max-width:767px) {
-            .summary {
-                border-top-right-radius: unset;
-                border-bottom-left-radius: 1rem
-            }
-        }
-        
-        .summary .col-2 {
-            padding: 0
-        }
-        
-        .summary .col-10 {
-            padding: 0
-        }
-        
-        .row {
-            margin: 0;
-        }
-        
-        .title b {
-            font-size: 1.5rem
-        }
-        
-        .main {
-            margin: 0;
-            padding: 2vh 0;
-            width: 100%;
-        }
-        
-        .col-2,
-        .col {
-            padding: 0 1vh
-        }
-        
-        a {
-            padding: 0 1vh
-        }
-        
-        .close {
-            margin-left: auto;
-            font-size: 0.7rem
-        }
-        
-        img {
-            width: 3.5rem
-        }
-        
-        .back-to-shop {
-            margin-top: 4.5rem
-        }
-        
-        h5 {
-            margin-top: 4vh
-        }
-        
-        hr {
-            margin-top: 1.25rem
-        }
-        
-        form {
-            padding: 2vh 0
-        }
-        
-        select {
-            border: 1px solid rgba(0, 0, 0, 0.137);
-            padding: 1.5vh 1vh;
-            margin-bottom: 4vh;
-            outline: none;
-            width: 100%;
-            background-color: rgb(247, 247, 247)
-        }
-        
-        input,
-        textarea {
-            background-color: #F3E5F5;
-            padding: 8px 15px 8px 15px;
-            width: 100%;
-            border-radius: 5px !important;
-            box-sizing: border-box;
-            border: 1px solid #F3E5F5;
-            font-size: 15px !important;
-            color: #000 !important;
-            font-weight: 300
-        }
-        
-        input:focus,
-        textarea:focus {
-            -moz-box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            border: 1px solid #9FA8DA;
-            outline-width: 0;
-            font-weight: 400
-        }
-        
-        button:focus {
-            -moz-box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            outline-width: 0
-        }
-        
-        .pay {
-            width: 80px;
-            height: 40px;
-            border-radius: 5px;
-            border: 1px solid #673AB7;
-            margin: 10px 20px 10px 0px;
-            cursor: pointer;
-            box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
-        }
-        
-        .gray {
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            filter: grayscale(100%);
-            color: #E0E0E0
-        }
-        
-        .gray .pay {
-            box-shadow: none
-        }
-        
-        #tax {
-            border-top: 1px lightgray solid;
-            margin-top: 10px;
-            padding-top: 10px
-        }
-        
-        .btn-blue {
-            border: none;
-            border-radius: 10px;
-            background-color: #673AB7;
-            color: #fff;
-            padding: 8px 15px;
-            margin: 20px 0px;
-            cursor: pointer
-        }
-        
-        .btn-blue:hover {
-            background-color: #311B92;
-            color: #fff
-        }
-        
-        #checkout {
-            float: left
-        }
-        
-        #check-amt {
-            float: right
-        }
-        
-        @media screen and (max-width: 768px) {
-            .book,
-            .book-img {
-                width: 100px;
-                height: 150px
-            }
-            .card {
-                padding-left: 15px;
-                padding-right: 15px
-            }
-            .mob-text {
-                font-size: 13px
-            }
-            .pad-left {
-                padding-left: 20px
-            }
-        }
-        
-        .vsm-text:hover {
-            color: #FF5252
-        }
-        
-        .book,
-        .book-img {
-            width: 120px;
-            height: 180px;
-            border-radius: 10px
-        }
-        
-        .book {
-            margin: 20px 15px 5px 15px
-        }
-        
-        .border-top {
-            border-top: 1px solid #EEEEEE !important;
-            margin-top: 20px;
-            padding-top: 15px
-        }
-        
-        #code {
-            background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
-            background-repeat: no-repeat;
-            background-position-x: 95%;
-            background-position-y: center;
-        }
-    </style>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
-    <div class="bodyinfor">
-        <!-- <body oncontextmenu='return false' class='snippet-body'> -->
-        <div class="card">
-            <div class="row">
-                <form method="post" action="/me">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="row px-2">
-                                            <div class="form-group col-md-6"> <label class="form-control-label">Họ tên</label>
-                                                <input type="text" id="cname" name="name" placeholder=<%=name%> required>
-                                            </div>
-                                            <div class="form-group col-md-6"> <label class="form-control-label">Số điện thoại
-                                                    Number</label>
-                                                <input type="text" id="cphone" name="phone" placeholder=<%=phone%> required>
-                                            </div>
-                                        </div>
-                                        <div class="row px-2">
-                                            <div class="form-group col-md-6"> <label class="form-control-label">Địa chỉ</label>
-                                                <input type="text" id="address" name="address"
-                                                    placeholder=<%=address%> required>
-                                            </div>
-                                            <div class="form-group col-md-6"> <label class="form-control-label">Mã giảm giá
-                                                    (tuỳ chọn)</label>
-                                                <input type="text" id="pro" name="pro" placeholder="******">
-                                            </div>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-                                            </div> <button class="btn-block btn-blue"> <span> <span id="checkout">Xác nhận</span>
-                                        </div>
-                                    </div>
+</head>
+<body>
+
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+              <div class="col-sm-10"><h1>Profile</h1></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+
+                <div class="text-center">
+                    <!-- <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose file</label>                                             
+                    <input type="file" class="text-center center-block file-upload"> -->
+
+                    <form action="/me/update_avt/<%= user._id %>" method="post" enctype="multipart/form-data">
+                        <img id="avtimage" src="<%= user.image %>" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <h6>Hi <%= user.username %>, let update avatar</h6>
+                
+                        <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose file</label>                                             
+                        <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file" style="display:none;">
+                        <button id="updatebtn" class="btn-sm btn-success" type="submit">Update</button>
+                        
+                    </form>
+                </div></hr><br>
+    
+                <ul class="list-group">
+                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/cart"><strong> Cart</strong></a></span> 2</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/checkout"><strong> Checkout</strong></a></span> 2</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/bills"><strong> History Bill</strong></a></span> 2</li>
+                </ul> 
+
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
+                </ul>  
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">                    
+                        <form class="form" action="/me" method="post" id="registrationForm">
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>Name</h4></label>
+                                    <input type="text" class="form-control" name="name" id="first_name" value="<%=user.name %>" placeholder="Name" title="enter your name." required>
+                                </div>
+                            </div>              
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="phone"><h4>Phone</h4></label>
+                                    <input type="text" class="form-control" name="phone" id="phone" value="<%=user.phone %>" placeholder="enter phone" title="enter your phone number if any." required>
+                                </div>
+                            </div>           
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="email"><h4>Email</h4></label>
+                                    <input type="email" class="form-control" name="email" id="email" value="<%=user.email %>" placeholder="you@email.com" title="enter your email." required>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <%- include("_layouts/footer.ejs") %>
-        </div>
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="location"><h4>Location</h4></label>
+                                    <input type="text" class="form-control" name="address" id="location" value="<%=user.address %>" placeholder="somewhere" title="enter your address" required>
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>Username</h4></label>
+                                    <input type="text" class="form-control" name="username" id="user_name" value="<%=user.username %>" placeholder="Userame" title="enter your username." required>
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="password"><h4>Password</h4></label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password." required>
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <div class="col-xs-6">
+                                    <label for="password2"><h4>Confirm Password</h4></label>
+                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password confirm" title="enter your password2." onkeyup='check_pass2();' required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <div style="color: red;"><%= mess%></div>
+                                    <div><span id="message" class="alert alert-warning" role="alert" style="display: none;"></span></div>  
+                                    <button class="btn btn-lg btn-success" type="submit" id="submit" disabled><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                     
+                                </div>
+                                                          
+                                  
+                            </div>
+                            <% var userPass = user.password; %>
+                            <script>
+                                // var userPassword = <%= userPass %>;
+                                // console.log([user]);
+                                // function check_pass() {
+                                //     if (document.getElementById('password').value != userPassword) {                                        
+                                //         document.getElementById('message').innerHTML = 'Wrong password';
+                                //         document.getElementById('message').style.display = 'block';
+                                //     } else {
+                                //         console.log(document.getElementById('message').innerText)
+                                //         document.getElementById('message').innerHTML = '';
+                                //         document.getElementById('message').style.display = 'none';                                  
+                                //     }
+                                // };
+                                function check_pass2() {
+                                    if (document.getElementById('password').value ==
+                                            document.getElementById('password2').value) {
+                                        console.log("pass2: " + document.getElementById('password2').value);
+                                        document.getElementById('message').style.display = 'none';
+                                        document.getElementById('submit').disabled = false;
+                                       
+                                    } else {
+                                        document.getElementById('submit').disabled = true;
+                                        console.log("pass correct: " + document.getElementById('password2').value);
+                                        
+                                        document.getElementById('message').innerHTML = 'Wrong confirm password';
+                                        document.getElementById('message').style.display = 'block';
+                                    }
+                                }
+                            </script>
+                        </form>                 
+                    </div><!--/tab-pane-->
+
+                </div><!--/tab-pane-->
+            </div><!--/tab-content-->
+    
+        </div><!--/col-9-->
+    </div><!--/row-->
+                
+    <script>
+        $(document).ready(function() {    
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.avatar').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $(".file-upload").on('change', function(){
+                readURL(this);
+            });
+        });
+    </script>
+        
+</body>
+
+
+
+
+
+<!-- 
+<%- include("_layouts/footer.ejs") %>
+        </div> -->
