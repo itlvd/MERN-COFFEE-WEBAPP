@@ -33,17 +33,15 @@
                         <td>
 
                             <% if (promotion.image=="" ) { %>
-                                <img id="noimage" src="/images/noimage.png" style="object-fit:contain;
+                                <img id="noimage" src="/img/sale.png" style="object-fit:contain;
                                             width:100px;
                                             height:100px;
                                             border: solid 1px #CCC">
-                                <% } else {%>
-                                    <img id="noimage" src="/promotion_images/<%= promotion._id %>/<%= promotion.image %>"
-                                        style="object-fit:contain;
-                                            width:100px;
-                                            height:100px;
-                                            border: solid 1px #CCC">
-                                    <% }%>
+                            <% } else {%>
+                                <!-- <img id="noimage" src="/promotion_images/<%= promotion._id %>/<%= promotion.image %>" -->
+                                <img id="noimage" src="<%= promotion.image %>"
+                                    style="object-fit:contain; width:100px; height:100px; border: solid 1px #CCC">
+                            <% }%>
                         </td>
                         <td>
                             <%= promotion.quantity %>

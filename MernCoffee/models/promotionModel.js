@@ -24,7 +24,8 @@ const promotionSchema = mongoose.Schema({
         default: Date.now() + 7,
     },
     image: {
-        type: String
+        type: String,
+        default: '/img/sale.png',
     }
 })
 
