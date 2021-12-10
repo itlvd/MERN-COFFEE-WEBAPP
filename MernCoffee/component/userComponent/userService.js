@@ -25,8 +25,7 @@ exports.validPassword = async (password, user) => {
 }
 
 exports.createUser = async (name, email, phone, address, username, password) => {
-    //const passwordHashed = await bcrypt.hash(password, 10);
-    // console.log("passHashed: " + passwordHashed);
+
     var passwordHashed;
     
     bcrypt.genSalt(10, function(err, salt) {
