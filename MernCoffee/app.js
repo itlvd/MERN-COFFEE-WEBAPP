@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 const config = require('./config/database');
 const mongoose = require('mongoose');
 
@@ -22,14 +23,16 @@ const adminEmployeeRoutes = require('./routes/adminEmployeeRoutes');
 const adminCustomerRoutes = require('./routes/adminCustomerRoutes');
 const adminOrderRoutes = require('./routes/adminOrderRoutes');
 const adminIncomeRoutes = require('./routes/adminIncomRoutes');
+const adminNewsPromoRoutes = require('./routes/adminNewsPromoRoutes');
 
 
 const products = require('./routes/productRoutes.js');
 const cart = require('./routes/cartRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
-const profile = require('./routes/meRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const bill = require('./routes/billRoutes');
+const newsPromoRoutes = require('./routes/newsPromoRoutes');
 
 
 // connect to mongodb
@@ -68,7 +71,7 @@ app.locals.errors = null;
 //---------------------------------------------------
 
 // Express fileUpload middleware
-app.use(fileUpload());
+// app.use(fileUpload());
 
 
 
@@ -127,14 +130,17 @@ app.use('/admin/employee', adminEmployeeRoutes);
 app.use('/admin/customer', adminCustomerRoutes);
 app.use('/admin/orders', adminOrderRoutes);
 app.use('/admin/income', adminIncomeRoutes);
+app.use('/admin/promotions', adminNewsPromoRoutes);
 // app.use('/', pageRoutes);
 
 // routes for customer
 app.use('/products', products);
 app.use('/cart', cart);
 app.use('/users', userRoutes);
+app.use('/promotions', newsPromoRoutes);
+
 // routes for profile
-app.use('/me', profile);
+app.use('/me', profileRoutes);
 app.use('/bills', bill);
 app.use('/search', searchRoutes);
 

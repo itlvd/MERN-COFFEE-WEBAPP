@@ -23,7 +23,7 @@ router.get('/register', hasLogin, (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-    console.log("bat dau check");
+    // console.log("bat dau check");
     var name = await req.body.name;
     var email = await req.body.email;
     var username = await req.body.username;
@@ -46,11 +46,7 @@ router.post('/register', async (req, res) => {
             title: 'Register'
         }); 
     } else {
-        //const user = await User.findById(idUser);
-        console.log("Name: " + name);
-        console.log("UserName: " + username);
-        console.log("gmail: " + email);
-        console.log("password: " + password);
+
 
         await User.where({username: username}).findOne( (err, user) => {
             if (err) {
@@ -59,7 +55,7 @@ router.post('/register', async (req, res) => {
             }
             else if (user) {
                 console.log("loi user exist");
-                console.log("User\n" + user);
+                // console.log("User\n" + user);
                 req.flash('danger', 'Username exist, choose another!');
                 res.redirect('/users/register');
             } else {

@@ -9,7 +9,7 @@ var hasLogin = auth.hasLogin;
 
 const Product = require('../models/productModel');
 const Category = require('../models/categoryModel');
-
+const Comment = require('../models/commentModel');
 
 /*
  * GET all products
@@ -77,20 +77,32 @@ router.get('/:category/:product', function (req, res) {
                     console.log(err);
                 } else {
                     galleryImages = files;
-
+                    // const comments = await Comment.find({productName: product.title});
                     res.render('product', {
                         title: product.title,
                         p: product,
                         galleryImages: galleryImages,
                         loggedIn: loggedIn,
-                        user: req.user
+                        user: req.user,
+                        // comments: comments,
                     });
                 }
             });
         }
     });
 
+    // const pro = await Product.findOne({slug: req.params.product});
+    // if (pro) {
+    //     const comments = await Comment.find({productName: product.title});
+    // }
+
 });
+
+
+// router.post('/:category/:product/comment', (req, res) => {
+//     res.send("hihi");
+// })
+
 
 // Exports
 module.exports = router;
