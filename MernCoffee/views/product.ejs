@@ -18,7 +18,7 @@
     </div>
     <div class="review">
         <h2 class="review-title">Bình luận</h2>
-        <div class="comment">
+        <!-- <div class="comment">
             <div class="comment-content">
                 <div class="comment-detail">
                     <div class="comment-detail-left" style="background-image: url('/img/giabao.jpg');"></div>
@@ -45,7 +45,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet convallis sem sit amet feugiat. Duis enim magna, pretium eget blandit sit amet, auctor in enim. Cras tincidunt rhoncus lectus, vitae interdum nibh vulputate sit amet. Morbi tincidunt non sapien eget molestie. Pellentesque tincidunt magna nec sodales sodales. Vivamus nec.
                 </div>
             </div>
-        </div>
+        </div> -->
         
         <% commentss.forEach(function(com){ %>
             <div class="comment-content">
@@ -53,13 +53,14 @@
                     <div class="comment-detail-left" style="background-image: url('<%= com.userImage %>');"></div>
                     <div class="comment-detail-right">
                         <p class="user-name"><%= com.userName %></p>
-                        <p class="comment-date"><%= com.createAt %></p>
+                        <p class="comment-date" id="com-date"><%= com.createdAt %></p>
                     </div>
                 </div>
                 <div class="comment-desc">
                     <%= com.content %>
                 </div>
             </div>
+        
         <% }); %>
         <div class="add-comment-form">
             <form action="/products/<%= p.category %>/<%= p.slug %>/comment" method="post">
@@ -74,3 +75,29 @@
 </div>
 
 <%- include('./_layouts/footer') %>
+
+<script>
+    function formatDate() {
+        var dates = document.getElementsByClassName("comment-date");
+        
+        for(i=0;i<dates.length;i++){
+            var dt = dates[i].innerHTML;
+            console.log("dt: " + dt);
+            const tempDate = new Date(dt);
+            const dd = tempDate.getDate();
+            const mm = tempDate.getMonth() + 1;
+            const yy = tempDate.getFullYear();
+            const hh = tempDate.getHours();
+            const mt = tempDate.getMinutes();
+            const sc = tempDate.getSeconds();
+            const timeDisplay = dd + '/' + mm + '/' + yy + " " + hh + ':' + mt + ':' + sc;    
+            dates[i].innerHTML = timeDisplay;
+            console.log(timeDisplay);
+        }
+     
+    }
+    formatDate();
+
+ 
+
+</script>
