@@ -9,8 +9,8 @@ var hasLogin = auth.hasLogin;
 
 const Product = require('../models/productModel');
 const Category = require('../models/categoryModel');
-const Comment = require('../models/commentModel');
-
+const commentService = require('../component/comment/commentService');
+const commentController = require('../component/comment/commentController');
 /*
  * GET all products
  */
@@ -66,25 +66,27 @@ router.get('/:category/:product', function (req, res) {
     const loggedIn = true;
     // const loggedIn = (req.isAuthenticated()) ? true : false;
 
-    Product.findOne({slug: req.params.product}, function (err, product) {
+    Product.findOne({slug: req.params.product}, async function (err, product) {
         if (err) {
             console.log(err);
         } else {
             var galleryDir = 'public/product_images/' + product._id + '/gallery';
-
+            const comments = await commentService.getAllCommentOfProduct(product._id);
+            
             fs.readdir(galleryDir, function (err, files) {
                 if (err) {
                     console.log(err);
                 } else {
                     galleryImages = files;
                     // const comments = await Comment.find({productName: product.title});
+                    console.log("\n\ncomments: \n" + JSON.stringify(comments))
                     res.render('product', {
                         title: product.title,
                         p: product,
                         galleryImages: galleryImages,
                         loggedIn: loggedIn,
                         user: req.user,
-                        // comments: comments,
+                        commentss: comments,
                     });
                 }
             });
@@ -99,9 +101,8 @@ router.get('/:category/:product', function (req, res) {
 });
 
 
-// router.post('/:category/:product/comment', (req, res) => {
-//     res.send("hihi");
-// })
+
+router.post('/:category/:productSlug/comment', commentController.postComment)
 
 
 // Exports

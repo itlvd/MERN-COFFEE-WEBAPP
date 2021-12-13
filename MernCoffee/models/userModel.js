@@ -49,7 +49,8 @@ const userSchema = mongoose.Schema({
   },
   image:  {
     type: String,
-    default: 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png',
+    // default: 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png',
+    default: '/img/avatar.jpg'
   },
 });
 
