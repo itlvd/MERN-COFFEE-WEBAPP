@@ -6,6 +6,7 @@ const router = express.Router();
 const Product = require('../models/productModel');
 const User = require('../models/userModel');
 const Bill = require('../models/billModel');
+const Promotion = require('../models/promotionModel');
 
 const auth = require('../config/auth');
 const isEmployee = auth.isEmployee;
@@ -51,10 +52,10 @@ router.get('/add/:product', isUser, function (req, res) {
  */
 router.get('/', isUser, async function (req, res) {
     const user = await User.findById(req.user);
-    var promo = 10000;
-
-    var ship = 20000;
+    const promoValue = 0;
+    const ship = 20000;
     products = [];
+    const code = '';
 
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
@@ -62,14 +63,13 @@ router.get('/', isUser, async function (req, res) {
         products.push(product);
     }
 
-    console.log(user);
     res.render('checkout', {
         title: 'Checkout',
         cart: products,
         user: user,
-        promo: promo,
+        code: code,
+        promoValue: promoValue,
         ship: ship
-
     });
 });
 
@@ -139,8 +139,18 @@ router.get('/clear', isUser, async function (req, res) {
 router.post('/buynow', isUser, async function (req, res) {
     const user = await User.findById(req.user);
     const cart = user.cart;
-    var promo = 10000;
-    var ship = 20000;
+    const ship = 20000;
+    const code = req.body.code;
+    var promotion = {
+        code: '',
+        value: 0
+    }
+
+    if (code != '') {
+        promotion = await Promotion.findOne({
+            code: code
+        });
+    }
 
     if (cart.length == 0) {
         res.status(400).json({
@@ -172,7 +182,7 @@ router.post('/buynow', isUser, async function (req, res) {
         bill.products.push(product);
     }
 
-    bill.total = total;
+    bill.total = Math.max(total - promotion.value, 0);
     bill.address = req.body.address;
     bill.phone = req.body.phone;
 
@@ -189,10 +199,9 @@ router.post('/buynow', isUser, async function (req, res) {
         phone: bill.phone,
         billid: bill._id,
         products: bill.products,
-        promo: promo,
+        code: code,
+        promoValue: promotion.value,
         ship: ship
-
-        // user: req.user
     });
 });
 

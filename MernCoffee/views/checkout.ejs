@@ -353,7 +353,8 @@
                                                         <div class="form-group col-md-6"> <label
                                                                 class="form-control-label">Mã giảm giá
                                                                 (tuỳ chọn)</label>
-                                                            <input type="text" id="pro" name="pro" placeholder="******">
+                                                            <input type="text" id="pro" name="code" placeholder="******"
+                                                                value="<%=code%>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,7 +368,7 @@
                                                     <div class="row d-flex justify-content-between px-4">
                                                         <p class="mb-1 text-left">Giảm giá</p>
                                                         <h6 class="mb-1 text-right">
-                                                            <%=promo%> VND
+                                                            <%=promoValue%> VND
                                                         </h6>
                                                     </div>
                                                     <div class="row d-flex justify-content-between px-4">
@@ -379,12 +380,12 @@
                                                     <div class="row d-flex justify-content-between px-4" id="tax">
                                                         <p class="mb-1 text-left">Tổng tiền (đã bao gồm VAT)</p>
                                                         <h6 class="mb-1 text-right">
-                                                            <%=total - promo+ship%> VND
+                                                            <%=total - promoValue + ship%> VND
                                                         </h6>
                                                     </div> <button class="btn-block btn-blue"> <span> <span
                                                                 id="checkout">Xác nhận</span>
                                                             <span id="check-amt">
-                                                                <%=total - promo+ship%> VND
+                                                                <%=total - promoValue + ship%> VND
                                                             </span> </span> </button>
                                                 </div>
                                             </div>
@@ -392,6 +393,13 @@
                                     </div>
                                 </div>
                             </form>
+
+                            <form method="post" action="/promotions/apply/">
+                                <label for="fname">Code:</label><br>
+                                <input type="text" id="code" name="code"><br>
+                                <button class="btn-block btn-blue"> <span> <span id="code">Áp dụng</span> </button>
+                            </form>
+
                             <% } else {%>
                                 <h3 class="text-center">Giỏ hàng đang trống.</h3>
                                 <% } %>
