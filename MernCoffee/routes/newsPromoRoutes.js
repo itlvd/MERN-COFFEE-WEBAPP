@@ -23,19 +23,24 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/apply/', async (req, res) => {
+router.post('/apply/', async(req, res) => {
     const user = await User.findById(req.user);
     const promotion = await Promotion.findOne({
         code: req.body.code
     });
     const ship = 20000;
     products = [];
+    let total = 0;
+    let subtotal = 0;
 
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
+        subtotal += product.price;
     }
+
+    total = Math.max(subtotal - promotion.value + ship, 0);
 
     res.render('checkout', {
         title: 'Checkout',
@@ -43,7 +48,9 @@ router.post('/apply/', async (req, res) => {
         user: user,
         code: req.body.code,
         promoValue: promotion.value,
-        ship: ship
+        ship: ship,
+        subtotal: subtotal,
+        total: total,
     });
 });
 
