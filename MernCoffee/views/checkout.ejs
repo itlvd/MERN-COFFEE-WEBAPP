@@ -2,8 +2,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
-    <script type='text/javascript'
-        src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <style>
         .bodyinfor {
             background: #ddd;
@@ -16,11 +15,11 @@
             margin-top: 60px;
             padding: 16px;
         }
-
+        
         .title {
             margin-bottom: 5vh;
         }
-
+        
         .card {
             margin: auto;
             max-width: 950px;
@@ -29,20 +28,20 @@
             border-radius: 1rem;
             border: transparent;
         }
-
+        
         @media(max-width:767px) {
             .card {
                 margin: 3vh auto
             }
         }
-
+        
         .cart {
             background-color: #fff;
             padding: 4vh 5vh;
             border-bottom-left-radius: 1rem;
             border-top-left-radius: 1rem
         }
-
+        
         @media(max-width:767px) {
             .cart {
                 padding: 4vh;
@@ -50,7 +49,7 @@
                 border-top-right-radius: 1rem
             }
         }
-
+        
         .summary {
             background-color: #ddd;
             border-top-right-radius: 1rem;
@@ -58,72 +57,72 @@
             padding: 4vh;
             color: rgb(65, 65, 65)
         }
-
+        
         @media(max-width:767px) {
             .summary {
                 border-top-right-radius: unset;
                 border-bottom-left-radius: 1rem
             }
         }
-
+        
         .summary .col-2 {
             padding: 0
         }
-
+        
         .summary .col-10 {
             padding: 0
         }
-
+        
         .row {
             margin: 0;
             flex-direction: row;
             justify-content: stretch;
         }
-
+        
         .title b {
             font-size: 1.5rem
         }
-
+        
         .main {
             margin: 0;
             padding: 2vh 0;
             width: 100%;
         }
-
+        
         .col-2,
         .col {
             padding: 0 1vh
         }
-
+        
         a {
             padding: 0 1vh
         }
-
+        
         .close {
             margin-left: auto;
             font-size: 0.7rem
         }
-
+        
         img {
             width: 3.5rem
         }
-
+        
         .back-to-shop {
             margin-top: 4.5rem
         }
-
+        
         h5 {
             margin-top: 4vh
         }
-
+        
         hr {
             margin-top: 1.25rem
         }
-
+        
         form {
             padding: 2vh 0
         }
-
+        
         select {
             border: 1px solid rgba(0, 0, 0, 0.137);
             padding: 1.5vh 1vh;
@@ -132,7 +131,7 @@
             width: 100%;
             background-color: rgb(247, 247, 247)
         }
-
+        
         input,
         textarea {
             background-color: #F3E5F5;
@@ -145,7 +144,7 @@
             color: #000 !important;
             font-weight: 300
         }
-
+        
         input:focus,
         textarea:focus {
             -moz-box-shadow: none !important;
@@ -155,14 +154,14 @@
             outline-width: 0;
             font-weight: 400
         }
-
+        
         button:focus {
             -moz-box-shadow: none !important;
             -webkit-box-shadow: none !important;
             box-shadow: none !important;
             outline-width: 0
         }
-
+        
         .pay {
             width: 80px;
             height: 40px;
@@ -172,7 +171,7 @@
             cursor: pointer;
             box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
         }
-
+        
         .gray {
             -webkit-filter: grayscale(100%);
             -moz-filter: grayscale(100%);
@@ -181,17 +180,17 @@
             filter: grayscale(100%);
             color: #E0E0E0
         }
-
+        
         .gray .pay {
             box-shadow: none
         }
-
+        
         #tax {
             border-top: 1px lightgray solid;
             margin-top: 10px;
             padding-top: 10px
         }
-
+        
         .btn-blue {
             border: none;
             border-radius: 10px;
@@ -201,63 +200,59 @@
             margin: 20px 0px;
             cursor: pointer
         }
-
+        
         .btn-blue:hover {
             background-color: #311B92;
             color: #fff
         }
-
+        
         #checkout {
             float: left
         }
-
+        
         #check-amt {
             float: right
         }
-
+        
         @media screen and (max-width: 768px) {
-
             .book,
             .book-img {
                 width: 100px;
                 height: 150px
             }
-
             .card {
                 padding-left: 15px;
                 padding-right: 15px
             }
-
             .mob-text {
                 font-size: 13px
             }
-
             .pad-left {
                 padding-left: 20px
             }
         }
-
+        
         .vsm-text:hover {
             color: #FF5252
         }
-
+        
         .book,
         .book-img {
             width: 120px;
             height: 180px;
             border-radius: 10px
         }
-
+        
         .book {
             margin: 20px 15px 5px 15px
         }
-
+        
         .border-top {
             border-top: 1px solid #EEEEEE !important;
             margin-top: 20px;
             padding-top: 15px
         }
-
+        
         #code {
             background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
             background-repeat: no-repeat;
@@ -272,137 +267,124 @@
         <div class="card">
             <div class="row">
                 <% if (typeof cart !=="undefined" ) { %>
-                    <% var total=0; %>
-                        <% var sub=0; %>
-                            <div class="col-md-12 cart">
-                                <div class="title">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h4><b>Giỏ hàng</b></h4>
-                                        </div>
 
-                                        <div class="col align-self-center text-right text-muted">
-                                            <!--items-->
-                                        </div>
+                    <% var sub=0; %>
+                        <div class="col-md-12 cart">
+                            <div class="title">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4><b>Giỏ hàng</b></h4>
+                                    </div>
+
+                                    <div class="col align-self-center text-right text-muted">
+                                        <!--items-->
                                     </div>
                                 </div>
-
-                                <% cart.forEach(function(product){ %>
-                                    <% sub=parseFloat(product.quantity * product.price).toFixed(2) %>
-                                        <% total +=+sub %>
-                                            <div class="row border-top border-bottom">
-                                                <div class="row main align-items-center">
-                                                    <div class="col-2"><img class="img-fluid"
-                                                            src="/product_images/<%= product._id %>/<%= product.image %>">
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="row text-muted">
-                                                            <%= product.title %>
-                                                        </div>
-                                                        <div class="row">
-                                                            <%= product.price %> VND
-                                                        </div>
-                                                    </div>
-                                                    <div class="col"> <a
-                                                            href="/cart/update/<%= product.slug %>?action=remove">-</a>
-
-                                                        <%= product.quantity %>
-                                                            <a href="/cart/update/<%= product.slug %>?action=add">+</a>
-                                                    </div>
-                                                    <div class="col">
-                                                        <%= sub %> VND <span class="close"><a
-                                                                    href="/cart/update/<%= product.slug %>?action=clear">&#10005;</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <% }); %>
-                                                <div class="back-to-shop"><a href="/products">&leftarrow;<span
-                                                            class="text-muted">Trở về</span></a></div>
                             </div>
 
-                            <form method="post" action="/cart/buynow">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="row">
-                                                <div class="col-lg-8">
-                                                    <div class="row px-2">
-                                                        <div class="form-group col-md-6"> <label
-                                                                class="form-control-label">Họ tên</label>
-                                                            <input type="text" id="cname" name="name"
-                                                                placeholder="Nguyen Van A" value="<%=user.name%>"
-                                                                required>
-                                                        </div>
-                                                        <div class="form-group col-md-6"> <label
-                                                                class="form-control-label">Số điện thoại
-                                                                Number</label>
-                                                            <input type="text" id="cphone" name="phone"
-                                                                placeholder="0123 456 789" value="<%=user.phone%>"
-                                                                required>
-                                                        </div>
+                            <% cart.forEach(function(product){ %>
+                                <% sub=parseFloat(product.quantity * product.price).toFixed(2) %>
+
+                                    <div class="row border-top border-bottom">
+                                        <div class="row main align-items-center">
+                                            <div class="col-2"><img class="img-fluid" src="/product_images/<%= product._id %>/<%= product.image %>">
+                                            </div>
+                                            <div class="col">
+                                                <div class="row text-muted">
+                                                    <%= product.title %>
+                                                </div>
+                                                <div class="row">
+                                                    <%= product.price %> VND
+                                                </div>
+                                            </div>
+                                            <div class="col"> <a href="/cart/update/<%= product.slug %>?action=remove">-</a>
+
+                                                <%= product.quantity %>
+                                                    <a href="/cart/update/<%= product.slug %>?action=add">+</a>
+                                            </div>
+                                            <div class="col">
+                                                <%= sub %> VND <span class="close"><a
+                                                                    href="/cart/update/<%= product.slug %>?action=clear">&#10005;</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <% }); %>
+                                        <div class="back-to-shop"><a href="/products">&leftarrow;<span
+                                                            class="text-muted">Trở về</span></a></div>
+                        </div>
+
+                        <form method="post" action="/cart/buynow">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="row px-2">
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Họ tên</label>
+                                                        <input type="text" id="cname" name="name" placeholder="Nguyen Van A" value="<%=user.name%>" required>
                                                     </div>
-                                                    <div class="row px-2">
-                                                        <div class="form-group col-md-6"> <label
-                                                                class="form-control-label">Địa chỉ</label>
-                                                            <input type="text" id="addr" name="address"
-                                                                placeholder="227 Nguyen Van Cu, P4, Q5, TPHCM"
-                                                                value="<%=user.address%>" required>
-                                                        </div>
-                                                        <div class="form-group col-md-6"> <label
-                                                                class="form-control-label">Mã giảm giá
-                                                                (tuỳ chọn)</label>
-                                                            <input type="text" id="pro" name="code" placeholder="******"
-                                                                value="<%=code%>">
-                                                        </div>
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Số điện thoại
+                                                                Number</label>
+                                                        <input type="text" id="cphone" name="phone" placeholder="0123 456 789" value="<%=user.phone%>" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 mt-2">
-                                                    <div class="row d-flex justify-content-between px-4">
-                                                        <p class="mb-1 text-left">Thành tiền</p>
-                                                        <h6 class="mb-1 text-right">
-                                                            <%=total%> VND
-                                                        </h6>
+                                                <div class="row px-2">
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Địa chỉ</label>
+                                                        <input type="text" id="addr" name="address" placeholder="227 Nguyen Van Cu, P4, Q5, TPHCM" value="<%=user.address%>" required>
                                                     </div>
-                                                    <div class="row d-flex justify-content-between px-4">
-                                                        <p class="mb-1 text-left">Giảm giá</p>
-                                                        <h6 class="mb-1 text-right">
-                                                            <%=promoValue%> VND
-                                                        </h6>
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Mã giảm giá
+                                                                (tuỳ chọn)</label>
+                                                        <input type="hidden" id="pro" name="code" placeholder="******" value="<%=code%>">
                                                     </div>
-                                                    <div class="row d-flex justify-content-between px-4">
-                                                        <p class="mb-1 text-left">Phí giao hàng</p>
-                                                        <h6 class="mb-1 text-right">
-                                                            <%=ship%> VND
-                                                        </h6>
-                                                    </div>
-                                                    <div class="row d-flex justify-content-between px-4" id="tax">
-                                                        <p class="mb-1 text-left">Tổng tiền (đã bao gồm VAT)</p>
-                                                        <h6 class="mb-1 text-right">
-                                                            <%=total - promoValue + ship%> VND
-                                                        </h6>
-                                                    </div> <button class="btn-block btn-blue"> <span> <span
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mt-2">
+                                                <div class="row d-flex justify-content-between px-4">
+                                                    <p class="mb-1 text-left">Thành tiền</p>
+                                                    <h6 class="mb-1 text-right">
+                                                        <%=subtotal%> VND
+                                                    </h6>
+                                                </div>
+                                                <div class="row d-flex justify-content-between px-4">
+                                                    <p class="mb-1 text-left">Giảm giá</p>
+                                                    <h6 class="mb-1 text-right">
+                                                        <%=promoValue%> VND
+                                                    </h6>
+                                                </div>
+                                                <div class="row d-flex justify-content-between px-4">
+                                                    <p class="mb-1 text-left">Phí giao hàng</p>
+                                                    <h6 class="mb-1 text-right">
+                                                        <%=ship%> VND
+                                                    </h6>
+                                                </div>
+                                                <div class="row d-flex justify-content-between px-4" id="tax">
+                                                    <p class="mb-1 text-left">Tổng tiền (đã bao gồm VAT)</p>
+                                                    <h6 class="mb-1 text-right">
+                                                        <%=total%> VND
+                                                    </h6>
+                                                </div> <button class="btn-block btn-blue"> <span> <span
                                                                 id="checkout">Xác nhận</span>
                                                             <span id="check-amt">
-                                                                <%=total - promoValue + ship%> VND
+                                                                <%=total%> VND
                                                             </span> </span> </button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
 
-                            <form method="post" action="/promotions/apply/">
-                                <label for="fname">Code:</label><br>
-                                <input type="text" id="code" name="code"><br>
-                                <button class="btn-block btn-blue"> <span> <span id="code">Áp dụng</span> </button>
-                            </form>
+                        <form method="post" action="/promotions/apply/">
+                            <label for="fname">Code:</label><br>
+                            <input type="text" id="code" name="code"><br>
+                            <button class="btn-block btn-blue"> <span> <span id="code">Áp dụng</span> </button>
+                        </form>
 
-                            <% } else {%>
-                                <h3 class="text-center">Giỏ hàng đang trống.</h3>
-                                <% } %>
+                        <% } else {%>
+                            <h3 class="text-center">Giỏ hàng đang trống.</h3>
+                            <% } %>
             </div>
         </div>
     </div>
