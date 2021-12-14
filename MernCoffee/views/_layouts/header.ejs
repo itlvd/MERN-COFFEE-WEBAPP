@@ -30,7 +30,7 @@
                 <a href="/about">About us</a>
             </div>
             <div class="right-navbar">
-                <div class="cart">
+                <div class="header-cart">
                     <i class="fas fa-shopping-cart"></i>
                     <div class="items-num">3</div>
                 </div>
@@ -87,15 +87,16 @@
             }
             
             mobileMenuBtn.addEventListener('click', () =>{
+                var profileBtn = document.querySelector(".profile-dropdown");
                 var header = document.querySelector(".header");
-                var cart = document.querySelector(".cart");
+                var cart = document.querySelector(".header-cart");
                 var leftNavbar = document.querySelectorAll(".left-navbar a");
-                console.log(leftNavbar);
                 if(profileBtn){
                     profileBtn.classList.toggle("hide");
                 }
                 else{
                     var profileBtn = document.querySelector(".profile")
+                    console.log(profileBtn);
                     profileBtn.classList.toggle("hide");
                 }
                 mobileMenuBtn.classList.toggle("mobile-menu-btn-res");

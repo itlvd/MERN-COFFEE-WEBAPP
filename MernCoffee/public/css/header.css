@@ -102,24 +102,24 @@ input[type=password] {
 
 .profile:hover,
 .profile-dropdown:hover,
-.cart:hover{
+.header-cart:hover{
     background-color: #E84545;
 }
 
 .profile:hover i,
 .profile-dropdown:hover i,
-.cart:hover i{
+.header-cart:hover i{
     color: black;
 }
 
-.cart:hover .items-num{
+.header-cart:hover .items-num{
     background-color: #fff;
     color: #000;
 }
 
 .profile,
 .profile-dropdown,
-.cart{
+.header-cart{
     padding: 0px 16px;
     line-height: 60px;
     display: block;
@@ -130,7 +130,7 @@ input[type=password] {
 
 .profile>i,
 .profile-dropdown>i,
-.cart>i {
+.header-cart>i {
     color: #fff;
     font-size: 30px;
     padding: 16px 0;
@@ -240,5 +240,8 @@ input[type=password] {
         text-align: center;
         padding: 0px 16px;
         height: 60px;
+    }
+    .profile-menu{
+        left: 0;
     }
 }
