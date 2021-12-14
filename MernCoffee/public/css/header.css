@@ -12,7 +12,7 @@ html {
 #main {
 }
 
-#header {
+.header {
     background-color: #000000;
     height: 60px;
     position: fixed;
@@ -25,12 +25,12 @@ html {
     justify-content: space-between;
 }
 
-#navbar {
+.left-navbar {
     height: 100%;
     display: flex;
 }
 
-#navbar a {
+.left-navbar a {
     padding: 0 60px;
     color: white;
     text-decoration: none;
@@ -39,7 +39,7 @@ html {
     line-height: 60px;
 }
 
-#navbar a:hover {
+.left-navbar a:hover {
     background-color: #E84545;
     color: #000;
 }
@@ -100,26 +100,26 @@ input[type=password] {
     bottom: 0;
 }
 
-#profile:hover,
-#profile-dropdown:hover,
-.cart:hover{
+.profile:hover,
+.profile-dropdown:hover,
+.header-cart:hover{
     background-color: #E84545;
 }
 
-#profile:hover i,
-#profile-dropdown:hover i,
-.cart:hover i{
+.profile:hover i,
+.profile-dropdown:hover i,
+.header-cart:hover i{
     color: black;
 }
 
-.cart:hover .items-num{
+.header-cart:hover .items-num{
     background-color: #fff;
     color: #000;
 }
 
-#profile,
-#profile-dropdown,
-.cart{
+.profile,
+.profile-dropdown,
+.header-cart{
     padding: 0px 16px;
     line-height: 60px;
     display: block;
@@ -128,9 +128,9 @@ input[type=password] {
     cursor: pointer;
 }
 
-#profile>i,
-#profile-dropdown>i,
-.cart>i {
+.profile>i,
+.profile-dropdown>i,
+.header-cart>i {
     color: #fff;
     font-size: 30px;
     padding: 16px 0;
@@ -188,3 +188,60 @@ input[type=password] {
     flex-direction: row;
 }
 
+.mobile-menu-btn{
+    display: none;
+    color: white;
+    font-size: 32px;
+    justify-content: center;
+    align-items: center;    
+    padding: 16px;
+    height: 60px;
+}
+
+.mobile-menu-btn:hover{
+    background-color: #E84545;
+    color: #000;
+}
+
+.mobile-header{
+    height: auto;
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.mobile-menu-btn-res{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.left-navbar-mobile{
+    text-align: left !important;
+}
+
+@media (min-width: 740px) and (max-width: 1023px){
+    .left-navbar a {
+        padding: 0px 40px;
+    }
+}
+
+@media (max-width: 739px){
+    .mobile-menu-btn{
+        display: flex;
+    }
+    .left-navbar{
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .left-navbar a{
+        text-align: center;
+        padding: 0px 16px;
+        height: 60px;
+    }
+    .profile-menu{
+        left: 0;
+    }
+}

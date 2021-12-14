@@ -22,22 +22,23 @@
 <body>
 
     <div id="main">
-        <div id="header">
-            <div id="navbar">
+        <div class="header">
+            <div class="left-navbar">
                 <a href="/">Home</a>
                 <a href="/promotions">News</a>
                 <a href="/products">Products</a>
                 <a href="/about">About us</a>
             </div>
             <div class="right-navbar">
+
                 <% if (user) { %>
                     <a href="/cart">
-                        <div class="cart">
+                        <div class="header-cart">
                             <i class="fas fa-shopping-cart"></i>
                             <div class="items-num">
 
                                 <%=user.cart.length;%>
-
+                                
                             </div>
                         </div>
                     </a>
@@ -68,22 +69,48 @@
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <% } %>
+                         <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
             </div>
 
 
         </div>
 
         <script>
-            var profileBtn = document.querySelector("#profile-dropdown");
+            var profileBtn = document.querySelector(".profile-dropdown");
             var dropdownMenu = document.querySelector(".profile-menu");
-            profileBtn.addEventListener('click', () => {
-                dropdownMenu.classList.toggle("show-flex");
-            })
-            window.onclick = (e) => {
-                if (!(e.target.matches('#profile-dropdown') || e.target.matches(".fa-user-circle"))) {
+            var mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        
+            if(profileBtn){
+                profileBtn.addEventListener('click', () => {
+                    dropdownMenu.classList.toggle("show-flex");
+                })
+                window.onclick = (e) => {
+                if (!(e.target.matches('.profile-dropdown') || e.target.matches(".fa-user-circle"))) {
                     if (dropdownMenu.classList.contains('show-flex')) {
                         dropdownMenu.classList.remove('show-flex')
                     }
                 }
             }
+            }
+            
+            mobileMenuBtn.addEventListener('click', () =>{
+                var profileBtn = document.querySelector(".profile-dropdown");
+                var header = document.querySelector(".header");
+                var cart = document.querySelector(".header-cart");
+                var leftNavbar = document.querySelectorAll(".left-navbar a");
+                if(profileBtn){
+                    profileBtn.classList.toggle("hide");
+                }
+                else{
+                    var profileBtn = document.querySelector(".profile")
+                    console.log(profileBtn);
+                    profileBtn.classList.toggle("hide");
+                }
+                mobileMenuBtn.classList.toggle("mobile-menu-btn-res");
+                header.classList.toggle("mobile-header");
+                cart.classList.toggle("hide");
+                leftNavbar.forEach((e)=>{
+                    e.classList.toggle("left-navbar-mobile");
+                })
+            })
         </script>
