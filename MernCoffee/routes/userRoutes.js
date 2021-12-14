@@ -15,8 +15,11 @@ var hasLogin = auth.hasLogin;
  * GET register
  */
 router.get('/register', hasLogin, (req, res) => {
+    var errorRegis = req.query.error;
+  
     res.render('register', {
         title: 'Register',
+        errorRegis: errorRegis,
     });
 });
 
@@ -57,7 +60,7 @@ router.post('/register', async (req, res) => {
                 console.log("loi user exist");
                 // console.log("User\n" + user);
                 req.flash('danger', 'Username exist, choose another!');
-                res.redirect('/users/register');
+                res.redirect('/users/register?error=user exist');
             } else {
                 const user = new User({
                     name: name,
@@ -117,9 +120,17 @@ router.get('/login', hasLogin, function (req, res) {
  * POST login
  */
 router.post('/login', function (req, res, next) {
-
+    var prev = req.query.redirect;
+    console.log("redirect: " + prev);
+    if (typeof prev === 'undefined') {
+        prev = '/'
+    } else {
+        prev = '/' + prev;
+    }
+    console.log("redirect: " + prev);
     passport.authenticate('local', {
-        successRedirect: '/',
+        // successRedirect: '/',
+        successRedirect: prev,
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

@@ -30,39 +30,46 @@
                 <a href="/about">About us</a>
             </div>
             <div class="right-navbar">
-                <div class="header-cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div class="items-num">3</div>
-                </div>
+
                 <% if (user) { %>
-                    <div class="profile-dropdown">
-                        <i class="fas fa-user-circle"></i>
-                        <div class="profile-menu">
-                            <div class="welcome">Hi, <%= user.username %>
+                    <a href="/cart">
+                        <div class="header-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div class="items-num">
+
+                                <%=user.cart.length;%>
+                                
                             </div>
-                            <a href="/me" class="view-profile">
-                                <i class="fa fa-user"></i>
-                                Profile
-                            </a>
-                            <% if (user && user.role !="user" ) { %>
-                                <a href="/admin/pages">
-                                    <i class="fa fa-lock"></i>
-                                    Admin Area
-                                </a>
-                                <% }%>
-                                    <a href="/users/logout">
-                                        <i class="fa fa-power-off"></i>
-                                        Logout
+                        </div>
+                    </a>
+                    <% } %>
+                        <% if (user) { %>
+                            <div id="profile-dropdown">
+                                <i class="fas fa-user-circle"></i>
+                                <div class="profile-menu">
+                                    <div class="welcome">Hi,
+                                        <%= user.username %>
+                                    </div>
+                                    <a href="/me" class="view-profile">
+                                        <i class="fa fa-user"></i> Profile
                                     </a>
-                        </div>
-                    </div>
-                    <% } else {%>
-                        <div class="profile">
-                            <a href="/users/login" class="profile-a"></a>
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <% } %>
-                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                                    <% if (user && user.role !="user" ) { %>
+                                        <a href="/admin/pages">
+                                            <i class="fa fa-lock"></i> Admin Area
+                                        </a>
+                                        <% }%>
+                                            <a href="/users/logout">
+                                                <i class="fa fa-power-off"></i> Logout
+                                            </a>
+                                </div>
+                            </div>
+                            <% } else {%>
+                                <div id="profile">
+                                    <a href="/users/login" class="profile-a"></a>
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <% } %>
+                         <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
             </div>
 
 

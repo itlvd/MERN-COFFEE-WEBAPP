@@ -1,11 +1,16 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
 
-    <h2 class="page-title">Employee</h2>
-    <a href="/admin/customer/add-customer" class="btn btn-primary">Add a new customer</a>
+    <h2 class="page-title d-flex flex-column align-items-center" style="margin-top: 20px; margin-left: 50px;">
+        Customer
+        Management Area
+    </h2>
+    <hr class="hline" style="margin-left: 410px; width: 100%; margin-bottom: 20px;">
+    <a href="/admin/customer/add-customer" class="btn3 btn-primary btn-lg" style="margin-left: 450px;">Add a new
+        customer</a>
     <br><br>
 
     <% if (count> 0) { %>
-        <table class="table table-striped alignmiddle">
+        <table class="table table-striped alignmiddle" style="margin-left: 450px;">
             <thead>
                 <tr class="home">
                     <th>Serial</th>
@@ -13,7 +18,7 @@
                     <th>Userame</th>
                     <th>Role</th>
                     <th></th>
-                    <th></th>
+
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +37,8 @@
                             <%= customer.role %>
                         </td>
                         <!-- <td><a href="/admin/customer/edit-customer/<%= customer._id %>">Edit</a></td> -->
-                        <td><a class="confirmDeletion" href="/admin/customer/delete-customer/<%= customer._id %>">Delete</a></td>
+                        <td><a class="confirmDeletion"
+                                href="/admin/customer/delete-customer/<%= customer._id %>">Delete</a></td>
                     </tr>
                     <% }); %>
             </tbody>

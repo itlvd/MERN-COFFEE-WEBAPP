@@ -17,11 +17,11 @@ const hasLogin = auth.hasLogin;
 /*
  * GET add product to cart
  */
-router.get('/add/:product', isUser, function (req, res) {
+router.get('/add/:product', isUser, function(req, res) {
     const slug = req.params.product;
 
 
-    Product.findOne({ slug: slug }, async function (err, p) {
+    Product.findOne({ slug: slug }, async function(err, p) {
 
         const user = await User.findById(req.user);
         const cart = user.cart;
@@ -50,18 +50,23 @@ router.get('/add/:product', isUser, function (req, res) {
 /*
  * GET checkout page
  */
-router.get('/', isUser, async function (req, res) {
+router.get('/', isUser, async function(req, res) {
     const user = await User.findById(req.user);
     const promoValue = 0;
     const ship = 20000;
     products = [];
     const code = '';
+    let total = 0;
+    let subtotal = 0;
 
     for (let i = 0; i < user.cart.length; i++) {
         let product = await Product.findById(user.cart[i]._id);
         product['quantity'] = user.cart[i].quantity;
         products.push(product);
+        subtotal += product.price;
     }
+
+    total = Math.max(subtotal - promoValue + ship, 0);
 
     res.render('checkout', {
         title: 'Checkout',
@@ -69,14 +74,16 @@ router.get('/', isUser, async function (req, res) {
         user: user,
         code: code,
         promoValue: promoValue,
-        ship: ship
+        ship: ship,
+        subtotal: subtotal,
+        total: total,
     });
 });
 
 /*
  * GET update product
  */
-router.get('/update/:product', isUser, async function (req, res) {
+router.get('/update/:product', isUser, async function(req, res) {
     const user = await User.findById(req.user);
 
     var slug = req.params.product;
@@ -122,7 +129,7 @@ router.get('/update/:product', isUser, async function (req, res) {
 /*
  * GET clear cart
  */
-router.get('/clear', isUser, async function (req, res) {
+router.get('/clear', isUser, async function(req, res) {
     const user = await User.findById(req.user);
 
     user.cart = [];
@@ -136,7 +143,7 @@ router.get('/clear', isUser, async function (req, res) {
 /*
  * GET buy now
  */
-router.post('/buynow', isUser, async function (req, res) {
+router.post('/buynow', isUser, async function(req, res) {
     const user = await User.findById(req.user);
     const cart = user.cart;
     const ship = 20000;
@@ -163,6 +170,7 @@ router.post('/buynow', isUser, async function (req, res) {
     let bill = {};
     let total = 0;
     bill.userId = user._id;
+    bill.name = user.name;
     bill.products = [];
 
     for (let i = 0; i < cart.length; i++) {
@@ -181,8 +189,8 @@ router.post('/buynow', isUser, async function (req, res) {
 
         bill.products.push(product);
     }
-
-    bill.total = Math.max(total - promotion.value, 0);
+    bill.subtotal = bill.total;
+    bill.total = Math.max(total - promotion.value + ship, 0);
     bill.address = req.body.address;
     bill.phone = req.body.phone;
 
@@ -201,7 +209,9 @@ router.post('/buynow', isUser, async function (req, res) {
         products: bill.products,
         code: code,
         promoValue: promotion.value,
-        ship: ship
+        ship: ship,
+        subtotal: bill.subtotal,
+        total: bill.total
     });
 });
 

@@ -101,31 +101,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% var total = 0 %>
-                                        <% var count = 0; %>
-                                            <% products.forEach(function(product){ %>
-                                                <% var sub = parseFloat(product.quantity * product.price).toFixed(2) %>
-                                                    <% total += +sub %>
-                                                        <% count = count +1 %>
-                                                            <tr>
-                                                                <td class="center">
-                                                                    <%=count %>
-                                                                </td>
-                                                                <td class="left">
-                                                                    <%= product.title %>
-                                                                </td>
-                                                                <td class="left">
-                                                                    <%= product.category %>
-                                                                </td>
-                                                                <td class="center">
-                                                                    <%= product.quantity %>
-                                                                </td>
-                                                                <td class="right">
-                                                                    <%= product.price %> VND</td>
-                                                                <td class="right">
-                                                                    <%= sub %> VND</td>
-                                                            </tr>
-                                                            <% }); %>
+
+                                    <% var count = 0; %>
+                                        <% products.forEach(function(product){ %>
+                                            <% var sub = parseFloat(product.quantity * product.price).toFixed(2) %>
+                                                <% count = count +1 %>
+                                                    <tr>
+                                                        <td class="center">
+                                                            <%=count %>
+                                                        </td>
+                                                        <td class="left">
+                                                            <%= product.title %>
+                                                        </td>
+                                                        <td class="left">
+                                                            <%= product.category %>
+                                                        </td>
+                                                        <td class="center">
+                                                            <%= product.quantity %>
+                                                        </td>
+                                                        <td class="right">
+                                                            <%= product.price %> VND</td>
+                                                        <td class="right">
+                                                            <%= sub %> VND</td>
+                                                    </tr>
+                                                    <% }); %>
                                 </tbody>
                             </table>
                         </div>
@@ -139,7 +138,7 @@
                                                 <strong>Số tiền</strong>
                                             </td>
                                             <td class="right">
-                                                <%= total %> VND</td>
+                                                <%= subtotal %> VND</td>
                                         </tr>
                                         <tr>
                                             <td class="left">
@@ -160,7 +159,7 @@
                                                 <strong>Tổng cộng</strong>
                                             </td>
                                             <td class="right">
-                                                <strong><%= total - promoValue + ship %> VND</strong>
+                                                <strong><%= total%> VND</strong>
                                             </td>
                                         </tr>
                                     </tbody>
