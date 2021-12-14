@@ -15,8 +15,11 @@ var hasLogin = auth.hasLogin;
  * GET register
  */
 router.get('/register', hasLogin, (req, res) => {
+    var errorRegis = req.query.error;
+  
     res.render('register', {
         title: 'Register',
+        errorRegis: errorRegis,
     });
 });
 
@@ -57,7 +60,7 @@ router.post('/register', async (req, res) => {
                 console.log("loi user exist");
                 // console.log("User\n" + user);
                 req.flash('danger', 'Username exist, choose another!');
-                res.redirect('/users/register');
+                res.redirect('/users/register?error=user exist');
             } else {
                 const user = new User({
                     name: name,
