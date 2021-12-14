@@ -1,9 +1,14 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
+
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <a href="/admin/pages" class="btn btn-primary">Return to admin home page</a>
-  <h2 class="page-title">QUẢN LÝ THU NHẬP</h2>
+
+  <h2 class="page-title d-flex flex-column align-items-center" style="margin-top: 20px; margin-left: 50px;">
+    Income
+    Management Area
+  </h2>
+  <hr class="hline" style="margin-left: 410px; width: 100%; margin-bottom: 20px;">
 
   <br><br>
 
@@ -22,21 +27,21 @@
             },
             data: [
               {
-                theme: "light2",
+                theme: "light",
                 type: "line",
                 dataPoints: [
-                  { label: "Tháng 1", y: income[0] },
-                  { label: "Tháng 2", y: income[1] },
-                  { label: "Tháng 3", y: income[2] },
-                  { label: "Tháng 4", y: income[3] },
-                  { label: "Tháng 5", y: income[4] },
-                  { label: "Tháng 6", y: income[5] },
-                  { label: "Tháng 7", y: income[6] },
-                  { label: "Tháng 8", y: income[7] },
-                  { label: "Tháng 9", y: income[8] },
-                  { label: "Tháng 10", y: income[9] },
-                  { label: "Tháng 11", y: income[10] },
-                  { label: "Tháng 12", y: income[11] }
+                  { label: "Jan", y: income[0] },
+                  { label: "Feb", y: income[1] },
+                  { label: "Mar", y: income[2] },
+                  { label: "Apr", y: income[3] },
+                  { label: "May", y: income[4] },
+                  { label: "Jun", y: income[5] },
+                  { label: "Jul", y: income[6] },
+                  { label: "Aug", y: income[7] },
+                  { label: "Sep", y: income[8] },
+                  { label: "Oct", y: income[9] },
+                  { label: "Nov", y: income[10] },
+                  { label: "Dec", y: income[11] }
                 ],
               }
             ],
@@ -53,7 +58,7 @@
     </head>
 
     <body>
-      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+      <div id="chartContainer" style="height: 300px; width: 80%; margin-left: 550px;"></div>
     </body>
 
 

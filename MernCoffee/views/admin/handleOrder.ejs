@@ -1,51 +1,56 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
     <style>
         .table tr {
             cursor: pointer;
         }
-        
+
         .main-section {
             margin-top: 120px;
         }
-        
+
         .hiddenRow {
             padding: 0 4px !important;
             background-color: #eeeeee;
             font-size: 13px;
         }
-        
+
         .accordian-body span {
             color: #a2a2a2 !important;
         }
     </style>
 
+    <h2 class="page-title d-flex flex-column align-items-center" style="margin-top: 20px; margin-left: 50px;">
+        Promotion
+        Management Area
+    </h2>
+    <hr class="hline" style="margin-left: 410px; width: 100%; margin-bottom: 20px;">
 
+    <% var count=0%>
 
-    <% var count = 0%>
-        <h2> Danh sách đơn hàng</h2>
-        <div class="container ">
+        <div class="container " style="margin-left: 400px;">
             <div class="row">
                 <div class="col-lg-12">
-                    <table class="table table-striped" style="border-collapse:collapse;">
+                    <table class="table table-striped" style="border-collapse:collapse; align-content: center;">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Mã hoá đơn</th>
-                                <th>Tên khách hàng</th>
-                                <th>Tổng số tiền</th>
-                                <th>Hoàn thành</th>
+                                <th>Bill Code</th>
+                                <th>Customer Name</th>
+                                <th>Total</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <% bill.forEach(function(bill){ %>
-                                <%count += 1%>
-                                    <tr colspan="6" data-toggle="collapse" data-target="#demo<%=count%>" class="accordion-toggle">
+                                <%count +=1%>
+                                    <tr colspan="6" data-toggle="collapse" data-target="#demo<%=count%>"
+                                        class="accordion-toggle">
                                         <td>
                                             <%=count%>
                                         </td>
@@ -56,15 +61,23 @@
                                         <td>
                                             <%=bill.total + bill.ship%>
                                         </td>
-                                        <td> <a class="btn btn-primary me-2" href="/admin/orders/<%=bill._id%>/completed" role="button">Hoàn thành</a> </td>
+                                        <td> <a class="btn btn-success btn" href="/admin/orders/<%=bill._id%>/completed"
+                                                role="button">Done
+                                            </a> </td>
                                     </tr>
                                     <tr class="p">
                                         <td colspan="6" class="hiddenRow">
                                             <div class="accordian-body collapse p-3" id="demo<%=count%>">
-                                                <p><b>Số điện thoại :</b> <span><%=bill.phone%></span></p>
-                                                <p><b>Địa chỉ : </b><span><%=bill.address%></span> </p>
-                                                <p><b>Ngày tạo đơn : </b><span><%=bill.createdAt%></span> </p>
-                                                <%var cart = bill.products%>
+                                                <p><b>Số điện thoại :</b> <span>
+                                                        <%=bill.phone%>
+                                                    </span></p>
+                                                <p><b>Địa chỉ : </b><span>
+                                                        <%=bill.address%>
+                                                    </span> </p>
+                                                <p><b>Ngày tạo đơn : </b><span>
+                                                        <%=bill.createdAt%>
+                                                    </span> </p>
+                                                <%var cart=bill.products%>
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
@@ -77,10 +90,11 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <% var count_pd = 0; %>
+                                                            <% var count_pd=0; %>
                                                                 <% cart.forEach(function(product){ %>
                                                                     <% count_pd +=1 %>
-                                                                        <% var sub = parseFloat(product.quantity * product.price).toFixed(2) %>
+                                                                        <% var sub=parseFloat(product.quantity *
+                                                                            product.price).toFixed(2) %>
                                                                             <tr>
                                                                                 <td class="center">
                                                                                     <%=count_pd %>
@@ -95,9 +109,11 @@
                                                                                     <%= product.quantity %>
                                                                                 </td>
                                                                                 <td class="right">
-                                                                                    <%= product.price %> VND</td>
+                                                                                    <%= product.price %> VND
+                                                                                </td>
                                                                                 <td class="right">
-                                                                                    <%= sub %> VND</td>
+                                                                                    <%= sub %> VND
+                                                                                </td>
                                                                             </tr>
                                                                             <% }); %>
                                                         </tbody>
@@ -112,29 +128,31 @@
                 </div>
             </div>
         </div>
-        <%var pre = Number(page) - 1%>
-            <%var next = Number(page) + 1%>
-                <%if (pre > 0 && next <= totalPage){%>
-                    <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
-                    <%=page%>
-                        <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
-                        <%} else if (pre == 0 && totalPage != 0 && totalPage != 1) {%>
-                            &#8249;
-                            <%=page%>
-                                <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
-                                <%} else if (next > totalPage && totalPage != 0 && totalPage != 1) {%>
-                                    <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
-                                    <%=page%>
-                                        &#8250;
-                                        <%}%>
-                                            <script>
-                                                $('.accordion-toggle').click(function() {
-                                                    $('.hiddenRow').hide();
-                                                    $(this).next('tr').find('.hiddenRow').show();
-                                                });
-                                            </script>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <%var pre=Number(page) - 1%>
+            <%var next=Number(page) + 1%>
+                <%if (pre> 0 && next <= totalPage){%>
+                        <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
+                        <%=page%>
+                            <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
+                            <%} else if (pre==0 && totalPage !=0 && totalPage !=1) {%>
+                                &#8249;
+                                <%=page%>
+                                    <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
+                                    <%} else if (next> totalPage && totalPage != 0 && totalPage != 1) {%>
+                                        <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
+                                        <%=page%>
+                                            &#8250;
+                                            <%}%>
+                                                <script>
+                                                    $('.accordion-toggle').click(function () {
+                                                        $('.hiddenRow').hide();
+                                                        $(this).next('tr').find('.hiddenRow').show();
+                                                    });
+                                                </script>
+                                                <script
+                                                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+                                                <script
+                                                    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
-                                            <%- include('../_layouts/adminfooter') %>
+                                                <%- include('../_layouts/adminfooter') %>

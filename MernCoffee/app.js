@@ -156,7 +156,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-    res.render('news_promotion', {
+    res.render('./admin/homepage', {
         title: "Test"
     });
 });

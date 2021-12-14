@@ -1,14 +1,20 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
 
-    <h2 class="page-title">Products</h2>
-    <a href="/admin/products/add-product" class="btn btn-primary">Add a new product</a>
+    <h2 class="page-title d-flex flex-column align-items-center" style="margin-top: 20px; margin-left: 50px;">
+        Product
+        Management Area
+    </h2>
+    <hr class="hline" style="margin-left: 410px; width: 100%; margin-bottom: 0px;">
+    <a href="/admin/products/add-product" class="btn3 btn-primary btn-lg"
+        style="margin-left: 450px;margin-top: 300px;">Add a new
+        product</a>
     <br><br>
 
     <% if (count> 0) { %>
-        <table class="table table-striped alignmiddle">
+        <table class="table table-striped alignmiddle" style="margin-left: 450px;">
             <thead>
                 <tr class="home">
-                    <th>STT</th>
+                    <th>#</th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Category</th>
