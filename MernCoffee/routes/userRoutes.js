@@ -117,9 +117,17 @@ router.get('/login', hasLogin, function (req, res) {
  * POST login
  */
 router.post('/login', function (req, res, next) {
-
+    var prev = req.query.redirect;
+    console.log("redirect: " + prev);
+    if (typeof prev === 'undefined') {
+        prev = '/'
+    } else {
+        prev = '/' + prev;
+    }
+    console.log("redirect: " + prev);
     passport.authenticate('local', {
-        successRedirect: '/',
+        // successRedirect: '/',
+        successRedirect: prev,
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

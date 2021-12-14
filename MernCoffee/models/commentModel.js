@@ -1,24 +1,33 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const commentSchema = mongoose.Schema({
-//     user: {
-//       type: mongoose.Schema.Object,
-//     },
-//     createdAt: {
-//       type: Date,
-//       default: Date.now()
-//     },
-//     contend: {
-//         type: String,
-//         require: true,
-//     },
-//     productName: {
-//         type: String,
-//         require: true,
-//     }
-//   });
+const commentSchema = mongoose.Schema({
+    userId: {
+      type: mongoose.Schema.ObjectId,
+    },
+    productId: {
+        type: mongoose.Schema.ObjectId,
+        require: true,
+    },
+    userName: {
+        type: String,
+        default: "anonymous"
+    },
+    userImage: {
+        type: String,
+        default: '/img/avatar.jpg',
+      },
+    createdAt: {
+      type: Date,
+      default: new Date()
+    },
+    content: {
+        type: String,
+        require: true,
+    },
+   
+  });
   
-//   const Comment = mongoose.model('Comment', commentSchema);
+  const Comment = mongoose.model('Comment', commentSchema);
   
-//   module.exports = Comment;
+  module.exports = Comment;
   
