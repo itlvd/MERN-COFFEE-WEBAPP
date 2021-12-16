@@ -32,13 +32,7 @@ router.post('/update_avt/:id', userController.updateImage);
  */
 router.delete('/', isUser, async function(req, res) {
     const user = await User.findByIdAndDelete(req.user);
-    
     res.redirect('/');
-
-    // res.status(204).json({
-    //     status: 'success',
-    //     data: null
-    // });
 });
 
 module.exports = router;
