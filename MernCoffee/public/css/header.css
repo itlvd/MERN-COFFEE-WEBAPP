@@ -121,7 +121,7 @@ input[type=password] {
 .profile-dropdown,
 .header-cart{
     padding: 0px 16px;
-    line-height: 60px;
+    height: 60px;
     display: block;
     position: relative;
     float: left;
