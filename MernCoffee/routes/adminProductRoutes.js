@@ -22,21 +22,23 @@ const Product = require('../models/productModel');
  * GET product index
  */
 router.get('/', async (req, res) => {
-    const page = req.query.page || 1;
-    const limit = req.query.limit * 1 || 16;
-    const skip = (page - 1) * limit;
+    // const page = req.query.page || 1;
+    // const limit = req.query.limit * 1 || 16;
+    // const skip = (page - 1) * limit;
     const count = (await Product.find()).length;
-    const totalPage = Math.ceil(count / limit);
+    // const totalPage = Math.ceil(count / limit);
 
-    const products = await Product.find().skip(skip).limit(limit);
+    // const products = await Product.find().skip(skip).limit(limit);
+
+    const products = await Product.find()
 
     res.render('admin/products', {
         title: 'All products',
         products: products,
         count: count,
-        page,
-        limit,
-        totalPage
+        // page,
+        // limit,
+        // totalPage
     });
 });
 
