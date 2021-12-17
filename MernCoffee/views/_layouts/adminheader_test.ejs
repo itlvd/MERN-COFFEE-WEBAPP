@@ -229,8 +229,9 @@
             color: #fff;
             font-weight: 500;
             font-size: 16px;
-            border-radius: 0px;
+            border-radius: 5px;
             left: 100px;
+            margin-top: 20px;
         }
 
         .btn2:hover {
@@ -274,8 +275,8 @@
 
 <body>
     <div>
-        <div class="d-flex flex-row">
-            <div class="col-md-3" style="position: fixed; z-index: 999;">
+        <div class="d-flex flex-row" style="height: 100vh;">
+            <div class="sidebar" style="position: fixed; z-index: 999; bottom: 0;top:0;left:0; height: 100vh;">
                 <div class="card card1 p-3">
                     <div class=" image d-flex flex-row align-items-center mt-3"> <img src="/img/admin.jpg" height="50"
                             width="50" class="rounded-circle" /> <span class="d-flex flex-column align-items-center">
@@ -285,7 +286,6 @@
                         <a class="btn" href="/"><i class="fa fa-home"></i><span>Home</span></a>
                         <a class="btn mt-3" href="/admin/pages"> <i class="fa fa-lock"></i> <span>Admin
                                 Home</span></a>
-                        <a class="btn mt-3"><i class="fa fa-users"></i><span>Profile</span></a>
                         <a class="btn mt-3" href="/admin/income"><i class="fa fa-bar-chart"> </i>
                             <span>Income</span></a>
                         <a class="btn mt-3" href="/admin/categories"> <i class=" fa fa-tag"> </i>
@@ -300,8 +300,11 @@
                             <span>Customer</span></a>
                         <a class="btn mt-3" href="/admin/orders"> <i class=" fa fa-first-order"> </i>
                             <span>Orders</span></a>
-
+                        <a class="btn" href="/users/logout"><i class=" fa fa-first-order"> </i>
+                            <span>Log out</span></a>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3"></div>
             <div class="col-md-9">

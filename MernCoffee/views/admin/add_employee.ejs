@@ -1,40 +1,43 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
 
-<h1><%= title %></h1>
+    <h1>
+        <%= title %>
+    </h1>
+    <hr class="hline">
+    <a href="/admin/employee" class="btn2 btn-primary btn-lg">Back to all employee</a>
+    <form method="post" action="/admin/employee/add-employee" style="margin-top: 20px;">
 
-<form method="post" action="/admin/employee/add-employee">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Name">
+        </div>
 
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Name">
-    </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" placeholder="Email">
+        </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control" placeholder="Email">
-    </div>
-    
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username">
-    </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+        </div>
 
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control"  placeholder="Password">
-    </div>
-    
-    <!-- <div class="form-group">
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+
+        <!-- <div class="form-group">
         <label>Confirm Password</label>
         <input type="password" name="password2" class="form-control"  placeholder="Confirm Password">
     </div> -->
 
-    <div class="form-group">
-        <label>Role</label>
-        <input type="text" name="role" class="form-control"  placeholder="Role">
-    </div>
+        <div class="form-group">
+            <label>Role</label>
+            <input type="text" name="role" class="form-control" placeholder="Role">
+        </div>
 
-    <button type="submit" class="btn btn-default">Add Employee</button>
-</form>
+        <button type="submit" class="btn2 btn-default">Add Employee</button>
+    </form>
 
-<%- include('../_layouts/adminfooter') %>
+    <%- include('../_layouts/adminfooter') %>

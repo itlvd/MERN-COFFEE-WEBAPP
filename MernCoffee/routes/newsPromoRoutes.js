@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/apply/', async(req, res) => {
+router.post('/apply/', async (req, res) => {
     const user = await User.findById(req.user);
     const promotion = await Promotion.findOne({
         code: req.body.code
