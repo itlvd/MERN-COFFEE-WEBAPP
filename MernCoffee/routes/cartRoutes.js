@@ -8,7 +8,7 @@ const isAdmin = auth.isAdmin;
 const isUser = auth.isUser;
 const hasLogin = auth.hasLogin;
 
-const cartController = require('../controllers/cartController');
+const cartController = require('../component/cart/cartController');
 
 // GET add product to cart
 router.get('/add/:product', isUser, cartController.addProduct);
