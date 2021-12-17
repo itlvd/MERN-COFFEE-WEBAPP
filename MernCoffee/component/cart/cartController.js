@@ -1,8 +1,8 @@
 // Get model
-const Product = require('../models/productModel');
-const User = require('../models/userModel');
-const Bill = require('../models/billModel');
-const Promotion = require('../models/promotionModel');
+const Product = require('../../models/productModel');
+const User = require('../../models/userModel');
+const Bill = require('../../models/billModel');
+const Promotion = require('../../models/promotionModel');
 
 exports.addProduct = function (req, res) {
   const slug = req.params.product;

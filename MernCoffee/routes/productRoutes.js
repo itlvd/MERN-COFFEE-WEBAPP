@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const productController = require('../controllers/productController');
+const productController = require('../component/product/productController');
 const commentController = require('../component/comment/commentController');
 
 // GET all products

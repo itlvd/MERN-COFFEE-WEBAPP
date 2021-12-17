@@ -6,10 +6,10 @@ const isUser = auth.isUser;
 const hasLogin = auth.hasLogin;
 
 const router = express.Router();
-const billController = require('../controllers/billController');
+const billController = require('../component/bill/billController');
 
 router.get('/', isUser, billController.getAllBills);
 
-router.get('/:id', isUser, billController.getBill);
+router.get('/:id', isUser, billController.getBillByUser);
 
 module.exports = router;
