@@ -10,6 +10,11 @@
             <i class="fa fa-search search-bar-icon"></i>
             <input type="text" id="search-bar" onkeyup="searchItems()" placeholder="Search for names...">
         </div>
+        <div class="filter-dropdown-btn">
+            <i class="fas fa-filter"></i>
+            Filter
+            <i class="fas fa-caret-down"></i>
+        </div>
         <div class="filter">
             <button class="filter-btn active" onclick="filterSelection('all')">All</button>
             <% categories.forEach(function(c){ %>
@@ -80,17 +85,34 @@
     input = document.getElementById('search-bar');
     filter = input.value.toUpperCase();
     products = currentFilterItems;
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < products.length; i++) {
-        a = products[i].querySelector('.product-name');
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            currentFilterItems[i].classList.add("show");
-        } else {
-            products[i].classList.remove("show");
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < products.length; i++) {
+            a = products[i].querySelector('.product-name');
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                currentFilterItems[i].classList.add("show");
+            } else {
+                products[i].classList.remove("show");
+            }
         }
     }
-}
+    //--End search function script
+    //--Start responsive script
+    var filterBtnRes = document.querySelector(".filter-dropdown-btn");
+    console.log(filterBtnRes);
+    var filterList = document.querySelector(".filter");
+    filterBtnRes.addEventListener("click",()=>{
+        console.log("Pressed");
+        filterList.classList.toggle('show-flex');
+    })
+    window.onclick = (e) =>{
+        if(!e.target.matches('.filter-dropdown-btn')){
+            if(filterList.classList.contains('show-flex')){
+                filterList.classList.remove('show-flex');
+            }
+        }
+    }
+
 </script>
 
 <%- include('./_layouts/footer') %>

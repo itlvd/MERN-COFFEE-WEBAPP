@@ -69,99 +69,48 @@
             font-style: italic;
         }
     </style>
+
     <div class="card-container">
-        <div class="card p-3">
-            <div class="row d-flex justify-content-space-between">
-                <div class="col-lg-4">
-                    <div class="position-relative snipimage"> <img src="/img/sale.png"
-                            class="rounded img-fluid w-100 img-responsive">
-                    </div>
-                </div>
-                <div class="col-lg-8 d-flex flex-column justify-content-between">
-                    <div class="mt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-1">Black Friday, Sale off 50% </h5> <span>
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-md-start justify-content-between views-content mt-2">
-                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-eye"></i> <span
-                                    class="ms-1 views">453674</span> </div>
+        <%promotions.forEach(function(promo){%>
+            <div class="card p-3">
 
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="position-relative snipimage"> <img src=<%=promo.image%> class="rounded img-fluid
+                            w-100 img-responsive">
                         </div>
-                        <div class="d-flex flex-row mt-3"> <img src="/img/admin.jpg" width="50" height="50"
-                                class="rounded-circle">
-                            <div class="ms-2 d-flex flex-column">
-                                <div class="d-flex flex-row align-items-center">
-                                    <h6>Nguyen Tran Thien Toan</h6> <span class="dots"></span>
-                                </div> <span class="days-ago">2 days ago</span>
+                    </div>
+                    <div class="col-md-8 d-flex flex-column justify-content-between">
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-1">
+                                    <%=promo.title%>
+                                </h5> <span>
+                                </span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h5 class="mb-1">Mã giảm giá: <span class="promo-code">SMDNAH</span></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card p-3 mt-2">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="position-relative snipimage"> <img src="/img/sale1.jpg"
-                            class="rounded img-fluid w-100 img-responsive"> </div>
-                </div>
-                <div class="col-md-8 d-flex flex-column justify-content-between">
-                    <div class="mt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-1">Săn sale 11/11, đến ngay với MERN!!!</h5>
-                        </div>
-                        <div class="d-flex justify-content-md-start justify-content-between views-content mt-2">
-                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-eye"></i> <span
-                                    class="ms-1 views">45564</span> </div>
 
-                        </div>
-                        <div class="d-flex flex-row mt-3"> <img src="/img/admin.jpg" width="50" class="rounded-circle">
-                            <div class="ms-2 d-flex flex-column">
-                                <div class="d-flex flex-row align-items-center">
-                                    <h6>Nguyen Huu Tuan</h6> <span class="dots"></span>
-                                </div> <span class="days-ago">2 days ago</span>
+                            <div class="d-flex flex-row mt-3"> <img src="/img/admin.jpg" width="50" height="50"
+                                    class="rounded-circle">
+                                <div class="ms-2 d-flex flex-column">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6>Admin</h6> <span class="dots"></span>
+                                    </div> <span class="days-ago">
+                                        <%=promo.expiryDate%>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h5 class="mb-1">Mã giảm giá: <span class="promo-code">SMDNAH</span></h5>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1">Discount code: <span class="promo-code">
+                                    <%=promo.code%>
+                                </span></h5>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card p-3 mt-2 mb-3">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="position-relative snipimage"> <img src="/img/sale2.png"
-                            class="rounded img-fluid w-100 img-responsive"> </div>
-                </div>
-                <div class="col-md-8 d-flex flex-column justify-content-between">
-                    <div class="mt-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-1">Săn sale tháng 12: 12/12 sắp đến, sắm ngay 1 ly cafe! </h5> <span>
-                        </div>
-                        <div class="d-flex justify-content-md-start justify-content-between views-content mt-2">
-                            <div class="d-flex flex-row align-items-center"> <i class="fa fa-eye"></i> <span
-                                    class="ms-1 views">4545564</span> </div>
-                        </div>
-                        <div class="d-flex flex-row mt-3"> <img src="/img/admin.jpg" width="50" class="rounded-circle">
-                            <div class="ms-2 d-flex flex-column">
-                                <div class="d-flex flex-row align-items-center">
-                                    <h6>Nguyen Huu Tuan</h6> <span class="dots"></span>
-                                </div> <span class="days-ago">2 days ago</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h5 class="mb-1">Mã giảm giá: <span class="promo-code">SMDNAH</span></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <% }); %>
+
+
     </div>
 
     <%- include("_layouts/footer.ejs") %>

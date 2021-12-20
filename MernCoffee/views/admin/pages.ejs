@@ -1,154 +1,160 @@
 <%- include('../_layouts/adminheader_test') %>
 
 
-    <div class="card card2 p-3">
-        <header class="bg-surface-primary border-bottom pt-6">
-            <div class="container-fluid">
-                <div class="mb-npx">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+    <header class="bg-surface-primary border-bottom pt-6">
+        <div class="container-fluid">
+            <div class="mb-npx">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12 mb-4 mb-sm-0">
 
-                            <h1 class="h2 mb-0 ls-tight">Welcome back, Admin!</h1>
-                        </div>
-                    </div>
-                    <ul class="nav nav-tabs mt-4 overflow-x border-0">
-                        <li class="nav-item "> <a href="#" class="nav-link active">General</a> </li>
-
-                    </ul>
-                </div>
-            </div>
-        </header>
-
-        <div class="d-flex flex-row gap-3">
-            <div class="col-xl-2 col-sm-6 col-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">New
-                                    projects</span>
-                                <span class="h3 font-bold mb-0">215</span>
-                            </div>
-                            <div class="col-auto">
-                                <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-2 mb-0 text-sm"> <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                                <i class="bi bi-arrow-down me-1"></i>-30% </span> <span
-                                class="text-nowrap text-xs text-muted">Since
-                                last month</span> </div>
+                        <h1 class="h2 mb-0 ls-tight">Welcome back, Admin!</h1>
                     </div>
                 </div>
+                <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                    <li class="nav-item "> <a href="#" class="nav-link active">General</a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link font-regular">Shared</a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link font-regular">File requests</a> </li>
+                </ul>
             </div>
+        </div>
+    </header>
 
-            <div class="col-xl-2 col-sm-6 col-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">New
-                                    projects</span>
-                                <span class="h3 font-bold mb-0">215</span>
-                            </div>
-                            <div class="col-auto">
-                                <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-2 mb-0 text-sm"> <span
-                                class="badge badge-pill bg-soft-success text-success me-2"> <i
-                                    class="bi bi-arrow-up me-1"></i>30% </span> <span
-                                class="text-nowrap text-xs text-muted">Since
-                                last month</span> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work
-                                    load</span> <span class="h3 font-bold mb-0">95%</span> </div>
-                            <div class="col-auto">
-                                <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                    <i class="bi bi-minecart-loaded"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-2 mb-0 text-sm"> <span
-                                class="badge badge-pill bg-soft-success text-success me-2"> <i
-                                    class="bi bi-arrow-up me-1"></i>10% </span> <span
-                                class="text-nowrap text-xs text-muted">Since
-                                last month</span> </div>
-                    </div>
-                </div>
-            </div>
+    <div class="info-card-container">
 
-            <div class="col-xl-2 col-sm-6 col-12">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col"> <span
-                                    class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                <span class="h3 font-bold mb-0">$750.90</span>
-                            </div>
-                            <div class="col-auto">
-                                <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                    <i class="bi bi-credit-card"></i>
-                                </div>
+
+        <div class="info-card">
+            <div class="card shadow border-0">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row" style="height: 40px;">
+                        <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">New
+                                projects</span>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                <i class="bi bi-people"></i>
                             </div>
                         </div>
-                        <div class="mt-2 mb-0 text-sm"> <span
-                                class="badge badge-pill bg-soft-success text-success me-2"> <i
-                                    class="bi bi-arrow-up me-1"></i>13% </span> <span
-                                class="text-nowrap text-xs text-muted">Since
-                                last month</span> </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm d-flex flex-column">
+                        <span class="h3 font-bold mb-0">215</span>
+                        <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                            <i class="bi bi-arrow-down me-1"></i>-30%
+                        </span>
+                        <span class="text-xs text-muted">Since last month</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center mt-5 gap-2 p-3">
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-            </script>
-            <script type="text/javascript">
-                window.onload = function () {
-                    var chart = new CanvasJS.Chart("chartContainer", {
-                        title: {
-                            text: "Income in this year"
-                        },
-                        data: [
-                            {
-                                theme: "light2",
-                                type: "line",
-                                dataPoints: [
-                                    { label: "Jan", y: 1 },
-                                    { label: "Feb", y: 2 },
-                                    { label: "Mar", y: 2 },
-                                    { label: "Apr", y: 2 },
-                                    { label: "May", y: 2 },
-                                    { label: "Jun", y: 2 },
-                                    { label: "Jul", y: 2 },
-                                    { label: "Aug", y: 2 },
-                                    { label: "Sep", y: 2 },
-                                    { label: "Oct", y: 3 },
-                                    { label: "Nov", y: 4 },
-                                    { label: "Dec", y: 5 }
-                                ],
-                            }
-                        ],
-                        axisY: {
-                            prefix: "VNĐ ",
-                            suffix: "Tr"
+
+        <div class="info-card">
+            <div class="card shadow border-0">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row" style="height: 40px;">
+                        <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">New
+                                projects</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                <i class="bi bi-people"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm d-flex flex-column">
+                        <span class="h3 font-bold mb-0">215</span>
+                        <span class="badge badge-pill bg-soft-success text-success me-2">
+                            <i class="bi bi-arrow-up me-1"></i>30%
+                        </span>
+                        <span class="text-xs text-muted">Since last month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card shadow border-0">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row" style="height: 40px;">
+                        <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work
+                                load</span> </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                <i class="bi bi-minecart-loaded"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm d-flex flex-column">
+                        <span class="h3 font-bold mb-0">95%</span> <span
+                            class="badge badge-pill bg-soft-success text-success me-2"> <i
+                                class="bi bi-arrow-up me-1"></i>10% </span> <span class="text-xs text-muted">Since
+                            last month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card shadow border-0">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row" style="height: 40px;">
+                        <div class="col"> <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                <i class="bi bi-credit-card"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm d-flex flex-column">
+                        <span class="h3 font-bold mb-0">$750.90</span> <span
+                            class="badge badge-pill bg-soft-success text-success me-2"> <i
+                                class="bi bi-arrow-up me-1"></i>13% </span> <span class="text-xs text-muted">Since
+                            last month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-5 gap-2 p-3">
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </script>
+        <script type="text/javascript">
+            window.onload = function () {
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    title: {
+                        text: "Income in this year"
+                    },
+                    data: [
+                        {
+                            theme: "light2",
+                            type: "line",
+                            dataPoints: [
+                                { label: "Jan", y: 1 },
+                                { label: "Feb", y: 2 },
+                                { label: "Mar", y: 2 },
+                                { label: "Apr", y: 2 },
+                                { label: "May", y: 2 },
+                                { label: "Jun", y: 2 },
+                                { label: "Jul", y: 2 },
+                                { label: "Aug", y: 2 },
+                                { label: "Sep", y: 2 },
+                                { label: "Oct", y: 3 },
+                                { label: "Nov", y: 4 },
+                                { label: "Dec", y: 5 }
+                            ],
                         }
+                    ],
+                    axisY: {
+                        prefix: "VNĐ ",
+                        suffix: "Tr"
+                    }
 
-                    });
-                    chart.render();
-                }
-                console.log(income);
-            </script>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-        </div>
+                });
+                chart.render();
+            }
+            console.log(income);
+        </script>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
     </div>
 
 
