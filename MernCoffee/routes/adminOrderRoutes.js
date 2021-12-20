@@ -7,7 +7,7 @@ const hasLogin = auth.hasLogin;
 
 const router = express.Router();
 const billController = require('../component/bill/billController');
-
+const Bill = require('../models/billModel');
 router.get('/', isEmployee, billController.getAllBillUncompleted);
 
 router.get('/:id', isEmployee, billController.getBillByEmployee);
