@@ -33,7 +33,13 @@ const billSchema = mongoose.Schema({
         type: Number,
         default: 20000
     },
+    promoValue: {
+        type: Number
+    },
     products: [],
+    subtotal: {
+        type: Number,
+    },
     total: {
         type: Number
     }
