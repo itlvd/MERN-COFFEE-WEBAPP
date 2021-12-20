@@ -273,7 +273,7 @@
                             <div class="title">
                                 <div class="row">
                                     <div class="col">
-                                        <h4><b>Giỏ hàng</b></h4>
+                                        <h4><b>Cart</b></h4>
                                     </div>
 
                                     <div class="col align-self-center text-right text-muted">
@@ -312,7 +312,7 @@
 
                                     <% }); %>
                                         <div class="back-to-shop"><a href="/products">&leftarrow;<span
-                                                            class="text-muted">Trở về</span></a></div>
+                                                            class="text-muted">Back</span></a></div>
                         </div>
 
                         <form method="post" action="/cart/buynow">
@@ -322,16 +322,16 @@
                                         <div class="row">
                                             <div class="col-lg-8">
                                                 <div class="row px-2">
-                                                    <div class="form-group col-md-6"> <label class="form-control-label">Họ tên</label>
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Name</label>
                                                         <input type="text" id="cname" name="name" placeholder="Nguyen Van A" value="<%=user.name%>" required>
                                                     </div>
-                                                    <div class="form-group col-md-6"> <label class="form-control-label">Số điện thoại
-                                                                Number</label>
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Phone Number
+                                                                </label>
                                                         <input type="text" id="cphone" name="phone" placeholder="0123 456 789" value="<%=user.phone%>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row px-2">
-                                                    <div class="form-group col-md-6"> <label class="form-control-label">Địa chỉ</label>
+                                                    <div class="form-group col-md-6"> <label class="form-control-label">Address</label>
                                                         <input type="text" id="addr" name="address" placeholder="227 Nguyen Van Cu, P4, Q5, TPHCM" value="<%=user.address%>" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
@@ -342,30 +342,30 @@
                                             </div>
                                             <div class="col-lg-4 mt-2">
                                                 <div class="row d-flex justify-content-between px-4">
-                                                    <p class="mb-1 text-left">Thành tiền</p>
+                                                    <p class="mb-1 text-left">Subtotal</p>
                                                     <h6 class="mb-1 text-right">
                                                         <%=subtotal%> VND
                                                     </h6>
                                                 </div>
                                                 <div class="row d-flex justify-content-between px-4">
-                                                    <p class="mb-1 text-left">Giảm giá</p>
+                                                    <p class="mb-1 text-left">Promotion</p>
                                                     <h6 class="mb-1 text-right">
                                                         <%=promoValue%> VND
                                                     </h6>
                                                 </div>
                                                 <div class="row d-flex justify-content-between px-4">
-                                                    <p class="mb-1 text-left">Phí giao hàng</p>
+                                                    <p class="mb-1 text-left">Fee Ship</p>
                                                     <h6 class="mb-1 text-right">
                                                         <%=ship%> VND
                                                     </h6>
                                                 </div>
                                                 <div class="row d-flex justify-content-between px-4" id="tax">
-                                                    <p class="mb-1 text-left">Tổng tiền (đã bao gồm VAT)</p>
+                                                    <p class="mb-1 text-left">Total (include VAT)</p>
                                                     <h6 class="mb-1 text-right">
                                                         <%=total%> VND
                                                     </h6>
                                                 </div> <button class="btn-block btn-blue"> <span> <span
-                                                                id="checkout">Xác nhận</span>
+                                                                id="checkout">Confirm</span>
                                                             <span id="check-amt">
                                                                 <%=total%> VND
                                                             </span> </span> </button>
@@ -383,9 +383,9 @@
                                         <div class="row">
                                             <div class="col-lg-8">
                                                 <div class="row px-2">
-                                                    <label for="fname">Code:</label><br>
+                                                    <label for="fname">Promotion code:</label><br>
                                                     <input type="text" id="code" name="code"><br>
-                                                    <button class="btn-block btn-blue"> <span> <span id="code">Áp dụng</span> </button>
+                                                    <button class="btn-block btn-blue"> <span> <span id="code">Apply</span> </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -396,7 +396,7 @@
                         </form>
 
                         <% } else {%>
-                            <h3 class="text-center">Giỏ hàng đang trống.</h3>
+                            <h3 class="text-center">Empty cart.</h3>
                             <% } %>
             </div>
         </div>
