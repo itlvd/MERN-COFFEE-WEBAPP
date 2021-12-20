@@ -1,8 +1,8 @@
 <%- include('../_layouts/adminheader_test') %>
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
         .table tr {
@@ -27,6 +27,7 @@
     <h2 class="page-title d-flex flex-column ">
         Order
         Management Area
+
     </h2>
     <hr class="hline">
 
@@ -61,7 +62,7 @@
                                             <%=bill.name%>
                                         </td>
                                         <td>
-                                            <%=bill.total + bill.ship%>
+                                            <%=bill.total%>
                                         </td>
                                         <td> <a class="btn btn-success btn" href="/admin/orders/<%=bill._id%>/completed"
                                                 role="button">Done

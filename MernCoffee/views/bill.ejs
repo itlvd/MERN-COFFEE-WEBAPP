@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Hoá đơn</title>
+    <title>Invoice</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
 
     <link href='' rel='stylesheet'>
@@ -48,7 +48,7 @@
         <div id="ui-view" data-select2-id="ui-view">
             <div>
                 <div class="card">
-                    <div class="card-header">Hoá đơn
+                    <div class="card-header">Invoid
                         <strong>#Invoid-<%= billid %></strong>
                         <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
                             <i class="fa fa-print"></i> Print</a>
@@ -57,17 +57,17 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-sm-4">
-                                <h6 class="mb-3">Từ:</h6>
+                                <h6 class="mb-3">From:</h6>
                                 <div>
                                     <strong>Mern Coffee</strong>
                                 </div>
-                                <div>227 Đ. Nguyễn Văn Cừ</div>
-                                <div>Phường 4, Quận 5, Thành phố Hồ Chí Minh</div>
+                                <div>227 Đ. Nguyen Van Cu</div>
+                                <div>Phuong 4, Quan 5, Thanh pho Ho Chi Minh</div>
                                 <div>Email: sale@merncoffee.com</div>
                                 <div>Phone: +84 122 3456789</div>
                             </div>
                             <div class="col-sm-4">
-                                <h6 class="mb-3">Đến:</h6>
+                                <h6 class="mb-3">To:</h6>
                                 <div>
                                     <strong><%= name %></strong>
                                 </div>
@@ -82,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <h6 class="mb-3">Chi tiết:</h6>
-                                <div>Mã hoá đơn
+                                <h6 class="mb-3">Detail:</h6>
+                                <div>Invoice ID
                                     <strong>#Invoid-<%= billid %></strong>
                                 </div>
                             </div>
@@ -93,11 +93,11 @@
                                 <thead>
                                     <tr>
                                         <th class="center">#</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Danh mục</th>
-                                        <th class="center">Số lượng</th>
-                                        <th class="right">Giá tiền</th>
-                                        <th class="right">Thành tiền</th>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th class="center">Quantily</th>
+                                        <th class="right">Price</th>
+                                        <th class="right">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,34 +129,34 @@
                             </table>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-sm-5">Cảm ơn quý khách đã đặt món tại website. Sự hài lòng của quý khách là niềm tự hào và vinh hạnh của chúng tôi. Chúng tôi rất mong được phục vụ quý khách ở những lần gọi món tiếp theo.</div>
+                            <div class="col-lg-4 col-sm-5">Thank you so much.</div>
                             <div class="col-lg-4 col-sm-5 ml-auto">
                                 <table class="table table-clear">
                                     <tbody>
                                         <tr>
                                             <td class="left">
-                                                <strong>Số tiền</strong>
+                                                <strong>Subtotal</strong>
                                             </td>
                                             <td class="right">
                                                 <%= subtotal %> VND</td>
                                         </tr>
                                         <tr>
                                             <td class="left">
-                                                <strong>Khuyến mãi:</strong>
+                                                <strong>Promotion:</strong>
                                             </td>
                                             <td class="right">
                                                 <%=promoValue %> VND</td>
                                         </tr>
                                         <tr>
                                             <td class="left">
-                                                <strong>Phí giao hàng</strong>
+                                                <strong>Fee Ship</strong>
                                             </td>
                                             <td class="right">
                                                 <%=ship %> VND</td>
                                         </tr>
                                         <tr>
                                             <td class="left">
-                                                <strong>Tổng cộng</strong>
+                                                <strong>Total</strong>
                                             </td>
                                             <td class="right">
                                                 <strong><%= total%> VND</strong>
@@ -165,7 +165,7 @@
                                     </tbody>
                                 </table>
                                 <a class="btn btn-success" href="/products" data-abc="true">
-                                    <i class="fa fa-usd"></i> Tiếp tục mua hàng</a>
+                                    <i class="fa fa-usd"></i> Keep Buying</a>
                             </div>
                         </div>
                     </div>

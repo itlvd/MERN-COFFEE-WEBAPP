@@ -1,0 +1,77 @@
+<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/themes/bootstrap-table/bootstrap-table.min.css">
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/themes/bootstrap-table/bootstrap-table.min.js"></script> -->
+<%- include("_layouts/header.ejs") %>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/themes/bootstrap-table/bootstrap-table.min.css">
+    <h2 style="margin-top: 70px; margin-left: 50px;">Billing History</h2>
+    <div style="padding: 30px;">
+        <table data-toggle="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bills.forEach(function(bill){ %>
+
+                    <tr>
+
+                        <td>
+                            <%=bill.createdAt.toISOString().substring(0, 10);%>
+
+                        </td>
+
+                        <td>
+                            <%if(bill.products.length > 1){%>
+
+                                <%=bill.products[0].title%> ...and
+                                    <%=bill.products.length - 1%> other products
+
+                                        <%} else{%>
+
+                                            <%=bill.products[0].title%>
+
+                                                <%}%>
+                        </td>
+
+                        <td>
+                            <%=bill.total%>
+                        </td>
+                        <td>
+                            <%=bill.status%>
+                        </td>
+                        <td>
+                            <a href="/bills/<%=bill._id%>"><button type="button" class="btn btn-warning">View</button></a>
+                        </td>
+                    </tr>
+
+                    <%})%>
+            </tbody>
+        </table>
+    </div>
+
+    <%var pre=Number(page) - 1%>
+        <%var next=Number(page) + 1%>
+            <%if (pre> 0 && next <= totalPage){%>
+                <a href="/bills?page=<%=pre%>" class="previous round">&#8249;</a>
+                <%=page%>
+                    <a href="/bills?page=<%=next%>" class="next round">&#8250;</a>
+                    <%} else if (pre==0 && totalPage !=0 && totalPage !=1) {%>
+                        &#8249;
+                        <%=page%>
+                            <a href="/bills?page=<%=next%>" class="next round">&#8250;</a>
+                            <%} else if (next> totalPage && totalPage != 0 && totalPage != 1) {%>
+                                <a href="/bills?page=<%=pre%>" class="previous round">&#8249;</a>
+                                <%=page%>
+                                    &#8250;
+                                    <%}%>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+                                        <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+                                        <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/themes/bootstrap-table/bootstrap-table.min.js"></script>
+                                        <%- include("_layouts/footer.ejs") %>
+                                            </div>

@@ -8,9 +8,6 @@ var isAdmin = auth.isAdmin;
 var isUser = auth.isUser;
 var hasLogin = auth.hasLogin;
 
-const Promotion = require('../models/promotionModel');
-const User = require('../models/userModel');
-const Product = require('../models/productModel');
 // const News = require('../models/newsModel');
 
 
@@ -53,6 +50,7 @@ router.post('/apply/', async (req, res) => {
         total: total,
     });
 });
+
 
 // Exports
 module.exports = router;

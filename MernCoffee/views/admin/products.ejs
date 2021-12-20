@@ -44,7 +44,12 @@
                                             height:200px;
                                             border: solid 1px #CCC">
                                 <% } else {%>
-                                    <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>"
+                                    <!-- <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>"
+                                        style="object-fit:contain;
+                                            width:200px;
+                                            height:200px;
+                                            border: solid 1px #CCC"> -->
+                                    <img id="noimage" src="<%= product.image %>"
                                         style="object-fit:contain;
                                             width:200px;
                                             height:200px;

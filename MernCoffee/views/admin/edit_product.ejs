@@ -5,6 +5,7 @@
     <a href="/admin/products" class="btn2 btn-primary btn-lg">Back to all products</a>
     <br><br>
 
+
     <form method="post" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -40,15 +41,9 @@
             <label for="">Current Image</label>
             <p>
                 <% if (image=="" ) { %>
-                    <img id="noimage" src="/images/noimage.png" alt="" style="object-fit:contain;
-                                            width:200px;
-                                            height:200px;
-                                            border: solid 1px #CCC">
+                    <img id="noimage" src="/images/noimage.png" alt="">
                     <% } else {%>
-                        <img id="noimage" src="/product_images/<%= id %>/<%= image %>" alt="" style="object-fit:contain;
-                        width:200px;
-                        height:200px;
-                        border: solid 1px #CCC">
+                        <img id="noimage" src="<%= image %>" alt="">
                         <% } %>
             </p>
         </div>
@@ -59,35 +54,12 @@
             <img src="#" id="imgPreview" alt="">
         </div>
 
-        <input type="hidden" name="pimage" value="<%= image %>">
+        <input type="hidden" name="image" value="<%= image %>">
         <button class="btn2 btn-default">Submit</button>
     </form>
 
-    <hr>
-    <h3 class="page-header">Gallery</h3>
 
-    <ul class="gallery">
-        <% galleryImages.forEach(function(image){ %>
-            <% if (image !="thumbs" ) { %>
-                <li>
-                    <img src="/product_images/<%= id %>/gallery/thumbs/<%= image %>" alt="" style="object-fit:contain;
-                    width:200px;
-                    height:200px;
-                    border: solid 1px #CCC">&nbsp;
-                    <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>?id=<%= id %>">delete</a>
-                </li>
-                <% } %>
-                    <% }); %>
-    </ul>
 
-    <br><br>
-    <form action="/admin/products/product-gallery/<%= id %>" method="post" enctype="multipart/form-data"
-        class="dropzone" id="dropzoneForm">
-        <div class="fallback">
-            <input type="file" name="file" multiple>
-            <input type="submit" value="Upload">
-        </div>
-    </form>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/basic.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.css" />

@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema({
     type: String,
     default: ''
   },
+  quantity: {
+    type: Number,
+    default: 0
+  },
   cart: [
     {
       product: {
