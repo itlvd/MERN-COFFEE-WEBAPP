@@ -97,7 +97,7 @@ exports.postAddProduct = (req, res) => {
       } else {
           const newProduct = await productService.createNewProduct(pro);  
           let newLink;
-          await cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/product/${pro._id}/${files.file.newFilename}`,width: 400, height: 400, crop: "scale", fetch_format: "jpg"}, function(error, result) {
+          await cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/product/${pro._id}/${files.image.newFilename}`,width: 400, height: 400, crop: "scale", fetch_format: "jpg"}, function(error, result) {
               //await productService.updateImage(result.url, newPromo._id);
              newLink = result.url;
           
