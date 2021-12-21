@@ -1,65 +1,66 @@
-<%- include('../_layouts/adminheader') %>
+<%- include('../_layouts/adminheader_test') %>
 
-<h2 class="page-title">Add a promotion</h2>
-<a href="/admin/promotions" class="btn btn-primary">Back to all promotions</a>
-<br><br>
+    <h2 class="page-title">Add a promotion</h2>
+    <hr class="hline">
+    <a href="/admin/promotions" class="btn2 btn-primary btn-lg">Back to all promotions</a>
+    <br><br>
 
-<form method="post" action="/admin/promotions/add-promotion" enctype="multipart/form-data">
-    
-    <div class="form-group">
-        <label for="">Title</label>
-        <input type="text" class="form-control" name="title" value="" placeholder="Title">
-    </div>
-    
-    <div class="form-group">
-        <label for="">Code</label>
-        <input type="text" class="form-control" name="code" value="" placeholder="Code">
-    </div>
-    
-    
-    
-    <div class="form-group">
-        <label for="">Discount Value</label>
-        <input type="text" class="form-control" name="value" value="" placeholder="Value">
-    </div>
+    <form method="post" action="/admin/promotions/add-promotion" enctype="multipart/form-data">
 
-    <div class="form-group">
-        <label for="">Quantity</label>
-        <input type="text" class="form-control" name="quantity" value="" placeholder="Quantity">
-    </div>
+        <div class="form-group">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" value="" placeholder="Title">
+        </div>
 
-    <div class="form-group">
-        <label for="">Expire Date</label>
-        <input type="date" class="form-control" name="expiryDate" value="" placeholder="Quantity">
-    </div>
-    
-    <div class="form-group">
-        <label for="">Image</label>
-        <input type="file" class="form-control" name="image" id="img">
-        <img src="#" id="imgPreview" alt="">
-    </div>
-    
-    <button class="btn btn-default">Submit</button>
-</form>
+        <div class="form-group">
+            <label for="">Code</label>
+            <input type="text" class="form-control" name="code" value="" placeholder="Code">
+        </div>
 
-<script>
-    
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+
+
+        <div class="form-group">
+            <label for="">Discount Value</label>
+            <input type="text" class="form-control" name="value" value="" placeholder="Value">
+        </div>
+
+        <div class="form-group">
+            <label for="">Quantity</label>
+            <input type="text" class="form-control" name="quantity" value="" placeholder="Quantity">
+        </div>
+
+        <div class="form-group">
+            <label for="">Expire Date</label>
+            <input type="date" class="form-control" name="expiryDate" value="" placeholder="Quantity">
+        </div>
+
+        <div class="form-group">
+            <label for="">Image</label>
+            <input type="file" class="form-control" name="image" id="img">
+            <img src="#" id="imgPreview" alt="">
+        </div>
+
+        <button class="btn2 btn-default">Submit</button>
+    </form>
+
+    <script>
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
-            
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-    
-    $("#img").change(function() {
-        readURL(this);
-    });
-    
-</script>
 
-<%- include('../_layouts/adminfooter') %>
+        $("#img").change(function () {
+            readURL(this);
+        });
+
+    </script>
+
+    <%- include('../_layouts/adminfooter') %>

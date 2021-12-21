@@ -5,16 +5,24 @@ const promotionService = require('./promotionService');
 
 
 // config cloudinary
-cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME, 
-    api_key: process.env.API_KEY, 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
     // secure: true
 });
 
+exports.getAllPromotionsCustomer = async (req, res) => {
+    const { count, promos } = await promotionService.getPromotions();
+    res.render("news_promotion", {
+        title: "Customer Promotion",
+        count: count,
+        promotions: promos,
+    })
+};
 
-exports.getAllPromotions =  async (req, res) => {
-    const {count, promos} = await promotionService.getPromotions();
+exports.getAllPromotions = async (req, res) => {
+    const { count, promos } = await promotionService.getPromotions();
     res.render("admin/news_promo", {
         title: "Admin Promotion",
         count: count,
@@ -32,24 +40,24 @@ exports.add_promotion = (req, res) => {
 exports.postAddPromotion = (req, res) => {
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {
-        var pro = fields;      
+        var pro = fields;
         pro.slug = pro.slug + "";
         pro["slug"] = pro.title.replace(/\s+/g, '-').toLowerCase();
-        
+
         const promo = await promotionService.findPromoWithSlug(pro.slug);
         if (promo) {
             //req.flash('danger', 'Promotion title exists, choose another.');
             res.redirect('/admin/add-promotions');
         } else {
             const newPromo = await promotionService.createNewPromotion(pro);
-    
+
             let newLink;
-            await cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/propotion/${pro._id}/${newPromo.code}`,width: 479, height: 340, crop: "scale", fetch_format: "jpg"}, function(error, result) {
+            await cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/propotion/${pro._id}/${newPromo.code}`, width: 479, height: 340, crop: "scale", fetch_format: "jpg" }, function (error, result) {
                 //await promotionService.updateImage(result.url, newPromo._id);
-               newLink = result.url;
-            
+                newLink = result.url;
+
             });
-            
+
             await promotionService.updateImage(newLink, newPromo._id);
             res.redirect('/admin/promotions');
         }

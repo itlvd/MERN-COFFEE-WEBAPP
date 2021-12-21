@@ -175,7 +175,6 @@ body {
     cursor: pointer
 }
 
-
 .cardchildchild .profile1 {
     position: absolute;
     border-radius: 50%;
@@ -183,7 +182,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    right: 120px
+    right: 120px;
+    
 }
 
 .name {
@@ -262,7 +262,7 @@ body {
 .table {
     border: 1px solid #181818;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin-top: 30px;
     margin-left: 50px;
     margin-bottom: 50px;
@@ -286,6 +286,10 @@ td {
 
 .content{
     margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
 }
 
 .info-card{
@@ -320,11 +324,6 @@ td {
     display: flex;
     flex-direction: column;
 }
-.content{
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-}
 
 .info-card-container{
     display: flex;
@@ -342,7 +341,6 @@ td {
 .shown{
     display: block !important;
 }
-
 
 @media (max-width: 739px){
     .main{
