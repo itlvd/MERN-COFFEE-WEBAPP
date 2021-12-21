@@ -1,49 +1,74 @@
-<%- include('../_layouts/adminheader_test') %>
+<%- include('../_layouts/adminheader') %>
+
+    <style>
+        .table tr {
+            cursor: pointer;
+        }
+
+        .main-section {
+            margin-top: 120px;
+        }
+
+        .hiddenRow {
+            padding: 0 4px !important;
+            background-color: #eeeeee;
+            font-size: 13px;
+        }
+
+        .accordian-body span {
+            color: #a2a2a2 !important;
+        }
+    </style>
 
     <h2 class="page-title d-flex flex-column ">
         Employee
         Management Area
     </h2>
     <hr class="hline">
-    <a href="/admin/employee/add-employee" class="btn2 btn-primary btn-lg">Add a new
-        employee</a>
+    <a href="/admin/employee/add-employee" class="btn2 btn-primary btn-lg">Add a new employee</a>
     <br><br>
 
     <% if (count> 0) { %>
-        <table class="table table-striped alignmiddle">
-            <thead>
-                <tr class="home">
-                    <th>Serial</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% employees.forEach(function(employee){ %>
-                    <tr>
-                        <td>
-                            <%= employee_count++ %>
-                        </td>
-                        <td>
-                            <%= employee.name %>
-                        </td>
-                        <td>
-                            <%= employee.username %>
-                        </td>
-                        <td>
-                            <%= employee.role %>
-                        </td>
-                        <!-- <td><a href="/admin/employee/edit-employee/<%= employee._id %>">Edit</a></td> -->
-                        <td><a class="confirmDeletion"
-                                href="/admin/employee/delete-employee/<%= employee._id %>">Delete</a></td>
-                    </tr>
-                    <% }); %>
-            </tbody>
-        </table>
-        <% } else {%>
-            <h3 class="text-center">There are no employee.</h3>
-            <% }%>
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-striped" style="border-collapse:collapse; align-content: center;">
+                        <thead>
+                            <tr class="home">
+                                <th>Serial</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% employees.forEach(function(employee){ %>
+                                <tr>
+                                    <td>
+                                        <%= employee_count++ %>
+                                    </td>
+                                    <td>
+                                        <%= employee.name %>
+                                    </td>
+                                    <td>
+                                        <%= employee.username %>
+                                    </td>
+                                    <td>
+                                        <%= employee.role %>
+                                    </td>
+                                    <!-- <td><a href="/admin/employee/edit-employee/<%= employee._id %>">Edit</a></td> -->
+                                    <td><a class="confirmDeletion"
+                                            href="/admin/employee/delete-employee/<%= employee._id %>">Delete</a></td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                    <% } else {%>
+                        <h3 class="text-center">There are no employee.</h3>
+                        <% }%>
+                </div>
+            </div>
+        </div>
 
-                <%- include('../_layouts/adminfooter') %>
+        <%- include('../_layouts/adminfooter') %>
