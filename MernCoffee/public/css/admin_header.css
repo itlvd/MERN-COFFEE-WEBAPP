@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(250, 249, 214);
+    background-color: #FFFFFF;
     margin-top: 0px;
     justify-content: center;
 }
@@ -226,14 +226,14 @@ body {
 
 .btn2 {
     height: 35px;
-    width: 160px;
+    width: 180px;
     border: none;
     background-color: #c72b2b;
     cursor: pointer;
     color: #fff;
     font-weight: 500;
-    font-size: 16px;
-    border-radius: 0px;
+    font-size: 14px;
+    border-radius: 5px;
     left: 100px;
 }
 
