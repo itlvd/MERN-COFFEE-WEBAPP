@@ -18,16 +18,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
 </head>
+
 <body>
 
     <hr>
     <div class="container bootstrap snippet">
         <div class="row">
-              <div class="col-sm-10"><h1>Profile</h1></div>
+            <div class="col-sm-10">
+                <h1>Profile</h1>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-3"><!--left col-->
+            <div class="col-sm-3">
+                <!--left col-->
 
                 <div class="text-center">
                     <!-- <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -37,67 +42,70 @@
 
                     <form action="/me/update_avt/<%= user._id %>" method="post" enctype="multipart/form-data">
                         <img id="avtimage" src="<%= user.image %>" class="avatar img-circle img-thumbnail" alt="avatar">
-                        <h6>Hi <%= user.username %>, let update avatar</h6>
-                
-                        <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose file</label>                                             
+                        <h6>Hi
+                            <%= user.username %>, let update avatar</h6>
+
+                        <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose file</label>
                         <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file" style="display:none;">
                         <button id="updatebtn" class="btn-sm btn-success" type="submit">Update</button>
-                        
+
                     </form>
-                </div></hr><br>
-    
+                </div>
+                </hr><br>
+
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
                     <li class="list-group-item text-right"><span class="pull-left"><a href="/cart"><strong> Cart</strong></a></span> 2</li>
                     <li class="list-group-item text-right"><span class="pull-left"><a href="/checkout"><strong> Checkout</strong></a></span> 2</li>
                     <li class="list-group-item text-right"><span class="pull-left"><a href="/bills"><strong> History Bill</strong></a></span> 2</li>
-                </ul> 
+                </ul>
 
-            </div><!--/col-3-->
+            </div>
+            <!--/col-3-->
             <div class="col-sm-9">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
-                </ul>  
+                </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">                    
+                    <div class="tab-pane active" id="home">
                         <form class="form" action="/me" method="post" id="registrationForm">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Name</h4></label>
                                     <input type="text" class="form-control" name="name" id="first_name" value="<%=user.name %>" placeholder="Name" title="enter your name." required>
                                 </div>
-                            </div>              
-                            <div class="form-group">                                
+                            </div>
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="phone"><h4>Phone</h4></label>
                                     <input type="text" class="form-control" name="phone" id="phone" value="<%=user.phone %>" placeholder="enter phone" title="enter your phone number if any." required>
                                 </div>
-                            </div>           
-                            <div class="form-group">                                
+                            </div>
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="email"><h4>Email</h4></label>
                                     <input type="email" class="form-control" name="email" id="email" value="<%=user.email %>" placeholder="you@email.com" title="enter your email." required>
                                 </div>
                             </div>
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="location"><h4>Location</h4></label>
                                     <input type="text" class="form-control" name="address" id="location" value="<%=user.address %>" placeholder="somewhere" title="enter your address" required>
                                 </div>
                             </div>
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Username</h4></label>
                                     <input type="text" class="form-control" name="username" id="user_name" value="<%=user.username %>" placeholder="Userame" title="enter your username." required>
                                 </div>
                             </div>
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="password"><h4>Password</h4></label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password." required>
                                 </div>
                             </div>
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="password2"><h4>Confirm Password</h4></label>
                                     <input type="password" class="form-control" name="password2" id="password2" placeholder="password confirm" title="enter your password2." onkeyup='check_pass2();' required>
@@ -106,73 +114,80 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <br>
-                                    <div style="color: red;"><%= mess%></div>
-                                    <div><span id="message" class="alert alert-warning" role="alert" style="display: none;"></span></div>  
+                                    <div style="color: red;">
+                                        <%= mess%>
+                                    </div>
+                                    <div><span id="message" class="alert alert-warning" role="alert" style="display: none;"></span></div>
                                     <button class="btn btn-lg btn-success" type="submit" id="submit" disabled><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                     <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                     
+
                                 </div>
-                                                          
-                                  
+
+
                             </div>
                             <% var userPass = user.password; %>
-                            <script>
-                                // var userPassword = <%= userPass %>;
-                                // console.log([user]);
-                                // function check_pass() {
-                                //     if (document.getElementById('password').value != userPassword) {                                        
-                                //         document.getElementById('message').innerHTML = 'Wrong password';
-                                //         document.getElementById('message').style.display = 'block';
-                                //     } else {
-                                //         console.log(document.getElementById('message').innerText)
-                                //         document.getElementById('message').innerHTML = '';
-                                //         document.getElementById('message').style.display = 'none';                                  
-                                //     }
-                                // };
-                                function check_pass2() {
-                                    if (document.getElementById('password').value ==
+                                <script>
+                                    // var userPassword = <%= userPass %>;
+                                    // console.log([user]);
+                                    // function check_pass() {
+                                    //     if (document.getElementById('password').value != userPassword) {                                        
+                                    //         document.getElementById('message').innerHTML = 'Wrong password';
+                                    //         document.getElementById('message').style.display = 'block';
+                                    //     } else {
+                                    //         console.log(document.getElementById('message').innerText)
+                                    //         document.getElementById('message').innerHTML = '';
+                                    //         document.getElementById('message').style.display = 'none';                                  
+                                    //     }
+                                    // };
+                                    function check_pass2() {
+                                        if (document.getElementById('password').value ==
                                             document.getElementById('password2').value) {
-                                        console.log("pass2: " + document.getElementById('password2').value);
-                                        document.getElementById('message').style.display = 'none';
-                                        document.getElementById('submit').disabled = false;
-                                       
-                                    } else {
-                                        document.getElementById('submit').disabled = true;
-                                        console.log("pass correct: " + document.getElementById('password2').value);
-                                        
-                                        document.getElementById('message').innerHTML = 'Wrong confirm password';
-                                        document.getElementById('message').style.display = 'block';
-                                    }
-                                }
-                            </script>
-                        </form>                 
-                    </div><!--/tab-pane-->
+                                            console.log("pass2: " + document.getElementById('password2').value);
+                                            document.getElementById('message').style.display = 'none';
+                                            document.getElementById('submit').disabled = false;
 
-                </div><!--/tab-pane-->
-            </div><!--/tab-content-->
-    
-        </div><!--/col-9-->
-    </div><!--/row-->
-                
+                                        } else {
+                                            document.getElementById('submit').disabled = true;
+                                            console.log("pass correct: " + document.getElementById('password2').value);
+
+                                            document.getElementById('message').innerHTML = 'Wrong confirm password';
+                                            document.getElementById('message').style.display = 'block';
+                                        }
+                                    }
+                                </script>
+                        </form>
+                    </div>
+                    <!--/tab-pane-->
+
+                </div>
+                <!--/tab-pane-->
+            </div>
+            <!--/tab-content-->
+
+        </div>
+        <!--/col-9-->
+    </div>
+    <!--/row-->
+
     <script>
-        $(document).ready(function() {    
+        $(document).ready(function() {
             var readURL = function(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
 
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         $('.avatar').attr('src', e.target.result);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
 
-            $(".file-upload").on('change', function(){
+            $(".file-upload").on('change', function() {
                 readURL(this);
             });
         });
     </script>
-        
+
 </body>
 
 
