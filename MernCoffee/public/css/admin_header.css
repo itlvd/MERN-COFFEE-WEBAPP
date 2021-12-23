@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #FFFFFF;
+    background-color: rgb(250, 249, 214);
     margin-top: 0px;
     justify-content: center;
 }
@@ -225,18 +225,15 @@ body {
 }
 
 .btn2 {
-    
     height: 35px;
-    width: 180px;
-    word-wrap: break-word;         /* All browsers since IE 5.5+ */
-    overflow-wrap: break-word;
+    width: 160px;
     border: none;
     background-color: #c72b2b;
     cursor: pointer;
     color: #fff;
     font-weight: 500;
-    font-size: 14px;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 0px;
     left: 100px;
 }
 

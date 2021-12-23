@@ -57,7 +57,10 @@ router.get('/', isAdmin, async function (req, res, next) {
         total += bill.total;
     }
 
-    monthlyIncome.push(total)
+    monthlyIncome.push({
+      label: monthNames[i],
+      y: total
+    })
   }
 
   test = [2, 3, 4, 5, 5, 4, 5, 6, 7, 7, 8, 10, 10];
