@@ -1,4 +1,4 @@
-<%- include('../_layouts/adminheader_test') %>
+<%- include('../_layouts/adminheader') %>
 
 
     <h2 class="page-title d-flex flex-column ">
@@ -6,6 +6,9 @@
         Management Area
     </h2>
     <hr class="hline">
+    <a href="/admin/categories//add-category" class="btn2 btn-primary btn-lg ">
+        Add a new category
+    </a>
 
 
     <div class="center">
@@ -45,9 +48,7 @@
                 <% }%>
 
 
-                    <a href="/admin/categories//add-category" class="btn2 btn-primary btn-lg ">
-                        Add a new category
-                    </a>
+
 
 
                     <%- include('../_layouts/adminfooter') %>

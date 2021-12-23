@@ -1,4 +1,4 @@
-<%- include('../_layouts/adminheader_test') %>
+<%- include('../_layouts/adminheader') %>
 
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -9,11 +9,13 @@
     Management Area
   </h2>
   <hr class=" hline" , style="width:100%">
-
+  <h3 class="page-title d-flex flex-column">
+    Total income this year: <%=total%> VND
+  </h3>
   <br><br>
 
 
-  <% var incomemonthly=test; %>
+  <% var incomemonthly=monthlyIncome; %>
 
     <head>
       <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
