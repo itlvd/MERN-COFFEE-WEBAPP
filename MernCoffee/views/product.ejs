@@ -37,7 +37,7 @@
         <% }); %>
         <div class="add-comment-form">
             <form action="/products/<%= p.category %>/<%= p.slug %>/comment" method="post">
-                <textarea class="comment-form" name="comment" placeholder="Write comment..."></textarea>
+                <textarea class="comment-form" name="comment" placeholder="Write comment..." required></textarea>
                 <input type="text" name="productid" value="<%= p._id %>" hidden>
                 <input type="text" name="productslug" value="<%= p.slug %>" hidden>
                 <input type="text" name="productcate" value="<%= p.category %>" hidden>

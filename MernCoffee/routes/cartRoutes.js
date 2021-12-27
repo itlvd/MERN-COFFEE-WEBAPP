@@ -28,3 +28,4 @@ router.post('/buynow', isUser, cartController.buynow);
 router.post('/apply/', cartController.applyPromotion);
 
 module.exports = router;
+    

@@ -26,17 +26,28 @@ exports.updateImage = async (req, res) => {
     
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {        
-       
-        if (user) {
-            
-            cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/users/${user._id}/${user.username}`,overwrite: true, width: 192, height: 192, crop: "scale", fetch_format: "jpg"})
-            
-            const newLink = "https://res.cloudinary.com/mernteam/image/upload/mern/users/" + user._id + "/" + user.username + ".jpg";
-            
-            userService.updateImage(newLink, id);
-            
+        if (files.image.originalFilename) {
+            if (user) {
+                
+                // cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/users/${user._id}/${user.username}`,overwrite: true, width: 192, height: 192, crop: "scale", fetch_format: "jpg"})
+                
+                // const newLink = "https://res.cloudinary.com/mernteam/image/upload/mern/users/" + user._id + "/" + user.username + ".jpg";
+                
+                // userService.updateImage(newLink, id);
+                
+                // res.redirect('/me');
+
+                let newLink;
+                await cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/users/${user._id}/${files.image.newFilename}`,overwrite: true, width: 192, height: 192, crop: "scale", fetch_format: "jpg"}, function(error, result) {
+                    //await productService.updateImage(result.url, newPromo._id);
+                newLink = result.url;            
+                });            
+                await userService.updateImage(newLink, id);            
+                res.redirect('/me');
+            } 
+        } else {
             res.redirect('/me');
-        }
+        }      
     })
 };
 
