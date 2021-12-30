@@ -1,12 +1,14 @@
 <!-- <%- include("_layouts/header.ejs") %> -->
 
 <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -43,10 +45,13 @@
                     <form action="/me/update_avt/<%= user._id %>" method="post" enctype="multipart/form-data">
                         <img id="avtimage" src="<%= user.image %>" class="avatar img-circle img-thumbnail" alt="avatar">
                         <h6>Hi
-                            <%= user.username %>, let update avatar</h6>
+                            <%= user.username %>, let update avatar
+                        </h6>
 
-                        <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose file</label>
-                        <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file" style="display:none;">
+                        <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose
+                            file</label>
+                        <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file"
+                            style="display:none;">
                         <button id="updatebtn" class="btn-sm btn-success" type="submit">Update</button>
 
                     </form>
@@ -55,9 +60,12 @@
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><a href="/cart"><strong> Cart</strong></a></span> 2</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><a href="/checkout"><strong> Checkout</strong></a></span> 2</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><a href="/bills"><strong> History Bill</strong></a></span> 2</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/cart"><strong>
+                                    Cart</strong></a></span> 2</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/checkout"><strong>
+                                    Checkout</strong></a></span> 2</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><a href="/bills"><strong> History
+                                    Bill</strong></a></span> 2</li>
                 </ul>
 
             </div>
@@ -71,44 +79,70 @@
                         <form class="form" action="/me" method="post" id="registrationForm">
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="first_name"><h4>Name</h4></label>
-                                    <input type="text" class="form-control" name="name" id="first_name" value="<%=user.name %>" placeholder="Name" title="enter your name." required>
+                                    <label for="first_name">
+                                        <h4>Name</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="name" id="first_name"
+                                        value="<%=user.name %>" placeholder="Name" title="enter your name." required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone" value="<%=user.phone %>" placeholder="enter phone" title="enter your phone number if any." required>
+                                    <label for="phone">
+                                        <h4>Phone (10 digits)</h4>
+                                    </label>
+                                    <input type="tel" class="form-control" name="phone" id="phone"
+                                        value="<%=user.phone %>" placeholder="0123 456 789" maxlength="10"
+                                        title="enter your phone number if any." required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email" value="<%=user.email %>" placeholder="you@email.com" title="enter your email." required>
+                                    <label for="email">
+                                        <h4>Email</h4>
+                                    </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        value="<%=user.email %>" placeholder="you@email.com" title="enter your email."
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="location"><h4>Location</h4></label>
-                                    <input type="text" class="form-control" name="address" id="location" value="<%=user.address %>" placeholder="somewhere" title="enter your address" required>
+                                    <label for="location">
+                                        <h4>Location</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="address" id="location"
+                                        value="<%=user.address %>" placeholder="somewhere" title="enter your address"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="first_name"><h4>Username</h4></label>
-                                    <input type="text" class="form-control" name="username" id="user_name" value="<%=user.username %>" placeholder="Userame" title="enter your username." required>
+                                    <label for="first_name">
+                                        <h4>Username</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="username" id="user_name"
+                                        value="<%=user.username %>" placeholder="Userame" title="enter your username."
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password." required>
+                                    <label for="password">
+                                        <h4>Password</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="password" title="enter your password." required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <label for="password2"><h4>Confirm Password</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password confirm" title="enter your password2." onkeyup='check_pass2();' required>
+                                    <label for="password2">
+                                        <h4>Confirm Password</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="password2" id="password2"
+                                        placeholder="password confirm" title="enter your password2."
+                                        onkeyup='check_pass2();' required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -117,15 +151,18 @@
                                     <div style="color: red;">
                                         <%= mess%>
                                     </div>
-                                    <div><span id="message" class="alert alert-warning" role="alert" style="display: none;"></span></div>
-                                    <button class="btn btn-lg btn-success" type="submit" id="submit" disabled><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                    <div><span id="message" class="alert alert-warning" role="alert"
+                                            style="display: none;"></span></div>
+                                    <button class="btn btn-lg btn-success" type="submit" id="submit" disabled><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
+                                        Reset</button>
 
                                 </div>
 
 
                             </div>
-                            <% var userPass = user.password; %>
+                            <% var userPass=user.password; %>
                                 <script>
                                     // var userPassword = <%= userPass %>;
                                     // console.log([user]);
@@ -170,19 +207,19 @@
     <!--/row-->
 
     <script>
-        $(document).ready(function() {
-            var readURL = function(input) {
+        $(document).ready(function () {
+            var readURL = function (input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
 
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         $('.avatar').attr('src', e.target.result);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
 
-            $(".file-upload").on('change', function() {
+            $(".file-upload").on('change', function () {
                 readURL(this);
             });
         });
