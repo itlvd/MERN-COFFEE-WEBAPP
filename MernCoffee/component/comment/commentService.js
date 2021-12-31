@@ -17,8 +17,10 @@ exports.getAllCommentOfProduct = async (productId) => {
 
     for(i=0;i<comments.length;i++){
         const user = await userService.findById(comments[i].userId);
-        comments[i].userName = user.username;
-        comments[i].userImage = user.image;
+        if (user) {
+            comments[i].userName = user.username;
+            comments[i].userImage = user.image;
+        }
     };
     return comments;
 }
