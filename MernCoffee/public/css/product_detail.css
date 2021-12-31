@@ -13,11 +13,18 @@
     display: flex;
     padding: 16px 0px;
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 10%);
+    max-width: 700px;
 }
 
 .img-container{
     padding: 0px 16px;
     max-width: 400px;
+    min-width: 300px;
+    flex: 1;
+}
+
+.content{
+    flex: 1;
 }
 
 .spi{
@@ -86,6 +93,10 @@
     color: gray;
 }
 
+.comment-desc{
+    word-wrap: break-word;
+}
+
 .add-comment-form{
     margin-top: 16px;
 }
@@ -114,6 +125,8 @@
 @media (max-width: 739px){
     .product-detail-card{
         flex-direction: column;
+        max-width: 600px;
+        align-items: center;
     }
     .product-detail-container{
         padding: 16px;
