@@ -116,6 +116,12 @@
     font-size: 16px;
 }
 
+.comment-desc {
+    word-wrap: break-word;
+}
+
+
+
 @media (max-width: 739px){
     .product-detail-card{
         flex-direction: column;
