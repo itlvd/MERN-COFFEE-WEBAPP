@@ -110,8 +110,11 @@ router.get('/login', hasLogin, function (req, res) {
         req.flash("danger", "You have already logged in");
     }
     //res.send("Loi ne");
+    var errorLogin = req.query.error;
+
     res.render('login', {
-        title: 'Log in'
+        title: 'Log in',
+        errorLogin: errorLogin,
     });
 
 });
@@ -131,7 +134,7 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local', {
         // successRedirect: '/',
         successRedirect: prev,
-        failureRedirect: '/users/login',
+        failureRedirect: '/users/login?error=username or password is wrong',
         failureFlash: true
     })(req, res, next);
     
