@@ -105,8 +105,9 @@
                         </div>
                     </div>
                     <div class="mt-2 mb-0 text-sm d-flex flex-column">
-                        <span class="h3 font-bold mb-0">4942080 VND</span> <span
-                            class="badge badge-pill bg-soft-success text-success me-2"> <i
+                        <span class="h3 font-bold mb-0">
+                            <%= total %> VND
+                        </span> <span class="badge badge-pill bg-soft-success text-success me-2"> <i
                                 class="bi bi-arrow-up me-1"></i>13% </span> <span class="text-xs text-muted">Since
                             last month</span>
                     </div>
@@ -114,49 +115,54 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center mt-5 gap-2 p-3">
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        </script>
-        <script type="text/javascript">
-            window.onload = function () {
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    title: {
-                        text: "Income in this year"
-                    },
-                    data: [
-                        {
-                            theme: "light2",
-                            type: "line",
-                            dataPoints: [
-                                { label: "Jan", y: 1 },
-                                { label: "Feb", y: 2 },
-                                { label: "Mar", y: 2 },
-                                { label: "Apr", y: 2 },
-                                { label: "May", y: 2 },
-                                { label: "Jun", y: 2 },
-                                { label: "Jul", y: 2 },
-                                { label: "Aug", y: 2 },
-                                { label: "Sep", y: 2 },
-                                { label: "Oct", y: 3 },
-                                { label: "Nov", y: 4 },
-                                { label: "Dec", y: 5 }
-                            ],
+    <% var incomemonthly=monthlyIncome; %>
+        <div class="d-flex justify-content-center mt-5 gap-2 p-3">
+
+
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            </script>
+            <script type="text/javascript">
+                var income = [<%= incomemonthly %>];
+                window.onload = function () {
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        title: {
+                            text: "Yearly income"
+                        },
+                        data: [
+                            {
+                                theme: "light",
+                                type: "line",
+                                dataPoints: [
+                                    { label: "Jan", y: income[0] },
+                                    { label: "Feb", y: income[1] },
+                                    { label: "Mar", y: income[2] },
+                                    { label: "Apr", y: income[3] },
+                                    { label: "May", y: income[4] },
+                                    { label: "Jun", y: income[5] },
+                                    { label: "Jul", y: income[6] },
+                                    { label: "Aug", y: income[7] },
+                                    { label: "Sep", y: income[8] },
+                                    { label: "Oct", y: income[9] },
+                                    { label: "Nov", y: income[10] },
+                                    { label: "Dec", y: income[11] }
+                                ],
+                            }
+                        ],
+                        axisY: {
+                            prefix: "VNĐ ",
+                            suffix: "K"
                         }
-                    ],
-                    axisY: {
-                        prefix: "VNĐ ",
-                        suffix: "Tr"
-                    }
 
-                });
-                chart.render();
-            }
-            console.log(income);
-        </script>
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-    </div>
+                    });
+                    chart.render();
+                }
+                console.log(income);
+            </script>
+
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
 
 
 
 
-    <%- include('../_layouts/adminfooter') %>
+        <%- include('../_layouts/adminfooter') %>
