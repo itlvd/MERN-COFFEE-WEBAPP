@@ -54,7 +54,7 @@
                                             <%=count%>
                                         </td>
                                         <td>
-                                            <%=bill.createdAt.getUTCDate() + '/' + bill.createdAt.getUTCMonth()+'/'+bill.createdAt.getFullYear() + ' ' + bill.createdAt.getHours() + ':' + bill.createdAt.getMinutes()%>
+                                            <%=bill.createdAt.getUTCDate() + '/' + (bill.createdAt.getUTCMonth()+1)+'/'+bill.createdAt.getFullYear() + ' ' + bill.createdAt.getHours() + ':' + bill.createdAt.getMinutes()%>
                                         </td>
                                         <td>
                                             <%=bill.name%>
