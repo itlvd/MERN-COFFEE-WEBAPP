@@ -8,25 +8,24 @@
         .table tr {
             cursor: pointer;
         }
-
+        
         .main-section {
             margin-top: 120px;
         }
-
+        
         .hiddenRow {
             padding: 0 4px !important;
             background-color: #eeeeee;
             font-size: 13px;
         }
-
+        
         .accordian-body span {
             color: #a2a2a2 !important;
         }
     </style>
 
     <h2 class="page-title d-flex flex-column ">
-        Order
-        Management Area
+        Order Management Area
 
     </h2>
     <hr class="hline">
@@ -40,23 +39,22 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Bill Code</th>
+                                <th>Date</th>
                                 <th>Customer Name</th>
                                 <th>Total</th>
-                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <% bill.forEach(function(bill){ %>
                                 <%count +=1%>
-                                    <tr colspan="6" data-toggle="collapse" data-target="#demo<%=count%>"
-                                        class="accordion-toggle">
+                                    <tr colspan="6" data-toggle="collapse" data-target="#demo<%=count%>" class="accordion-toggle">
                                         <td>
                                             <%=count%>
                                         </td>
                                         <td>
-                                            <%=bill._id%>
+                                            <%=bill.createdAt.getUTCDate() + '/' + bill.createdAt.getUTCMonth()+'/'+bill.createdAt.getFullYear() + ' ' + bill.createdAt.getHours() + ':' + bill.createdAt.getMinutes()%>
                                         </td>
                                         <td>
                                             <%=bill.name%>
@@ -64,8 +62,7 @@
                                         <td>
                                             <%=bill.total%>
                                         </td>
-                                        <td> <a class="btn btn-success btn" href="/admin/orders/<%=bill._id%>/completed"
-                                                role="button">Done
+                                        <td> <a class="btn btn-success btn" href="/admin/orders/<%=bill._id%>/completed" role="button">Done
                                             </a> </td>
                                     </tr>
                                     <tr class="p">
@@ -134,28 +131,26 @@
         <%var pre=Number(page) - 1%>
             <%var next=Number(page) + 1%>
                 <%if (pre> 0 && next <= totalPage){%>
-                        <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
-                        <%=page%>
-                            <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
-                            <%} else if (pre==0 && totalPage !=0 && totalPage !=1) {%>
-                                &#8249;
-                                <%=page%>
-                                    <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
-                                    <%} else if (next> totalPage && totalPage != 0 && totalPage != 1) {%>
-                                        <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
-                                        <%=page%>
-                                            &#8250;
-                                            <%}%>
-                                                <script>
-                                                    $('.accordion-toggle').click(function () {
-                                                        $('.hiddenRow').hide();
-                                                        $(this).next('tr').find('.hiddenRow').show();
-                                                    });
-                                                </script>
-                                                <script
-                                                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-                                                <script
-                                                    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+                    <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
+                    <%=page%>
+                        <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
+                        <%} else if (pre==0 && totalPage !=0 && totalPage !=1) {%>
+                            &#8249;
+                            <%=page%>
+                                <a href="/admin/orders?page=<%=next%>" class="next round">&#8250;</a>
+                                <%} else if (next> totalPage && totalPage != 0 && totalPage != 1) {%>
+                                    <a href="/admin/orders?page=<%=pre%>" class="previous round">&#8249;</a>
+                                    <%=page%>
+                                        &#8250;
+                                        <%}%>
+                                            <script>
+                                                $('.accordion-toggle').click(function() {
+                                                    $('.hiddenRow').hide();
+                                                    $(this).next('tr').find('.hiddenRow').show();
+                                                });
+                                            </script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
-                                                <%- include('../_layouts/adminfooter') %>
+                                            <%- include('../_layouts/adminfooter') %>
