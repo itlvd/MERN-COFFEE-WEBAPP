@@ -6,11 +6,13 @@ var isAdmin = auth.isAdmin;
 var isUser = auth.isUser;
 var hasLogin = auth.hasLogin;
 
+const Bill = require('../models/billModel');
+
 /**
  * get admin page index
  */
 //router.get('/', (req, res) => {
-router.get('/', isEmployee, (req, res) => {      
+router.get('/', isEmployee, async (req, res) => {      
     const bills = await Bill.find({ status: 'completed' });
     let allProducts = {};
 
@@ -61,7 +63,7 @@ router.get('/', isEmployee, (req, res) => {
 
     test = [2, 3, 4, 5, 5, 4, 5, 6, 7, 7, 8, 10, 10];
 
-    res.render('admin/income', {
+    res.render('admin/pages', {
         user: req.user,
         monthlyIncome: monthlyIncome,
     });
