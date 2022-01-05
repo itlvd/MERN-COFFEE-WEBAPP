@@ -92,8 +92,12 @@
                 <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
                 <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username" required></div>
                 <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+                <% if (errorLogin) { %>
+                    <div style="color:red"><%= errorLogin %></div>
+                <% } %>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button>
                 </div><a href="/users/register" class="signuplog">Don't have an account? Register!</a>
+                
             </form>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

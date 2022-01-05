@@ -103,7 +103,10 @@ router.post('/register', async (req, res) => {
  * GET login
  */
 router.get('/login', hasLogin, function (req, res) {
-
+    let error = req.query.error || undefined;
+    if (error) {
+        error = req.query.error;
+    }
     
     if (res.locals.user) {
         res.redirect('/');
@@ -114,7 +117,7 @@ router.get('/login', hasLogin, function (req, res) {
 
     res.render('login', {
         title: 'Log in',
-        errorLogin: errorLogin,
+        errorLogin: error,
     });
 
 });
