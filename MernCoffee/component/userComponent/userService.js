@@ -18,10 +18,7 @@ exports.findById = async (id) => {
 };
 
 exports.validPassword = async (password, user) => {
-    var res;
-
     return await bcrypt.compare(password, user.password);
-
 }
 
 exports.createUser = async (name, email, phone, address, username, password) => {
@@ -58,19 +55,7 @@ exports.updateImage = async (newLink, id) => {
 exports.updateUser = async (id, name, email, phone, address, username, password) => {
     //const passwordHashed = await bcrypt.hash(password, 10);
     var passwordHashed;
-    console.log('vo day roi');
 
-    const user = await userModel.findOne({_id: id});
-    if (user) {
-        res.status(400).json({
-            status: 'fail',
-            message: 'Username is exist'
-        })
-        console.log('loi');
-        return;
-    }
-    
-    console.log('ko loi')
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {
             passwordHashed = hash
@@ -86,3 +71,10 @@ exports.updateUser = async (id, name, email, phone, address, username, password)
     });
    
 }
+
+exports.findByEmail = async (email) => {
+    const user = await userModel.findOne({
+        email: email
+    }).lean();
+    return user;
+};

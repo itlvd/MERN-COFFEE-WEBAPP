@@ -61,11 +61,9 @@
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
                     <li class="list-group-item text-right"><span class="pull-left"><a href="/cart"><strong>
-                                    Cart</strong></a></span> 2</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><a href="/checkout"><strong>
-                                    Checkout</strong></a></span> 2</li>
+                                    Cart</strong></a></span></li>
                     <li class="list-group-item text-right"><span class="pull-left"><a href="/bills"><strong> History
-                                    Bill</strong></a></span> 2</li>
+                                    Bill</strong></a></span></li>
                 </ul>
 
             </div>
@@ -76,6 +74,10 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
+                        <hr>
+                        <% if (success) { %>
+                        <div style="color: green;"><%= success %></div>
+                        <% } %>
                         <form class="form" action="/me" method="post" id="registrationForm">
                             <div class="form-group">
                                 <div class="col-xs-6">
