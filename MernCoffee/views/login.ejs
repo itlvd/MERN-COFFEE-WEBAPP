@@ -89,12 +89,17 @@
             <form method="post" id="form-login" action="/users/login">
 
                 <h2 class="sr-only">Login Form</h2>
+                
                 <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+                <% if (success) { %>
+                    <div style="color:green"><%= success %></div>
+                <% } %>
                 <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username" required></div>
                 <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
-                <% if (errorLogin) { %>
-                    <div style="color:red"><%= errorLogin %></div>
+                <% if (error) { %>
+                    <div style="color:red"><%= error %></div>
                 <% } %>
+
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button>
                 </div><a href="/users/register" class="signuplog">Don't have an account? Register!</a>
                 

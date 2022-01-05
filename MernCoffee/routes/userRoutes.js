@@ -10,7 +10,7 @@ var isEmployee = auth.isEmployee;
 var isAdmin = auth.isAdmin;
 var isUser = auth.isUser;
 var hasLogin = auth.hasLogin;
-
+const userService = require('../component/userComponent/userService');
 /**
  * GET register
  */
@@ -42,25 +42,46 @@ router.post('/register', async (req, res) => {
 
     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        console.log("loi empty validation");
-        res.render('register', {
-            errors: errors,
-            title: 'Register'
-        }); 
+    const usernameFound = await userService.findByUsername(username);
+    const emailFound = await userService.findByEmail(email);
+    
+    console.log("find user in register: " + JSON.stringify(usernameFound))
+    if (username=="") {
+        res.redirect('/users/register?error=please type username');
+    }
+    else if (password2 != password) {
+        res.redirect('/users/register?error=wrong pass confirm');
+        
+    }
+    else if (usernameFound) {                     
+        console.log("founded username")           
+        res.redirect('/users/register?error=Username existed (belong someone else)');
+        
+    } 
+    else if (emailFound) {
+                                                            
+        res.redirect('/users/register?error=this email existed');
+    }
+    else if (!errors.isEmpty()) {
+        // console.log("loi empty validation");
+        // res.render('register', {
+        //     errors: errors,
+        //     title: 'Register'
+        // }); 
+        res.redirect('/users/register?error=something wrong, please try again');
     } else {
 
 
         await User.where({username: username}).findOne( (err, user) => {
             if (err) {
-                console.log("loi find user");
+                // console.log("loi find user");
                 console.log(err);
             }
             else if (user) {
                 console.log("loi user exist");
                 // console.log("User\n" + user);
-                req.flash('danger', 'Username exist, choose another!');
-                res.redirect('/users/register?error=user exist');
+                //req.flash('danger', 'Username exist, choose another!');
+                res.redirect('/users/register?error=user existed');
             } else {
                 const user = new User({
                     name: name,
@@ -82,10 +103,10 @@ router.post('/register', async (req, res) => {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log("success");
-                                req.flash('success', 'You are now registered!');
-                                //res.redirect('/users/login')
-                                res.redirect('/about');
+                                //console.log("success");
+                                //req.flash('success', 'You are now registered!');
+                                res.redirect('/users/login?success=register successful')
+                                //res.redirect('/about');
                             }
                         });
                     });
@@ -107,17 +128,20 @@ router.get('/login', hasLogin, function (req, res) {
     if (error) {
         error = req.query.error;
     }
-    
+
+    let success = req.query.success || undefined;
+    if (success) {
+        success = req.query.success;
+    }
     if (res.locals.user) {
         res.redirect('/');
-        req.flash("danger", "You have already logged in");
+        //req.flash("danger", "You have already logged in");
     }
-    //res.send("Loi ne");
-    var errorLogin = req.query.error;
 
     res.render('login', {
         title: 'Log in',
-        errorLogin: error,
+        error: error,
+        success: success,        
     });
 
 });
