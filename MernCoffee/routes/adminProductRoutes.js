@@ -56,7 +56,7 @@ router.get('/add-product', (req, res) => {
 
     Category.find((err, categories) => {
         res.render('admin/add_product', {
-            title: title,
+            title: "Add Product",
             desc: desc,
             categories: categories,
             price: price

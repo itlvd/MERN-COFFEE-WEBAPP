@@ -1,7 +1,11 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
-
+var auth = require('../config/auth');
+var isEmployee = auth.isEmployee;
+var isAdmin = auth.isAdmin;
+var isUser = auth.isUser;
+var hasLogin = auth.hasLogin;
 
 // get Categories model
 const Category = require('../models/categoryModel');
@@ -10,7 +14,7 @@ const Category = require('../models/categoryModel');
 /**
  * GET category index
  */
-router.get('/', async (req, res) => {
+router.get('/', isEmployee, async (req, res) => {
     var count;
     var category_count = 1;
 
@@ -23,7 +27,8 @@ router.get('/', async (req, res) => {
         res.render('admin/categories', {
             categories: categories,
             category_count: category_count,
-            count: count
+            count: count,
+            title: "Category",
         });
 
 
@@ -34,13 +39,13 @@ router.get('/', async (req, res) => {
 /**
  * GET add-category
  */
-router.get('/add-category', (req, res) => {
+router.get('/add-category', isEmployee, (req, res) => {
 
     var title = "";
     //res.send("add category");
 
     res.render('admin/add_category', {
-        title: title
+        title: "Add category",
     });
 });
 
@@ -106,7 +111,7 @@ router.post('/add-category', check('title').notEmpty(), (req, res) => {
 /**
  * GET edit category
  */
-router.get('/edit-category/:id', (req, res) => {
+router.get('/edit-category/:id', isEmployee, (req, res) => {
 
     Category.findById(req.params.id, (err, category) => {
         if (err) {
@@ -185,7 +190,7 @@ router.post('/edit-category/:id', (req, res) => {
 })
 
 
-router.get('/delete-category/:id', (req, res) => {
+router.get('/delete-category/:id', isEmployee, (req, res) => {
     Category.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             return console.log(err);

@@ -34,7 +34,8 @@ router.get('/', isAdmin, async (req, res) => {
         res.render('admin/employee', {
             employees: employees,
             count: count,
-            employee_count: employee_count
+            employee_count: employee_count,
+            title: "Employee",
         });
     });
 });

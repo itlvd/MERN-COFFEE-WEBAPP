@@ -78,7 +78,7 @@ exports.getAllBillUncompleted = async function(req, res, next) {
     const bills = await Bill.find({ status: 'processing' }).sort('createdAt').skip(skip).limit(limit);
 
     res.render('admin/handleOrder', {
-        title: 'Danh sách mua hàng',
+        title: 'Order list',
         bill: bills,
         page,
         totalPage,

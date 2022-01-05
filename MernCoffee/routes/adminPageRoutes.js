@@ -66,6 +66,7 @@ router.get('/', isEmployee, async (req, res) => {
         user: req.user,
         monthlyIncome: monthlyIncome,
         total,
+        title: "Admin Home",
     });
 });
 
@@ -73,7 +74,8 @@ router.get('/temp', (req, res) => {
 
     console.log("req: \n" + req.user);
     res.render('admin/pages', {
-        user: req.user
+        user: req.user,
+        title: "Admin Home",
     });
     //user: req.user
 });

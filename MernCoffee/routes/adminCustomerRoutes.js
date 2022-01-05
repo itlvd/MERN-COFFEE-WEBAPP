@@ -21,7 +21,7 @@ const User = require("../models/userModel");
 /**
  * GET show customer list
  */
-router.get('/', async (req, res) => {
+router.get('/', isEmployee, async (req, res) => {
     
     //const count = (await User.where({role: "user"}).find()).length;
     const count = (await User.where({ role: "user"}).find()).length;
@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
         res.render('admin/customer', {
             customers: customers,
             count: count,
-            customer_count: customer_count
+            customer_count: customer_count,
+            title: "Customer List",
         });
     });
 });
@@ -43,7 +44,7 @@ router.get('/', async (req, res) => {
 /**
  * GET add customer
  */
-router.get('/add-customer', (req, res) => {
+router.get('/add-customer', isEmployee, (req, res) => {
     // title ?
     res.render('admin/add_customer', {
         title: "Add customer"
@@ -139,7 +140,7 @@ router.post('/add-customer', async (req, res) => {
 /*
  * GET delete customer
  */
-router.get('/delete-customer/:id', function (req, res) {
+router.get('/delete-customer/:id', isEmployee, function (req, res) {
 
     var id = req.params.id;
     

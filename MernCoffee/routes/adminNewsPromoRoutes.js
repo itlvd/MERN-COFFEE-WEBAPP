@@ -24,7 +24,7 @@ cloudinary.config({
     secure: true
   });
 
-router.get('/add_image/', async (req, res) => {
+router.get('/add_image/', isEmployee, async (req, res) => {
     cloudinary.uploader.upload("public/img/toan.jpg", {public_id: "mern/sample_woman", overwrite: true }, function(error, result) {
         console.log(result);
         console.log(error);
@@ -80,7 +80,7 @@ router.post('/add-promotion', promotionController.postAddPromotion);
 /*
  * GET delete promotion
  */
-router.get('/delete-promotion/:id', function (req, res) {
+router.get('/delete-promotion/:id', isEmployee, function (req, res) {
 
     var id = req.params.id;
     var path = 'public/promotion_images/' + id;
