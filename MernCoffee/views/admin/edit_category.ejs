@@ -3,7 +3,11 @@
     <h2 class="page-title">Edit a category</h2>
     <hr class="hline">
     <a href="/admin/categories" class="btn2 btn-primary btn-lg">Back to all categories</a>
-    <br><br>
+    <br>
+    <% if (error) { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %> 
+    <br>
 
     <form method="post" action="/admin/categories/edit-category/<%= id %>">
 

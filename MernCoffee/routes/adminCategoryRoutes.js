@@ -43,9 +43,13 @@ router.get('/add-category', isEmployee, (req, res) => {
 
     var title = "";
     //res.send("add category");
-
+    let error = req.query.message || undefined;
+    if (error) {
+        error = req.query.message;
+    }
     res.render('admin/add_category', {
         title: "Add category",
+        error: error,
     });
 });
 
@@ -53,31 +57,25 @@ router.get('/add-category', isEmployee, (req, res) => {
 /**
  *  POST add-category
  */
-router.post('/add-category', check('title').notEmpty(), (req, res) => {
+router.post('/add-category', (req, res) => {
 
     var title = req.body.title;
 
     title = title + "";
     var slug = title.replace(/\s+/g, '-').toLowerCase();
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        // res.render('admin/add_category', {
-        //     errors: errors,
-        //     title: title
-        // });
-
-        res.send("Loi o empty");
+    if (title == "") {
+        res.redirect('/admin/categories/add-category?message=please enter full information');
 
     } else {
         Category.findOne({ slug: slug }, function (err, category) {
             if (category) {
-                req.flash('danger', 'Category title exists, choose another.');
-                res.render('admin/add_category', {
-                    title: title,
-                    slug: slug
-                });
+                // req.flash('danger', 'Category title exists, choose another.');
+                // res.render('admin/add_category', {
+                //     title: title,
+                //     slug: slug
+                // });
+                res.redirect('/admin/categories/add-category?message=Category title exists, choose another.');
+                
             } else {
                 var category = new Category({
                     title: title,
@@ -99,7 +97,7 @@ router.post('/add-category', check('title').notEmpty(), (req, res) => {
                     });
 
                     req.flash('success', 'Category added!');
-                    res.redirect('/admin/categories/');
+                    res.redirect('/admin/categories');
                 });
             }
         });
@@ -112,14 +110,18 @@ router.post('/add-category', check('title').notEmpty(), (req, res) => {
  * GET edit category
  */
 router.get('/edit-category/:id', isEmployee, (req, res) => {
-
+    let error = req.query.message || undefined;
+    if (error) {
+        error = req.query.message;
+    }
     Category.findById(req.params.id, (err, category) => {
         if (err) {
             return console.log(err);
         }
         res.render('admin/edit_category', {
             title: category.title,
-            id: category._id
+            id: category._id,
+            error: error,
         });
     });
 
@@ -130,31 +132,26 @@ router.get('/edit-category/:id', isEmployee, (req, res) => {
  */
 router.post('/edit-category/:id', (req, res) => {
 
-    check('title', 'title must have a value').notEmpty()
+    
     var title = req.body.title;
     var id = req.params.id;
-    title = title + "";
-    var slug = title.replace(/\s+/g, '-').toLowerCase();
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        //res.render('admin/edit_category', {
-        //     errors: errors,
-        //     title: title,
-        //     id: id
-        // });
-
-        res.send("Loi o empty");
-
+    if (title == "") {
+        res.redirect(`/admin/categories/edit-category/${id}?message=please enter full information`);
     } else {
+        title = title + "";
+        var slug = title.replace(/\s+/g, '-').toLowerCase();
+
+
+
         Category.findOne({ slug: slug, _id: { '$ne': id } }, (err, category) => {
             if (category) {
-                req.flash('danger', 'Category title exists, choose another.');
-                res.render('admin/edit_category', {
-                    title: title,
-                    id: id
-                });
+                // req.flash('danger', 'Category title exists, choose another.');
+                // res.render('admin/edit_category', {
+                //     title: title,
+                //     id: id
+                // });
+                res.redirect(`/admin/categories/edit-category/${id}?message=Category title existed, choose another.`);
+
             } else {
                 Category.findById(id, function (err, category) {
                     if (err) {
@@ -195,7 +192,7 @@ router.get('/delete-category/:id', isEmployee, (req, res) => {
         if (err) {
             return console.log(err);
         }
-        req.flash('success', 'Categoty deleted!');
+        //req.flash('success', 'Categoty deleted!');
         res.redirect('/admin/categories/')
 
     })
