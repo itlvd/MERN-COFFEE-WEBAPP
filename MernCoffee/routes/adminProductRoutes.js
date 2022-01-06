@@ -21,7 +21,7 @@ const productController = require('../component/product/productController');
 /**
  * GET product index
  */
-router.get('/', async (req, res) => {
+router.get('/', isEmployee, async (req, res) => {
     // const page = req.query.page || 1;
     // const limit = req.query.limit * 1 || 16;
     // const skip = (page - 1) * limit;
@@ -46,11 +46,15 @@ router.get('/', async (req, res) => {
 /**
  * GET add product
  */
-router.get('/add-product', (req, res) => {
+router.get('/add-product', isEmployee, (req, res) => {
 
     var title = "";
     var desc = "";
     var price = "";
+    let error = req.query.message || undefined;
+    if (error) {
+        error = req.query.message;
+    }
 
     //res.send("add category");
 
@@ -59,7 +63,8 @@ router.get('/add-product', (req, res) => {
             title: "Add Product",
             desc: desc,
             categories: categories,
-            price: price
+            price: price,
+            error: error,
         });
     });
 });
@@ -180,7 +185,7 @@ router.get('/add-product', (req, res) => {
 /*
  * GET edit product
  */
-router.get('/edit-product/:id', productController.getEditProduct);
+router.get('/edit-product/:id', isEmployee, productController.getEditProduct);
 // router.get('/edit-product/:id', function (req, res) {
 
 //     var errors;
@@ -355,7 +360,7 @@ router.post('/product-gallery/:id', function (req, res) {
 /*
  * GET delete image
  */
-router.get('/delete-image/:image', function (req, res) {
+router.get('/delete-image/:image', isEmployee, function (req, res) {
 
     var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;

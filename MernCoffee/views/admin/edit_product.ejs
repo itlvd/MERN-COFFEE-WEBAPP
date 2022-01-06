@@ -3,20 +3,24 @@
     <h2 class="page-title">Edit product</h2>
     <hr class="hline">
     <a href="/admin/products" class="btn2 btn-primary btn-lg">Back to all products</a>
-    <br><br>
+    <br>
+    <% if (error) { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %> 
+    <br>
 
 
     <form method="post" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="">Title</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title" required>
         </div>
 
         <div class="form-group">
             <label for="">Description</label>
             <textarea name="desc" class="form-control" cols="30" rows="10"
-                placeholder="Description"><%= desc %></textarea>
+                placeholder="Description" required><%= desc %></textarea>
         </div>
 
         <div class="form-group">
@@ -34,7 +38,7 @@
 
         <div class="form-group">
             <label for="">Price</label>
-            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+            <input type="number" class="form-control" name="price" value="<%= price %>" placeholder="Price" required>
         </div>
 
         <div class="form-group">
@@ -50,7 +54,7 @@
 
         <div class="form-group">
             <label for="">Upload Image</label>
-            <input type="file" class="form-control" name="image" id="img">
+            <input type="file" class="form-control" name="image" id="img" accept="image/png, image/jpg, image/jpeg" onchange="validateFileType()">
             <img src="#" id="imgPreview" alt="">
         </div>
 
@@ -96,5 +100,18 @@
         }
 
     </script>
-
+    <script type="text/javascript">
+        function validateFileType(){
+            var fileName = document.getElementById("img").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+                //TO DO
+            }else{
+                alert("Only jpg/jpeg and png files are allowed!");
+                var inputFile = document.getElementById("img");
+                inputFile.value = "";
+            }   
+        }
+    </script>
     <%- include('../_layouts/adminfooter') %>
