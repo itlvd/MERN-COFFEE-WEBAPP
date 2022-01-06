@@ -50,8 +50,7 @@
 
                         <label for="uploadimage" class="btn btn-secondary" style="background-color: gray;">Choose
                             file</label>
-                        <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file"
-                            style="display:none;">
+                        <input id="uploadimage" name="image" class="text-center center-block file-upload" type="file" accept="image/png, image/jpg, image/jpeg" onchange="validateFileType()" style="display:none;">
                         <button id="updatebtn" class="btn-sm btn-success" type="submit">Update</button>
 
                     </form>
@@ -226,7 +225,20 @@
             });
         });
     </script>
-
+    <script type="text/javascript">
+        function validateFileType(){
+            var fileName = document.getElementById("uploadimage").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+                //TO DO
+            }else{
+                alert("Only jpg/jpeg and png files are allowed!");
+                var inputFile = document.getElementById("uploadimage");
+                inputFile.value = "";
+            }   
+        }
+    </script>
 </body>
 
 

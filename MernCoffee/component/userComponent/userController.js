@@ -36,8 +36,11 @@ exports.updateImage = async (req, res) => {
     //console.log("user find by id:\n\n" + JSON.stringify(user));
     
     const form = formidable({});
-    form.parse(req, async (err, fields, files) => {        
-        if (files.image.originalFilename) {
+    form.parse(req, async (err, fields, files) => {  
+        if (files.image.originalFilename.indexOf('jpg') === -1 && files.image.originalFilename.indexOf('png') === -1 && files.image.originalFilename.indexOf('jpeg') === -1  &&
+                  files.image.originalFilename.indexOf('JPG') === -1 && files.image.originalFilename.indexOf('PNG') === -1 && files.image.originalFilename.indexOf('JPEG') === -1 ) {
+            res.redirect('/me?mess=please upload png/jpg/jpeg image');
+        } else if (files.image.originalFilename) {
             if (user) {
                 
                 // cloudinary.uploader.upload(files.image.filepath, { public_id: `mern/users/${user._id}/${user.username}`,overwrite: true, width: 192, height: 192, crop: "scale", fetch_format: "jpg"})
@@ -102,55 +105,37 @@ exports.saveUpdate = async (req, res) => {
     const password = await req.body.password;
     const password2 = await req.body.password2;
     const address = await req.body.address;
-
-    const isRightPass = await userService.validPassword(password, req.user);
-    if (!isRightPass) {
-        res.redirect('/me?mess=wrong password');
-    }
-
-    if (password2 != password) {
-        res.redirect('/me?mess=wrong pass confirm');
-    }
-    
-
-
-    
-    
-    check('name', 'Name is required!').notEmpty();
-    check('email', 'Email is required!').isEmail();
-    check('phone', 'Email is required!').notEmpty();
-    check('address', 'Email is required!').notEmpty();
-    check('username', 'Username is required!').notEmpty();
-    check('password', 'Password is required!').notEmpty();
-    // check('password2', 'Passwords do not match!').equals(password);
-
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        
-        res.redirect("/me?mess=something wrong, please try again");
-    }
+    if (name == "" || email == "" || username == "" || password == "" || password2 == "" || address == "" || phone == "") {
+        res.redirect('/me?mess=Please enter full information')
+    } 
     else {
-        const usernameFound = await userService.findByUsername(username);
-        const emailFound = await userService.findByEmail(email);
-
-        if (usernameFound && (JSON.stringify(id) != JSON.stringify(usernameFound._id))) { 
-                                   
-            res.redirect('/me?mess=Username existed (belong someone else)');
-        } 
-        else if (emailFound && (JSON.stringify(id) != JSON.stringify(emailFound._id))) {
-                                                                
-            res.redirect('/me?mess=this email existed"');
+        const isRightPass = await userService.validPassword(password, req.user);
+        if (!isRightPass) {
+            res.redirect('/me?mess=wrong password');
         }
-        else {
-            try {
-                await userService.updateUser(id, name, email, phone, address, username, password);
-                res.redirect('/me?success=update successful');
-            } catch (Exception) {
-                res.redirect('/me?mess=something wrong');
+        else if (password2 != password) {
+            res.redirect('/me?mess=wrong pass confirm');
+        } else {
+            const usernameFound = await userService.findByUsername(username);
+            const emailFound = await userService.findByEmail(email);
+
+            if (usernameFound && (JSON.stringify(id) != JSON.stringify(usernameFound._id))) { 
+                                    
+                res.redirect('/me?mess=Username existed (belong someone else)');
+            } 
+            else if (emailFound && (JSON.stringify(id) != JSON.stringify(emailFound._id))) {
+                                                                    
+                res.redirect('/me?mess=this email existed"');
             }
-        }
+            else {
+                try {
+                    await userService.updateUser(id, name, email, phone, address, username, password);
+                    res.redirect('/me?success=update successful');
+                } catch (Exception) {
+                    res.redirect('/me?mess=something wrong');
+                }
+            }
 
+        }
     }
 }
