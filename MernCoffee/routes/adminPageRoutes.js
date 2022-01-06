@@ -61,12 +61,16 @@ router.get('/', isEmployee, async (req, res) => {
         monthlyIncome.push(total)
     }
 
-
+    let error = req.query.message || undefined;
+    if (error) {
+        error = req.query.message;
+    }
     res.render('admin/pages', {
         user: req.user,
         monthlyIncome: monthlyIncome,
         total,
         title: "Admin Home",
+        error: error,
     });
 });
 

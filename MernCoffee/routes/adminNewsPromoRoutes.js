@@ -24,12 +24,6 @@ cloudinary.config({
     secure: true
   });
 
-router.get('/add_image/', isEmployee, async (req, res) => {
-    cloudinary.uploader.upload("public/img/toan.jpg", {public_id: "mern/sample_woman", overwrite: true }, function(error, result) {
-        console.log(result);
-        console.log(error);
-     });
-})
 /*
  * GET all promotions
  */

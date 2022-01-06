@@ -6,9 +6,15 @@
             <div class="mb-npx">
                 <div class="row align-items-center">
                     <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-
                         <h1 class="h2 mb-0 ls-tight">Welcome back, Admin!</h1>
-                    </div>
+                    </div>                    
+                </div>
+                <div class="row align-items-center">
+                    <% if (error) { %>
+                        <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                            <div style="color: red;"><%= error %></div>
+                        </div>
+                    <% } %>
                 </div>
                 <ul class="nav nav-tabs mt-4 overflow-x border-0">
                     <li class="nav-item "> <a href="#" class="nav-link active">General</a> </li>

@@ -3,40 +3,44 @@
     <h2 class="page-title">Add a promotion</h2>
     <hr class="hline">
     <a href="/admin/promotions" class="btn2 btn-primary btn-lg">Back to all promotions</a>
-    <br><br>
+    <br>
+    <% if (error) { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %>  
+    <br>
 
     <form method="post" action="/admin/promotions/add-promotion" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="">Title</label>
-            <input type="text" class="form-control" name="title" value="" placeholder="Title">
+            <input type="text" class="form-control" name="title" value="" placeholder="Title" required>
         </div>
 
         <div class="form-group">
             <label for="">Code</label>
-            <input type="text" class="form-control" name="code" value="" placeholder="Code">
+            <input type="number" class="form-control" name="code" value="" placeholder="Code" required>
         </div>
 
 
 
         <div class="form-group">
             <label for="">Discount Value</label>
-            <input type="text" class="form-control" name="value" value="" placeholder="Value">
+            <input type="number" class="form-control" name="value" value="" placeholder="Value" required>
         </div>
 
         <div class="form-group">
             <label for="">Quantity</label>
-            <input type="text" class="form-control" name="quantity" value="" placeholder="Quantity">
+            <input type="number" class="form-control" name="quantity" value="" placeholder="Quantity" required>
         </div>
 
         <div class="form-group">
             <label for="">Expire Date</label>
-            <input type="date" class="form-control" name="expiryDate" value="" placeholder="Quantity">
+            <input type="date" class="form-control" name="expiryDate" value="" placeholder="Expire Date">
         </div>
 
         <div class="form-group">
             <label for="">Image</label>
-            <input type="file" class="form-control" name="image" id="img">
+            <input type="file" class="form-control" name="image" id="img" accept="image/png, image/jpg, image/jpeg" onchange="validateFileType()" required>
             <img src="#" id="imgPreview" alt="">
         </div>
 
@@ -62,5 +66,18 @@
         });
 
     </script>
-
+    <script type="text/javascript">
+        function validateFileType(){
+            var fileName = document.getElementById("img").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+                //TO DO
+            }else{
+                alert("Only jpg/jpeg and png files are allowed!");
+                var inputFile = document.getElementById("img");
+                inputFile.value = "";
+            }   
+        }
+    </script>
     <%- include('../_layouts/adminfooter') %>
