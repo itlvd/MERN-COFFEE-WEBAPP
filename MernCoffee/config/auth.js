@@ -32,21 +32,15 @@ exports.isEmployee = function(req, res, next) {
 
 
 exports.isAdmin = function(req, res, next) {
-    // console.log("req.session: " + req.session);
-    //if (req.isAuthenticated() && req.session.pasport.user.role == "admin") {
+
     if (req.isAuthenticated() && res.locals.user.role == "admin") {
-        //console.log(req.session.passport.user);
-        // console.log("check auth admin ok");
         next();
     } else {
-        
-        // console.log("ban ko co quyen admin");
-        if (res.locals.user.role == "employee") {
-            // req.flash('danger', 'Please log in as admin.');
-            //req.flash("warning","ban ko co quyen admin");
+
+        if (req.isAuthenticated() && res.locals.user.role == "employee") {
+
             res.redirect('/admin/pages?message=You are not admin');
         } else {
-            //req.flash('danger', 'Please log in as admin.');
             res.redirect('/users/login');
         }
     }

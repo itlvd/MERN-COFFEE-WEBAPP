@@ -5,6 +5,10 @@
     </h1>
     <hr class="hline">
     <a href="/admin/customer" class="btn2 btn-primary btn-lg">Back to all customer</a>
+    <% if (error) { %>
+        <br>
+        <div style="color: red;"><%= error %></div>
+    <% } %> 
     <form method="post" action="/admin/customer/add-customer" style="margin-top: 20px;">
 
         <div class="form-group">

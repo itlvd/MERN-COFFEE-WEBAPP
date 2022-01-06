@@ -28,8 +28,8 @@ router.get('/', isAdmin, async (req, res) => {
     const employee_count = 1;
     User.where({ role: { $ne: "user" } }).find((err, employees) => {
         if (err) {
+            res.redirect('/admin/pages?message=Can view employee list right now');
             return console.log(err);
-            
         }
         res.render('admin/employee', {
             employees: employees,
@@ -46,8 +46,13 @@ router.get('/', isAdmin, async (req, res) => {
  */
 router.get('/add-employee', isAdmin, (req, res) => {
     // title ?
+    let error = req.query.message || undefined;
+    if (error) {
+        error = req.query.message;
+    }
     res.render('admin/add_employee', {
-        title: "Add Employee"
+        title: "Add Employee",
+        error: error,
     });
 });
 
@@ -58,11 +63,11 @@ router.get('/add-employee', isAdmin, (req, res) => {
 router.post('/add-employee', async (req, res) => {
     
 
-    check('name', 'Title must have a value').notEmpty();
-    check('email', 'decription must have a value').isEmail();
-    check('username', 'Title must have a value').notEmpty();
-    check('password', 'decription must have a value').notEmpty();
-    check('role', 'Title must have a value').notEmpty();
+    // check('name', 'Title must have a value').notEmpty();
+    // check('email', 'decription must have a value').isEmail();
+    // check('username', 'Title must have a value').notEmpty();
+    // check('password', 'decription must have a value').notEmpty();
+    // check('role', 'Title must have a value').notEmpty();
     
 
     const name = req.body.name + "";
@@ -71,31 +76,18 @@ router.post('/add-employee', async (req, res) => {
     const password = req.body.password + "";
     const role = req.body.role + "";
 
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        console.log("loi empty validation");
-        res.render('admin/add_employee', {
-            errors: errors,
-            title: 'Register'
-        }); 
+    if (name == "" || email == "" || username == "" || password == "" || role == "") {
+        res.redirect('/admin/employee/add-employee?message=Please enter full information')
     } else {
-        //const user = await User.findById(idUser);
-        console.log("Name: " + name);
-        console.log("UserName: " + username);
-        console.log("gmail: " + email);
-        console.log("password: " + password);
 
         await User.where({username: username}).findOne( (err, user) => {
             if (err) {
-                console.log("loi find user");
-                console.log(err);
+
+                res.redirect('/admin/employee/add-employee?message=Error to add, please try again')
             }
             else if (user) {
-                console.log("loi user exist");
-                console.log("User\n" + user);
-                req.flash('danger', 'Username exist, choose another!');
-                res.redirect('/admin/employee');
+                res.redirect('/admin/employee/add-employee?message=Username exist, choose another!')
+
             } else {
                 const user = new User({
                     name: name,
@@ -108,21 +100,22 @@ router.post('/add-employee', async (req, res) => {
 
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(user.password, salt, function (err, hash) {
-                        if (err)
-                            console.log(err);
-
-                        user.password = hash;
-
-                        user.save(function (err) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("success");
-                                req.flash('success', 'Add new employee successfully!');
-                                //res.redirect('/users/login')
-                                res.redirect('/admin/employee');
-                            }
-                        });
+                        if (err) {
+                            //console.log(err);
+                            res.redirect('/admin/employee/add-employee?message=Error to add, please try again')
+                        }
+                        else {
+                            user.password = hash;
+                            user.save(function (err) {
+                                if (err) {
+                                    res.redirect('/admin/employee/add-employee?message=Error to add, please try again')                                    
+                                } else {                                    
+                                    //req.flash('success', 'Add new employee successfully!');
+                                    //res.redirect('/users/login')
+                                    res.redirect('/admin/employee');
+                                }
+                            });
+                        }
                     });
                 });
             }
