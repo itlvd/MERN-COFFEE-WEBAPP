@@ -52,8 +52,9 @@ router.get('/', isAdmin, async function (req, res, next) {
       let bill = bills[b];
       let createdAt = bill.createdAt;
       let month = new Date(createdAt).getMonth();
+      let year = new Date(createdAt).getFullYear();
 
-      if (month == i)
+      if (month == i && year == new Date().getFullYear())
         total += bill.total;
     }
 
